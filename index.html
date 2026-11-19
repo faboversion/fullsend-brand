@@ -1,0 +1,1316 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>FULL SEND</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark editorial stack — split hero with FPV OSD frame, limited-drop band, filterable collection, lookbook wall, community band. */
+:root{
+  --bg:#0f0e0d;          /* basalt */
+  --surface:#191715;     /* wet stone */
+  --line:#2c2925;
+  --fg:#efe9df;          /* chalk */
+  --muted:#a39a8d;
+  --desert:#cdb593;      /* desert sand, from the garments */
+  --burgundy:#7d2a2e;    /* winter series accent */
+  --burgundy-fg:#f3dcd8;
+  --card:#e9e5de;        /* product plate, product shots sit on light grey */
+  --card-fg:#1a1816;
+  --osd:#f4f1ea;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gut-l:max(16px,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,env(safe-area-inset-right,0px));
+  --logo:url(img/logo-white.png);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f1ede6;--surface:#e7e1d7;--line:#d5cdc0;--fg:#171513;--muted:#6b6358;
+  --desert:#8a6d45;--burgundy:#7d2a2e;--burgundy-fg:#f6e4e0;--card:#fbf9f6;--card-fg:#1a1816;--osd:#f4f1ea;
+  --logo:url(img/logo-black.png);color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f1ede6;--surface:#e7e1d7;--line:#d5cdc0;--fg:#171513;--muted:#6b6358;
+  --desert:#8a6d45;--burgundy:#7d2a2e;--burgundy-fg:#f6e4e0;--card:#fbf9f6;--card-fg:#1a1816;--osd:#f4f1ea;
+  --logo:url(img/logo-black.png);color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+:focus-visible{outline:2px solid var(--desert);outline-offset:3px}
+.eyebrow{font:500 12px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.disp{font-family:var(--display);font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;text-wrap:balance}
+h2.disp{font-size:clamp(34px,6vw,76px);margin:0}
+.lede{max-width:56ch;color:var(--muted);font-size:17px;margin:0}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
+.logo{display:block;width:132px;aspect-ratio:1254/280;background:var(--logo) center/contain no-repeat;flex:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+@media (max-width:720px){.nav ul li:not(.keep){display:none}}
+
+/* hero */
+.hero{padding-block:clamp(28px,5vw,64px) clamp(40px,6vw,88px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:end}
+.hero-copy{display:grid;gap:28px;min-width:0}
+.hero-logo{width:min(100%,560px);aspect-ratio:1254/280;background:var(--logo) left center/contain no-repeat}
+.hero h1{font-size:clamp(34px,5.4vw,88px);margin:0}
+.hero h1 span{display:block;color:var(--desert)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border:1px solid var(--fg);font:600 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn.solid{background:var(--fg);color:var(--bg)}
+.btn.solid:hover{background:var(--desert);border-color:var(--desert);color:#141210}
+.btn .dash{display:inline-block;width:18px;height:1px;background:currentColor;position:relative}
+.btn .dash::after{content:"";position:absolute;right:4px;top:-5px;width:1px;height:11px;background:currentColor}
+
+/* OSD frame — FPV goggle overlay on photos */
+.osd{position:relative;overflow:hidden;background:#000;color:var(--osd)}
+.osd img,.osd video{width:100%;height:100%;object-fit:cover;display:block}
+.osd::before{content:"";position:absolute;inset:14px;pointer-events:none;
+  background:
+   linear-gradient(currentColor,currentColor) left top/22px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) left top/2px 22px no-repeat,
+   linear-gradient(currentColor,currentColor) right top/22px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) right top/2px 22px no-repeat,
+   linear-gradient(currentColor,currentColor) left bottom/22px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) left bottom/2px 22px no-repeat,
+   linear-gradient(currentColor,currentColor) right bottom/22px 2px no-repeat,
+   linear-gradient(currentColor,currentColor) right bottom/2px 22px no-repeat;opacity:.85}
+.osd .hud{position:absolute;left:24px;right:24px;display:flex;justify-content:space-between;gap:10px;font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.osd .hud.top{top:26px}.osd .hud.bot{bottom:26px}
+.osd .rec{display:inline-flex;align-items:center;gap:6px}
+.osd .rec::before{content:"";width:7px;height:7px;border-radius:50%;background:#e2483d;animation:blink 1.4s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.playbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;border:1.5px solid #f4f1ea;background:rgba(10,10,10,.45);backdrop-filter:blur(4px);cursor:pointer;z-index:3;display:grid;place-items:center}
+.playbtn span{width:0;height:0;border-left:18px solid #f4f1ea;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.osd .cross{position:absolute;left:50%;top:50%;width:26px;height:26px;transform:translate(-50%,-50%);opacity:.7;pointer-events:none}
+.osd .cross::before,.osd .cross::after{content:"";position:absolute;background:currentColor}
+.osd .cross::before{left:0;right:0;top:50%;height:1px}
+.osd .cross::after{top:0;bottom:0;left:50%;width:1px}
+.hero .osd{aspect-ratio:654/1000;max-width:100%}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.hero .osd{aspect-ratio:4/5}}
+
+/* telemetry strip */
+.strip{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.strip .track{display:inline-flex;gap:48px;padding-block:14px;font:500 13px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);animation:slide 40s linear infinite}
+.strip b{color:var(--fg);font-weight:500}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+section{padding-block:clamp(56px,8vw,112px)}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px;margin-bottom:clamp(28px,4vw,48px)}
+.head > div{display:grid;gap:14px;min-width:0}
+
+/* winter series */
+.drop{background:var(--burgundy);color:var(--burgundy-fg)}
+.drop .eyebrow,.drop .lede{color:color-mix(in srgb,var(--burgundy-fg) 72%,transparent)}
+.drop-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.drop-grid figure{margin:0;position:relative;overflow:hidden;background:#000}
+.drop-grid img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.drop-grid figure:hover img{transform:scale(1.03)}
+.drop-grid figcaption{position:absolute;left:14px;bottom:12px;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#f4f1ea;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.drop-grid{grid-auto-rows:clamp(360px,44vw,600px)}
+.d1{grid-column:span 5}.d2{grid-column:span 4}.d3{grid-column:span 3}
+@media (max-width:860px){.d1{grid-column:span 12}.d2,.d3{grid-column:span 6}}
+@media (max-width:520px){.d1,.d2,.d3{grid-column:span 12}}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:color-mix(in srgb,var(--burgundy-fg) 22%,transparent);border:1px solid color-mix(in srgb,var(--burgundy-fg) 22%,transparent);margin-top:14px}
+.facts div{background:var(--burgundy);padding:18px 20px;display:grid;gap:4px;min-width:0}
+.facts dt{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.facts dd{margin:0;font:700 20px/1.2 var(--display);font-stretch:112%;text-transform:uppercase}
+@media (max-width:720px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* winter looks: 4 model tiles */
+.wsl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.4vw,18px);margin-bottom:14px}
+@media (max-width:1000px){.wsl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wl{position:relative;aspect-ratio:2/3;overflow:hidden;background:#1a0d0e;color:#f4f1ea;margin:0;cursor:pointer;outline-offset:3px}
+.wl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:opacity .6s ease,transform 1.1s ease}
+.wl img.b{opacity:0}
+.wl::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,8,8,.25) 0,transparent 18%,transparent 45%,rgba(15,8,8,.88) 100%);opacity:.55;transition:opacity .45s}
+.wl .tag{position:absolute;left:12px;top:12px;z-index:2;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(244,241,234,.6);padding:4px 7px}
+.wl .base{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:8px;transition:opacity .3s,transform .4s}
+.wl .base h3{margin:0;font:700 clamp(15px,1.4vw,19px)/1.15 var(--display);font-stretch:112%;text-transform:uppercase}
+.wl .base span{font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75;white-space:nowrap}
+.wl .det{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:18px 16px 16px;display:grid;gap:12px;opacity:0;transform:translateY(16px);transition:opacity .35s,transform .45s;pointer-events:none}
+.wl .det h3{margin:0;font:800 clamp(17px,1.6vw,22px)/1.05 var(--display);font-stretch:118%;text-transform:uppercase}
+.wl .det .eb{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.wl .det ul{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:13px;line-height:1.35;color:rgba(244,241,234,.86)}
+.wl .det ul li::before{content:"— ";opacity:.6}
+.wl .cl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wl .cl .cn{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.wl .sw{justify-content:flex-start}
+.wl .sw button{width:20px;height:20px;border-color:rgba(244,241,234,.5)}
+.wl .sw button[aria-pressed="true"]{box-shadow:0 0 0 2px #140a0a,0 0 0 3px #f4f1ea}
+.wl .acts{display:flex;gap:8px;flex-wrap:wrap}
+.wl .acts button,.wl .acts a{appearance:none;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid #f4f1ea;background:#f4f1ea;color:#140a0a;cursor:pointer;text-decoration:none}
+.wl .acts a{background:none;color:#f4f1ea}
+.wl:hover::after,.wl:focus-within::after,.wl.open::after{opacity:1}
+.wl:hover .det,.wl:focus-within .det,.wl.open .det{opacity:1;transform:none;pointer-events:auto}
+.wl:hover .base,.wl:focus-within .base,.wl.open .base{opacity:0;transform:translateY(8px)}
+.wl:hover img{transform:scale(1.03)}
+.wl.has-b:hover img.f{opacity:0}.wl.has-b:hover img.b{opacity:1}
+@media (max-width:520px){.wl .det{padding:12px 10px 10px;gap:8px}.wl .det ul{display:none}.wl .acts a{display:none}.wl .acts button{padding:8px 9px;font-size:10px}}
+/* on model */
+.om{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;margin-bottom:clamp(40px,6vw,72px)}
+@media (max-width:860px){.om{grid-template-columns:minmax(0,1fr)}}
+.om-frame{position:relative;aspect-ratio:3/4;max-height:760px;width:100%;margin:0;overflow:hidden;background:#1a0d0e;color:#f4f1ea;cursor:pointer;justify-self:end;max-width:570px}
+@media (max-width:860px){.om-frame{justify-self:stretch;max-width:none}}
+.om-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s ease,transform 1.2s ease}
+.om-frame img.b{opacity:0}
+.om-frame.turned img.f{opacity:0}
+.om-frame.turned img.b{opacity:1}
+.om-frame:hover img{transform:scale(1.025)}
+.om-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,8,9,.28),transparent 22%,transparent 70%,rgba(20,8,9,.55))}
+.om-frame .hud{z-index:2}
+.om-turn{display:inline-flex;border:1px solid rgba(244,241,234,.5);pointer-events:auto}
+.om-turn button{appearance:none;background:none;border:0;color:#f4f1ea;padding:5px 9px;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.om-turn button[aria-pressed="true"]{background:#f4f1ea;color:#1a0d0e}
+.om-copy{display:grid;gap:22px;align-content:center;min-width:0;max-width:520px}
+.om-copy h3{margin:0;font:800 clamp(30px,4.4vw,58px)/.95 var(--display);font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
+.om-copy .lede{color:color-mix(in srgb,var(--burgundy-fg) 78%,transparent)}
+.om-spec{margin:0;display:grid;border-top:1px solid color-mix(in srgb,var(--burgundy-fg) 25%,transparent)}
+.om-spec div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid color-mix(in srgb,var(--burgundy-fg) 25%,transparent)}
+.om-spec dt{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.om-spec dd{margin:0;font:600 14px var(--body);text-align:right}
+.om-copy .row{display:flex;flex-wrap:wrap;gap:12px}
+.om-frame img{object-position:50% 28%}
+.om-nav{display:flex;align-items:center;gap:14px}
+.om-arr{appearance:none;width:40px;height:40px;border:1px solid color-mix(in srgb,var(--burgundy-fg) 45%,transparent);background:none;color:var(--burgundy-fg);font:500 16px var(--mono);cursor:pointer;transition:background .2s,color .2s}
+.om-arr:hover{background:var(--burgundy-fg);color:var(--burgundy)}
+.om-dots{display:flex;gap:6px;flex-wrap:wrap}
+.om-dots button{appearance:none;border:0;background:none;padding:6px 4px;color:color-mix(in srgb,var(--burgundy-fg) 55%,transparent);font:500 11px var(--mono);letter-spacing:.1em;cursor:pointer;border-bottom:1px solid transparent}
+.om-dots button[aria-current="true"]{color:var(--burgundy-fg);border-bottom-color:var(--burgundy-fg)}
+.om-copy h3,.om-copy .lede,.om-spec dd{transition:opacity .35s}
+.om-copy.fading h3,.om-copy.fading .lede,.om-copy.fading .om-spec dd{opacity:0}
+.drop .btn{border-color:var(--burgundy-fg);color:var(--burgundy-fg)}
+.drop .btn:hover{background:var(--burgundy-fg);color:var(--burgundy)}
+.drop .btn.solid{background:var(--burgundy-fg);color:var(--burgundy)}
+.drop .btn.solid:hover{background:var(--desert);border-color:var(--desert);color:#141210}
+.prod .om-tag{position:absolute;right:12px;top:12px;z-index:1;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--card-fg);opacity:.7}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid currentColor;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+
+/* product grid */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;background:none;border:1px solid var(--line);color:var(--muted);padding:9px 14px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.chip:hover{color:var(--fg);border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:clamp(14px,2vw,24px)}
+.drop .grid{margin-top:clamp(28px,4vw,48px)}
+#grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){#grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:860px){#grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){#grid,.drop .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+  .prod h3{font-size:14px}.prod .row{flex-direction:column;gap:8px}.sw{justify-content:flex-start}
+  .prod .tag{left:8px;top:8px;font-size:9px;padding:3px 5px}.prod .views{display:none}
+  .filters{flex:1 1 100%}.chip{padding:8px 11px;font-size:11px}
+  .nav ul{gap:14px;font-size:11px}.logo{width:110px}}
+.nav ul a{white-space:nowrap}
+.lang{display:flex;flex:none;border:1px solid var(--line)}
+.lang button{appearance:none;background:none;border:0;color:var(--muted);padding:6px 9px;font:500 11px var(--mono);letter-spacing:.12em;cursor:pointer}
+.lang button:hover{color:var(--fg)}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+@media (max-width:720px){.nav .wrap{gap:14px}}
+@media (max-width:560px){.nav ul li:first-child{display:none}.lang button{padding:6px 7px}}
+.prod{display:grid;gap:12px;min-width:0}
+.prod .plate{position:relative;aspect-ratio:4/5;background:var(--card);overflow:hidden;cursor:pointer;border:0;padding:0;width:100%}
+.prod .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6%;mix-blend-mode:multiply;transition:opacity .35s,transform .5s}
+.prod .plate img.alt{opacity:0}
+.prod .plate img.photo{object-fit:cover;padding:0;mix-blend-mode:normal}
+.prod .plate:hover img.main.has-alt{opacity:0}
+.prod .plate:hover img.alt{opacity:1}
+.prod .plate:hover img{transform:scale(1.02)}
+.prod .tag{position:absolute;left:12px;top:12px;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--card-fg);border:1px solid currentColor;padding:4px 7px;z-index:1}
+.prod .views{position:absolute;right:12px;bottom:12px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--card-fg);opacity:.6;z-index:1}
+.prod .row{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.prod h3{margin:0;font:700 17px/1.2 var(--display);font-stretch:110%;text-transform:uppercase;letter-spacing:.01em}
+.prod .sub{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.drop .prod .sub{color:color-mix(in srgb,var(--burgundy-fg) 70%,transparent)}
+.sw{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.sw button{width:18px;height:18px;border-radius:50%;border:1px solid var(--line);padding:0;cursor:pointer;outline-offset:2px}
+.sw button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--fg)}
+.drop .sw button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--burgundy),0 0 0 3px var(--burgundy-fg)}
+
+/* lookbook */
+.look{columns:3 280px;column-gap:14px}
+.look figure{margin:0 0 14px;break-inside:avoid;position:relative;overflow:hidden;background:var(--surface)}
+.look img{width:100%;transition:transform .8s}
+.look figure:hover img{transform:scale(1.03)}
+.look figcaption{position:absolute;left:12px;bottom:10px;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#f4f1ea;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+
+/* culture */
+.culture .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.culture .poster{background:#0b0b0b;padding:0;border:1px solid var(--line)}
+.culture blockquote{margin:0;display:grid;gap:22px}
+.culture .lines{display:grid;gap:10px;margin:0;padding:0;list-style:none;font:500 14px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.culture .lines li{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px}
+.culture .lines li span{color:var(--muted);min-width:7ch}
+@media (max-width:860px){.culture .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* community */
+.community{position:relative;overflow:hidden;padding-block:0;background:#000;color:#f4f1ea}
+.community .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:.35;filter:blur(6px);transform:scale(1.05)}
+.community .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(64px,9vw,128px)}
+.community .cm-copy{display:grid;gap:26px;justify-items:start;min-width:0}
+.community .reels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.community .reel{margin:0;aspect-ratio:9/16;border:1px solid rgba(244,241,234,.18)}
+.community .reel:nth-child(2){transform:translateY(40px)}
+@media (max-width:860px){.community .wrap{grid-template-columns:minmax(0,1fr)}.community .reel:nth-child(2){transform:none}}
+.community .eyebrow{color:#d8d1c6}
+.community .lede{color:#e2dccf}
+.community .btn{border-color:#f4f1ea;color:#f4f1ea}
+.community .btn.solid{background:#f4f1ea;color:#111}
+.community .btn:hover{background:#cdb593;border-color:#cdb593;color:#111}
+.community .row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* fit finder */
+.finder{background:var(--surface);border-block:1px solid var(--line)}
+.ff{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:960px){.ff{grid-template-columns:minmax(0,1fr)}}
+.ff-panel{position:sticky;top:84px;display:grid;gap:18px;padding:22px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+@media (max-width:960px){.ff-panel{position:static}}
+.ff-panel::before{content:"";position:absolute;inset:8px;pointer-events:none;color:var(--desert);
+  background:
+   linear-gradient(currentColor,currentColor) left top/16px 2px no-repeat,linear-gradient(currentColor,currentColor) left top/2px 16px no-repeat,
+   linear-gradient(currentColor,currentColor) right top/16px 2px no-repeat,linear-gradient(currentColor,currentColor) right top/2px 16px no-repeat,
+   linear-gradient(currentColor,currentColor) left bottom/16px 2px no-repeat,linear-gradient(currentColor,currentColor) left bottom/2px 16px no-repeat,
+   linear-gradient(currentColor,currentColor) right bottom/16px 2px no-repeat,linear-gradient(currentColor,currentColor) right bottom/2px 16px no-repeat}
+.ff-howto{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:center}
+.ff-howto svg{width:110px;height:auto;color:var(--fg)}
+.ff-howto p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+.ff-howto b{color:var(--desert);font-family:var(--mono);font-weight:500}
+.ff-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ff-field{display:grid;gap:6px;min-width:0}
+.ff-field label{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ff-field label b{color:var(--desert);font-weight:500}
+.ff-in{display:flex;align-items:baseline;border:1px solid var(--line);background:var(--surface);padding:0 12px;transition:border-color .2s}
+.ff-in:focus-within{border-color:var(--desert)}
+.ff-in input{all:unset;width:100%;min-width:0;font:800 clamp(30px,4vw,40px)/1.4 var(--display);font-stretch:118%;color:var(--fg);font-variant-numeric:tabular-nums}
+.ff-in input::placeholder{color:color-mix(in srgb,var(--muted) 45%,transparent)}
+.ff-in span{font:500 12px var(--mono);color:var(--muted);letter-spacing:.08em}
+.ff-tol{display:grid;gap:8px}
+.ff-tol .filters{gap:6px}
+.ff-tol .chip{flex:1 1 0;padding:8px 6px;font-size:11px}
+.ff-readout{display:flex;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--line);font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ff-readout b{color:var(--fg);font-weight:500}
+.ff-readout .lock{color:var(--desert)}
+.ff-reset{appearance:none;background:none;border:0;padding:0;color:var(--muted);font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px;justify-self:start}
+.ff-reset:hover{color:var(--fg)}
+.ff-res{display:grid;gap:18px;min-width:0}
+.ff-res .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.ff-count{font:700 clamp(20px,2.4vw,28px)/1.1 var(--display);font-stretch:115%;text-transform:uppercase}
+.ff-count span{color:var(--desert)}
+#ffGrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1100px){#ffGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){#ffGrid{gap:12px 10px}}
+.fitline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.sz{display:inline-grid;place-items:center;min-width:44px;height:30px;padding:0 8px;background:var(--fg);color:var(--bg);font:800 15px var(--display);font-stretch:115%}
+.fitline .fl{display:grid;gap:2px;min-width:0}
+.fitline .q{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--desert)}
+.fitline .q.close{color:var(--muted)}
+.fitline .m{font:500 11px var(--mono);color:var(--muted);letter-spacing:.04em}
+.ff-empty{border:1px dashed var(--line);padding:clamp(28px,5vw,56px);display:grid;gap:10px;justify-items:start}
+.ff-empty h3{margin:0;font:800 clamp(22px,3vw,32px)/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.ff-empty p{margin:0;color:var(--muted);max-width:52ch}
+.ff-empty[hidden],.ff-one[hidden]{display:none}
+.ff-warn{border-left:3px solid var(--desert);background:var(--surface);padding:12px 14px;font-size:14px;line-height:1.5;color:var(--muted)}
+.ff-warn strong{display:block;color:var(--fg);font:700 14px/1.3 var(--display);font-stretch:112%;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+.ff-hint{margin:0;font:500 12px/1.5 var(--mono);color:var(--desert)}
+.ff-in input::-webkit-inner-spin-button,.ff-in input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.ff-in input{-moz-appearance:textfield}
+.prod .fitline{margin-top:auto}
+.ff-one{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.ff-one a{color:var(--fg)}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;padding-block:32px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+footer .logo{width:110px}
+
+/* product dialog */
+dialog{border:0;padding:0;background:var(--bg);color:var(--fg);width:min(1100px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto}
+dialog::backdrop{background:rgba(8,7,6,.78);backdrop-filter:blur(4px)}
+.dlg{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.dlg .gal{background:var(--card);display:grid;grid-template-rows:auto auto}
+.dlg .stage{aspect-ratio:4/5;position:relative}
+.dlg .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:5%;mix-blend-mode:multiply}
+.dlg .stage img.model{object-position:50% 22%}
+.dlg .stage img.photo{object-fit:cover;padding:0;mix-blend-mode:normal}
+.dlg .thumbs{display:flex;gap:8px;padding:12px;overflow-x:auto}
+.dlg .thumbs button{flex:none;width:64px;aspect-ratio:4/5;background:var(--card);border:1px solid rgba(0,0,0,.15);padding:0;cursor:pointer;overflow:hidden}
+.dlg .thumbs button[aria-pressed="true"]{border:2px solid var(--card-fg)}
+.dlg .thumbs img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.dlg .info{padding:clamp(20px,3vw,40px);display:grid;gap:20px;align-content:start;min-width:0}
+.dlg h3{margin:0;font:800 clamp(26px,3vw,38px)/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.dlg ul.feat{margin:0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.dlg ul.feat li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.dlg .close{position:sticky;top:0;float:right;margin:10px;z-index:2;appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:40px;height:40px;cursor:pointer;font:500 18px var(--mono)}
+.dlg .note{font-size:14px;color:var(--muted);margin:0}
+@media (max-width:760px){.dlg{grid-template-columns:minmax(0,1fr)}}
+
+/* drop closed */
+.closed{background:var(--surface);border-block:1px solid var(--line)}
+.closed .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px 40px}
+.closed .txt{display:grid;gap:14px;min-width:0}
+.closed .badge{justify-self:start;color:var(--desert)}
+.notice{background:var(--desert);color:#141210;font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:7px 16px}
+.notice a{color:inherit}
+.buy .closedmsg{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.buy .closedmsg a{color:var(--fg)}
+/* ---------- shop (draft) ---------- */
+.cartbtn{appearance:none;position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);color:var(--fg);padding:6px 10px;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.cartbtn:hover{border-color:var(--muted)}
+.cartbtn b{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;background:var(--desert);color:#141210;font:600 11px var(--mono)}
+.cartbtn.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.12)}}
+.draftbar{background:var(--desert);color:#141210;font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:6px 16px}
+.price{font:600 13px var(--mono);letter-spacing:.06em;color:var(--fg);margin-top:4px}
+.drop .price{color:var(--burgundy-fg)}
+.buy{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:18px}
+.buy .bp{font:800 26px/1 var(--display);font-stretch:115%}
+.buy .bp small{font:500 12px var(--mono);color:var(--muted);letter-spacing:.06em;margin-left:8px}
+.buy .lbl{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sizes{display:flex;flex-wrap:wrap;gap:6px}
+.sizes button{appearance:none;min-width:48px;padding:9px 10px;background:none;border:1px solid var(--line);color:var(--fg);font:600 12px var(--mono);cursor:pointer}
+.sizes button:hover{border-color:var(--muted)}
+.sizes button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.qty{display:inline-flex;border:1px solid var(--line);align-items:center}
+.qty button{appearance:none;width:36px;height:38px;background:none;border:0;color:var(--fg);font:500 16px var(--mono);cursor:pointer}
+.qty span{min-width:30px;text-align:center;font:600 14px var(--mono)}
+.buy .row2{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.buy .add{flex:1 1 180px;justify-content:center;cursor:pointer;background:var(--fg);color:var(--bg)}
+.buy .add:hover{background:var(--desert);border-color:var(--desert);color:#141210}
+.buy .add[disabled]{opacity:.45;cursor:not-allowed}
+.buy .msg{font:500 12px var(--mono);color:var(--desert);min-height:1.2em;margin:0}
+.buy label.opt{display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer}
+.fin{all:unset;box-sizing:border-box;width:100%;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:11px 12px;font:400 15px var(--body)}
+.fin:focus{border-color:var(--desert)}
+textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
+/* cart drawer */
+#cart{margin:0 0 0 auto;height:100%;max-height:none;width:min(480px,100%);border-left:1px solid var(--line)}
+.cw{display:flex;flex-direction:column;min-height:100%}
+#cartBody{flex:1;display:flex;flex-direction:column}
+#cartBody .cb{flex:1}
+.ch{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+.ch h3{margin:0;font:800 22px/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.ch button{appearance:none;border:1px solid var(--line);background:none;color:var(--fg);width:38px;height:38px;cursor:pointer;font:500 16px var(--mono)}
+.cb{padding:8px 20px 20px;display:grid;gap:0;align-content:start}
+.ci{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.ci img{width:64px;aspect-ratio:4/5;object-fit:contain;background:var(--card);padding:4px}
+.ci h4{margin:0;font:700 14px/1.2 var(--display);font-stretch:110%;text-transform:uppercase}
+.ci .m{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:3px}
+.ci .r{display:grid;gap:6px;justify-items:end}
+.ci .qty button{width:28px;height:28px;font-size:14px}
+.ci .x{appearance:none;background:none;border:0;color:var(--muted);font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:underline}
+.cf{padding:18px 20px 24px;border-top:1px solid var(--line);display:grid;gap:14px;background:var(--bg);position:sticky;bottom:0}
+.tot{display:flex;justify-content:space-between;font:800 20px var(--display);font-stretch:115%;text-transform:uppercase}
+.cempty{padding:40px 0;color:var(--muted)}
+.co{display:grid;gap:12px;padding:8px 20px 20px}
+.co .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.co .fin{text-transform:none;letter-spacing:0}
+.co label{display:grid;gap:5px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:0}
+.co .pay{display:grid;gap:6px}
+.co .pay label{display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font:400 15px var(--body);color:var(--fg);border:1px solid var(--line);padding:10px 12px;cursor:pointer}
+.co .sum{font:500 12px/1.6 var(--mono);color:var(--muted);border:1px dashed var(--line);padding:12px;white-space:pre-wrap}
+.ship{border-left:3px solid var(--desert);background:var(--surface);padding:12px 14px;font-size:14px;line-height:1.5;color:var(--muted)}
+.ship strong{display:block;color:var(--fg);font:700 14px/1.3 var(--display);font-stretch:112%;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+.ship ul{margin:8px 0;padding-left:18px}
+.co label.shipok{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font:400 14px/1.4 var(--body);color:var(--fg);cursor:pointer}
+.co label.shipok input{margin-top:3px}
+.co .err{color:#e2786d;font:500 12px var(--mono);margin:0}
+.done{padding:40px 20px;display:grid;gap:14px}
+.done h3{margin:0;font:800 30px/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.done p{margin:0;color:var(--muted)}
+.st{display:grid;border-top:1px solid var(--line)}
+.sr{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--fg)}
+.sr span small,.sr b small{display:block;font:500 11px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:2px}
+.sr b{text-align:right;font:600 14px var(--mono);white-space:nowrap}
+.sr.sub span{color:var(--muted)}
+.sr.dsc,.sr.dsc b small{color:var(--desert)}
+.sr.gt{border-top:2px solid var(--fg);border-bottom:4px double var(--fg);margin-top:8px;padding:12px 0 10px}
+.sr.gt span{font:800 20px/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.sr.gt b{font:800 20px/1.1 var(--mono)}
+.sr.gt b small{font-size:13px;color:var(--fg);opacity:.75}
+@media (max-width:520px){.cartbtn span.t{display:none}.co .two{grid-template-columns:minmax(0,1fr)}}
+.bk{margin:8px 0 0;display:grid;gap:8px}
+.bk div{display:flex;justify-content:space-between;align-items:center;gap:6px 12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px}
+.bk div:last-child{border-bottom:0;padding-bottom:0}
+.bk dt{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.bk dd{margin:0;display:flex;align-items:center;gap:10px;font:600 14px var(--mono);color:var(--fg);letter-spacing:.02em}
+.cp{appearance:none;background:none;border:1px solid var(--line);color:var(--fg);padding:4px 8px;font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.cp:hover{border-color:var(--desert)}
+.cshp{display:flex;justify-content:space-between;font:500 12px var(--mono);color:var(--muted);letter-spacing:.06em}
+/* ---------- news: First Light boxy hoodie ---------- */
+.news{border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.news::before{content:"";position:absolute;left:50%;top:-40%;width:min(1100px,140vw);aspect-ratio:2/1;transform:translateX(-50%);border-radius:50% 50% 0 0/100% 100% 0 0;background:radial-gradient(ellipse at 50% 100%,rgba(240,180,145,.16),transparent 70%);pointer-events:none}
+.nw{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,5vw,72px);align-items:start;margin-bottom:clamp(28px,4vw,48px)}
+@media (max-width:860px){.nw{grid-template-columns:minmax(0,1fr)}}
+.nw-copy{display:grid;gap:22px;justify-items:start;min-width:0}
+.nw-copy .badge{color:#f0b491}
+.nw-copy h2 span{display:block;color:#f0b491}
+:root[data-theme="light"] .nw-copy .badge,:root[data-theme="light"] .nw-copy h2 span{color:#b5643a}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .nw-copy .badge,:root:not([data-theme="dark"]) .nw-copy h2 span{color:#b5643a}}
+.nw-side{display:grid;gap:20px;min-width:0}
+.nw-facts{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.nw-facts div{background:var(--bg);padding:14px 16px;display:grid;gap:4px;min-width:0}
+.nw-facts dt{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nw-facts dd{margin:0;font:700 18px/1.2 var(--display);font-stretch:112%;text-transform:uppercase}
+.nw-feat{margin:0;padding:0;list-style:none;display:grid;border-top:1px solid var(--line)}
+.nw-feat li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.nw-feat li::before{content:"— ";color:var(--muted)}
+.nw-col{display:flex;flex-wrap:wrap;gap:10px 20px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.nw-col span{display:inline-flex;align-items:center;gap:8px}
+.nw-col i{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);display:inline-block}
+.nw-gal{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1.2vw,14px)}
+@media (max-width:860px){.nw-gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.nw-gal figure{margin:0;aspect-ratio:9/16}
+.nw-gal figure img{transition:transform .9s}
+.nw-gal figure:hover img{transform:scale(1.03)}
+.nw-gal .hud{font-size:10px}
+.nw-gal .soon{position:absolute;right:-10px;top:-10px}
+
+/* ---------- news: colour vote (boxy hoodie, StrawPoll embed) ---------- */
+.vote{position:relative;margin-top:clamp(28px,4vw,48px);border:1px solid var(--line);background:var(--bg);padding:clamp(18px,3vw,32px);display:grid;gap:20px}
+.vote::before{content:"";position:absolute;inset:8px;pointer-events:none;color:#f0b491;
+  background:linear-gradient(currentColor,currentColor) left top/16px 2px no-repeat,linear-gradient(currentColor,currentColor) left top/2px 16px no-repeat,
+  linear-gradient(currentColor,currentColor) right top/16px 2px no-repeat,linear-gradient(currentColor,currentColor) right top/2px 16px no-repeat,
+  linear-gradient(currentColor,currentColor) left bottom/16px 2px no-repeat,linear-gradient(currentColor,currentColor) left bottom/2px 16px no-repeat,
+  linear-gradient(currentColor,currentColor) right bottom/16px 2px no-repeat,linear-gradient(currentColor,currentColor) right bottom/2px 16px no-repeat}
+.vote-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px}
+.vote-head{display:grid;gap:10px;min-width:0;flex:1 1 380px}
+.vote h3{margin:0;font:800 clamp(24px,3.4vw,40px)/1 var(--display);font-stretch:118%;text-transform:uppercase}
+.vote .lede{font-size:15px}
+.vote-lead{display:grid;gap:8px;min-width:220px;padding:14px 16px;border:1px solid var(--line);background:var(--surface)}
+.vl-row{display:flex;align-items:center;gap:12px}
+.vl-row i{width:34px;height:34px;border:1px solid rgba(127,127,127,.3);flex:none}
+.vl-row b{font:800 clamp(20px,2.4vw,28px)/1 var(--display);font-stretch:115%;text-transform:uppercase;color:#f0b491}
+.vl-n{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.vote-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.vote-opt{appearance:none;position:relative;display:grid;gap:8px;padding:8px 8px 10px;background:var(--surface);border:1px solid var(--line);color:var(--fg);cursor:pointer;text-align:left;font:inherit;transition:border-color .2s}
+.vote-opt:hover{border-color:var(--muted)}
+.vote-opt[disabled]{cursor:default}
+.vote-opt i{display:block;height:clamp(52px,6vw,74px);border:1px solid rgba(127,127,127,.25)}
+.heather{background:repeating-linear-gradient(45deg,#c9c9c9 0 2px,#b3b3b3 2px 4px)!important}
+.vote-opt .nm{font:500 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.vote-opt .bar{height:3px;background:var(--line);overflow:hidden}
+.vote-opt .bar span{display:block;height:100%;width:0;background:#f0b491;transition:width .8s ease}
+.vote-opt .pc{font:500 10px var(--mono);color:var(--muted);letter-spacing:.04em}
+.vote-opt[aria-checked="true"]{border-color:#f0b491;box-shadow:inset 0 0 0 1px #f0b491}
+.vote-opt[aria-checked="true"] .nm{color:#f0b491}
+.vote-opt.mine::after{content:"✓";position:absolute;right:12px;top:12px;width:20px;height:20px;display:grid;place-items:center;background:#f0b491;color:#141210;font:700 11px var(--mono)}
+.vote-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.vote-bar .btn{cursor:pointer}
+.vote-bar .btn.solid:hover{background:#f0b491;border-color:#f0b491;color:#141210}
+.vote-bar .btn[disabled]{opacity:.4;cursor:not-allowed}
+.vote-bar .btn[disabled]:hover{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.vote-msg{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+</style>
+
+<div class="notice"><span data-i>Drop closed · Orders are paused until the next drop · Info in the</span> <a href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>FULL SEND community on Instagram</a></div>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="FULL SEND home" data-ta="aria-label"></a>
+    <ul>
+      <li><a href="#news">News</a></li>
+      <li class="keep"><a href="#collection" data-i>Collection</a></li>
+      <li class="keep"><a href="#finder" data-i>Find Your Fit</a></li>
+      <li><a href="#community">Community</a></li>
+    </ul>
+    <button type="button" class="cartbtn" id="cartBtn" aria-label="Cart"><span class="t">Cart</span><b>0</b></button>
+    <div class="lang" role="group" aria-label="Language / Sprache"><button type="button" data-lang="de" lang="de">DE</button><button type="button" data-lang="en" lang="en">EN</button></div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="hero-logo" role="img" aria-label="FULL SEND logo"></div>
+        <h1 class="disp" data-i>Made for everyday life. <span>Inspired by FPV.</span></h1>
+        <p class="lede" data-i>FULL SEND is independent streetwear from an FPV pilot. Every piece starts in the mountains, behind the goggles, and ends up in the clothes you wear on the ground.</p>
+        <div class="hero-meta">
+          <a class="btn solid" href="#collection" data-i>The Collection <span class="dash"></span></a>
+          <a class="btn" href="#drop" data-i>Next drop</a>
+        </div>
+      </div>
+      <figure class="osd" style="margin:0">
+        <video id="heroVid" data-ta="aria-label" data-src="vid/hero.mp4" poster="img/hero-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="FPV pilot in black with drone and goggles on a mountain pass next to a wind turbine"></video>
+        <div class="hud top"><span class="rec">REC</span><span>4S 16.4V</span><span>RSSI 99</span></div>
+        <div class="cross"></div>
+        <div class="hud bot"><span>ALT 2108M</span><span>LQ 100</span><span>SEND IT</span></div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="track" id="track"></div>
+  </div>
+
+  <section class="news" id="news">
+    <div class="wrap">
+      <div class="nw">
+        <div class="nw-copy">
+          <span class="badge" data-i>News · Coming early 2027</span>
+          <h2 class="disp" data-i>First Light. <span>A new cut.</span></h2>
+          <p class="lede" data-i>At the start of 2027 the FIRST LIGHT special edition joins the collection, and with it a brand-new piece: the boxy hoodie. A new print, a new cut and the heaviest fabric we have ever used. Here is a first look.</p>
+          <div class="nw-col"><span><i style="background:#b9b9b9"></i><span data-i>Heather Grey · black print</span></span><span><i style="background:#1f2a44"></i><span data-i>French Navy · white print</span></span></div>
+          <a class="btn solid" href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>Be first to know <span class="dash"></span></a>
+        </div>
+        <div class="nw-side">
+          <dl class="nw-facts">
+            <div><dt data-i>Weight</dt><dd>400 g/m²</dd></div>
+            <div><dt data-i>Fit</dt><dd data-i>Boxy · Oversized</dd></div>
+            <div><dt data-i>Fabric</dt><dd data-i>100% organic cotton</dd></div>
+            <div><dt data-i>Release</dt><dd data-i>Early 2027</dd></div>
+          </dl>
+          <ul class="nw-feat">
+            <li data-i>Extremely heavy 400 g/m² fabric</li>
+            <li data-i>Unique dry hand feel for a modern look</li>
+            <li data-i>Double-layer hood with matching drawcord</li>
+            <li data-i>Classic kangaroo pocket on the front</li>
+            <li data-i>Wide rib cuffs and hem</li>
+            <li data-i>High-quality make, 100% organic cotton</li>
+            <li data-i>Comfortable unisex fit for women and men</li>
+          </ul>
+        </div>
+      </div>
+      <div class="nw-gal">
+        <figure class="osd"><img data-ta="alt" src="img/fl-navy-front.webp" srcset="img/fl-navy-front-sm.webp 420w, img/fl-navy-front.webp 800w" sizes="(max-width:860px) 50vw, 25vw" alt="Boxy hoodie in French Navy with white FULL SEND chest logo, front view in a subway station" loading="lazy"><div class="hud top"><span>French Navy</span><span data-i>Front</span></div><div class="hud bot"><span>06:12</span><span>ALT 2026M</span></div></figure>
+        <figure class="osd"><img data-ta="alt" src="img/fl-navy-back.webp" srcset="img/fl-navy-back-sm.webp 420w, img/fl-navy-back.webp 800w" sizes="(max-width:860px) 50vw, 25vw" alt="Boxy hoodie in French Navy with the white FIRST LIGHT back print" loading="lazy"><div class="hud top"><span>French Navy</span><span data-i>Back</span></div><div class="hud bot"><span>SUNRISE</span><span>LQ 100</span></div></figure>
+        <figure class="osd"><img data-ta="alt" src="img/fl-grey-front.webp" srcset="img/fl-grey-front-sm.webp 420w, img/fl-grey-front.webp 800w" sizes="(max-width:860px) 50vw, 25vw" alt="Boxy hoodie in heather grey with black FULL SEND chest logo, front view in a concrete stairwell" loading="lazy"><div class="hud top"><span>Heather Grey</span><span data-i>Front</span></div><div class="hud bot"><span>30 · 60 · E</span><span>120 · 150</span></div></figure>
+        <figure class="osd"><img data-ta="alt" src="img/fl-grey-back.webp" srcset="img/fl-grey-back-sm.webp 420w, img/fl-grey-back.webp 800w" sizes="(max-width:860px) 50vw, 25vw" alt="Boxy hoodie in heather grey with the black FIRST LIGHT back print" loading="lazy"><div class="hud top"><span>Heather Grey</span><span data-i>Back</span></div><div class="hud bot"><span>FIRST LIGHT</span><span>2027</span></div></figure>
+      </div>
+      <div class="vote" id="vote">
+        <div class="vote-top">
+          <div class="vote-head">
+            <span class="eyebrow" data-i>Colour vote · Boxy hoodie</span>
+            <h3 data-i>Which colour do you want?</h3>
+            <p class="lede" data-i>Tap your favourite colour and send your vote. One vote per person. The current standings are live for everyone.</p>
+          </div>
+          <div class="vote-lead" id="voteLead" aria-live="polite"><span class="eyebrow" data-i>Leading right now</span><div class="vl-row"><i id="vlSw"></i><b id="vlName">–</b></div><span class="vl-n" id="vlN"></span></div>
+        </div>
+        <div class="vote-grid" id="voteGrid" role="radiogroup" aria-label="Choose a colour" data-ta="aria-label"></div>
+        <div class="vote-bar">
+          <button type="button" class="btn solid" id="voteBtn" disabled data-i>Send vote <span class="dash"></span></button>
+          <span class="vote-msg" id="voteMsg" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closed" id="drop">
+    <div class="wrap">
+      <div class="txt">
+        <span class="badge" data-i>Drop closed</span>
+        <h2 class="disp" data-i>See you at the next drop</h2>
+        <p class="lede" data-i>The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.</p>
+      </div>
+      <a class="btn solid" href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>Join the community <span class="dash"></span></a>
+    </div>
+  </section>
+
+  <section class="finder" id="finder">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow" data-i>Fit finder · Lock on</span>
+          <h2 class="disp" data-i>Find your fit</h2>
+          <p class="lede" data-i>Grab a shirt or hoodie that fits you the way you like, lay it flat on a table and measure the garment. Enter width and length, and we lock on to every FULL SEND piece that fits, with the exact size to order.</p>
+        </div>
+      </div>
+      <div class="ff">
+        <form class="ff-panel" id="ffForm" autocomplete="off" onsubmit="return false">
+          <div class="ff-howto">
+            <svg viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+              <path d="M42 14 L22 22 L8 46 L24 54 L30 44 L30 108 L90 108 L90 44 L96 54 L112 46 L98 22 L78 14 Q60 26 42 14 Z" opacity=".75"/>
+              <g stroke="var(--desert)" stroke-width="1.8">
+                <path d="M33 50 H87"/><path d="M38 46 L33 50 L38 54 M82 46 L87 50 L82 54"/>
+                <path d="M46 19 V105" stroke-dasharray="3 3"/><path d="M42 24 L46 19 L50 24 M42 100 L46 105 L50 100"/>
+              </g>
+              <text x="62" y="46" fill="var(--desert)" stroke="none" font-size="11" font-family="monospace" text-anchor="middle">A</text>
+              <text x="54" y="82" fill="var(--desert)" stroke="none" font-size="11" font-family="monospace">B</text>
+            </svg>
+            <p data-i><b>A</b> Width: armpit to armpit, straight across.<br><b>B</b> Length: highest point of the shoulder down to the hem.</p>
+          </div>
+          <div class="ff-warn" data-i><strong>Measure your clothes, not your body.</strong> Lay a well-fitting piece flat, without stretching it. You enter how big you want your garment to be, so the numbers match the official size charts.</div>
+          <div class="ff-fields">
+            <div class="ff-field">
+              <label for="ffW" data-i><b>A</b> · Width</label>
+              <div class="ff-in"><input id="ffW" type="number" inputmode="decimal" min="30" max="100" step="0.5" placeholder="55"><span>cm</span></div>
+            </div>
+            <div class="ff-field">
+              <label for="ffL" data-i><b>B</b> · Length</label>
+              <div class="ff-in"><input id="ffL" type="number" inputmode="decimal" min="40" max="110" step="0.5" placeholder="72"><span>cm</span></div>
+            </div>
+          </div>
+          <p class="ff-hint" id="ffHint" hidden data-i>Width under 46 cm? That looks like a body measurement. Measure a garment lying flat instead.</p>
+          <div class="ff-tol">
+            <span class="eyebrow" data-i>Fit tolerance</span>
+            <div class="filters" id="ffTol" role="group" aria-label="Fit tolerance" data-ta="aria-label"></div>
+          </div>
+          <div class="ff-readout" aria-live="polite"><span id="ffStatus">Awaiting input</span><span><b id="ffNum">00</b> / <span id="ffTot">00</span> <span data-i>locked</span></span></div>
+          <button class="ff-reset" type="button" id="ffReset" data-i>Reset</button>
+        </form>
+        <div class="ff-res">
+          <div class="bar">
+            <div class="ff-count" id="ffCount">Enter your measurements</div>
+            <div class="filters" id="ffCats" role="group" aria-label="Filter fit results" data-ta="aria-label"></div>
+          </div>
+          <div class="grid" id="ffGrid"></div>
+          <div class="ff-empty" id="ffEmpty">
+            <span class="eyebrow">No signal yet</span>
+            <h3>Two numbers. Every piece that fits.</h3>
+            <p>Every FULL SEND garment is cut differently. Shirts, hoodies, sweaters and jackets each have their own size chart. Enter A and B on the left and only the pieces that fit you stay on screen, each with the size you should order.</p>
+          </div>
+          <p class="ff-one" id="ffOne" hidden data-i>Always fits: <a href="#collection">Cap</a> and <a href="#collection">Bottle 500 ml</a>, one size.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collection">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow" data-i>Core collection</span>
+          <h2 class="disp" data-i>Daily kit</h2>
+          <p class="lede" data-i>The pieces that are always in rotation. Hover a product to see the back, tap it for every angle and the full spec.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter collection" data-ta="aria-label" id="filters"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="culture" style="padding-top:0">
+    <div class="wrap">
+      <figure class="poster" style="margin:0"><img data-ta="alt" src="img/ed-lifestyle.webp" alt="FULL SEND chalk poster with FPV sayings around the logo" loading="lazy"></figure>
+      <blockquote>
+        <span class="eyebrow" data-i>It's a lifestyle</span>
+        <h2 class="disp" data-i>Built by a pilot. Worn by the crew.</h2>
+        <p class="lede" data-i>The designs come out of real sessions: dawn packs on alpine ridges, long-range lines over the lake, the walk back after a crash. FPV culture, worn off the field.</p>
+        <ul class="lines">
+          <li><span>Pack 01</span>Quad. LiPos. GoPro.</li>
+          <li><span>Pack 02</span>Send.</li>
+          <li><span>Pack 03</span>Repeat.</li>
+        </ul>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="community" id="community">
+    <video class="bgimg" data-src="vid/ridge.mp4" poster="img/ridge-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="wrap">
+      <div class="cm-copy">
+        <span class="eyebrow">Community</span>
+        <h2 class="disp" data-i>Fly with the crew</h2>
+        <p class="lede" data-i>New drops are announced in the FULL SEND channel. Join for release dates, behind-the-scenes from the shoots and footage from the people wearing the gear.</p>
+        <div class="row">
+          <a class="btn solid" href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>Join the channel <span class="dash"></span></a>
+          <a class="btn" href="https://www.instagram.com/fullsend.brand/" target="_blank" rel="noopener">@fullsend.brand</a>
+        </div>
+      </div>
+      <div class="reels">
+        <figure class="osd reel"><video data-ta="aria-label" data-src="vid/peak.mp4" poster="img/peak-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="FPV flight along a sunlit snowy peak"></video><div class="hud top"><span class="rec">REC</span><span>RSSI 98</span></div><div class="hud bot"><span>ALT 2350M</span><span>4S 15.9V</span></div></figure>
+        <figure class="osd reel"><video data-ta="aria-label" data-src="vid/ridge.mp4" poster="img/ridge-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="FPV dive over an alpine ridge at sunrise"></video><div class="hud top"><span class="rec">REC</span><span>LQ 100</span></div><div class="hud bot"><span>ALT 2210M</span><span>SEND IT</span></div></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo" role="img" aria-label="FULL SEND"></span>
+    <span data-i>Independent FPV streetwear</span>
+    <span data-i>Made in limited batches</span>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <button class="close" id="dlgClose" aria-label="Close" data-ta="aria-label">✕</button>
+  <div class="dlg">
+    <div class="gal">
+      <div class="stage" id="stage"></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div class="info">
+      <span class="eyebrow" id="dlgCat"></span>
+      <h3 id="dlgTitle"></h3>
+      <div class="sw" id="dlgSw" style="justify-content:flex-start"></div>
+      <ul class="feat" id="dlgFeat"></ul>
+      <p class="note" id="dlgNote"></p>
+      <div class="buy" id="dlgBuy"></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="cart" aria-labelledby="cartTitle"><div class="cw"><div class="ch"><h3 id="cartTitle">Your cart</h3><button type="button" id="cartClose" aria-label="Close">✕</button></div><div id="cartBody"></div></div></dialog>
+
+<script>
+(()=>{
+ const cache={};
+ const getUrl=src=>cache[src]||(cache[src]=fetch(src).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>URL.createObjectURL(new Blob([b],{type:'video/mp4'}))).catch(()=>src));
+ document.querySelectorAll('video[data-src]').forEach(v=>{
+  v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('muted','');v.setAttribute('webkit-playsinline','');
+  let btn=null,loaded=false;
+  const hide=()=>{if(btn){btn.remove();btn=null}};
+  const showBtn=()=>{if(btn||v.classList.contains('bgimg'))return;btn=document.createElement('button');btn.className='playbtn';btn.setAttribute('aria-label','Play video');btn.innerHTML='<span></span>';btn.onclick=e=>{e.stopPropagation();v.muted=true;const p=v.play();p&&p.then&&p.then(hide).catch(()=>{})};v.parentElement.appendChild(btn)};
+  const go=()=>{if(!loaded||!v.paused)return;const p=v.play();if(p&&p.then)p.then(hide).catch(showBtn)};
+  const load=async()=>{if(loaded)return;loaded=true;v.src=await getUrl(v.dataset.src);v.load();go()};
+  ['loadeddata','canplay'].forEach(ev=>v.addEventListener(ev,go));
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)go()});
+  addEventListener('pointerdown',go,{once:true});addEventListener('touchstart',go,{once:true,passive:true});
+  if(v.id==='heroVid'||!('IntersectionObserver' in window))load();
+  else new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){load();go()}}),{rootMargin:'800px 0px'}).observe(v);
+ });})();
+const strip=["Altitude is attitude","Fly low · Go fast · Look good","Quad · LiPos · GoPro · Send · Repeat","Built not bought","See you in the sky","Fail · Learn · Send again","Bro, just one more pack"];
+document.getElementById('track').innerHTML=[...strip,...strip].map((s,i)=>`<span>${i%2?s:'<b>'+s+'</b>'}</span>`).join('');
+
+const T={
+ tee:["Relaxed fit","1x1 ribbed crew neck collar","Self-fabric neck tape","Wide double-needle stitching at sleeve cuffs and bottom hem","Slightly textured fabric feel","100% organic cotton, 240 g/m²"],
+ hood:["Set-in sleeves","Double-layered hood with lining","Matching round drawcords, closed metal cord ends and metal eyelets","Herringbone neck tape, half-moon panel at the back neck","Front kangaroo pocket","1x1 ribbed cuffs and hem","100% organic cotton, 350 g/m²"],
+ sherpa:["Recycled fleece lining","Contrasting softshell panels on pockets, back yoke and collar","Concealed zip pockets","Pre-washed Sherpa fabric with anti-pilling finish","Zipper with metal puller and cord trim","Elastic binding at hem and armholes"],
+ sweat:["Heavyweight 350 GSM sweatshirt, made for cold days","100% organic cotton, GOTS or GRS certified","Pre-washed for enhanced shape retention","Double-needle stitching and flatlock details","Herringbone neck tape and internal half-moon detail"],
+ stepp:["100% recycled nylon","Fluorine-free, water-repellent DWR finish against light rain","Lightweight 38 GSM fabric, a warm mid-layer for layering","Medium fit with shaped side panels","Stand-up collar and zipped side welt pockets","Elastic binding at armholes and hem"]
+};
+const C={desert:"#cbb89a",black:"#1c1c1c",navy:"#1f2a44",burgundy:"#6e2228",grey:"#3a3a3a",yellow:"#d9a94a",heather:"#b9b9b9",olive:"#59614a",clear:"#e8e8e8"};
+const P=[
+ {id:"ws-tee",ws:1,cat:"Shirts",name:"Shirt Winter Series 01",sub:"Heather grey · Winter Series back print",feat:T.tee,v:[{c:"heather",n:"Heather Grey",img:["ws-tee-front","ws-tee-back"],model:[["m-tee-f","f"],["m-tee-b","b"]]}],ed:["ed-wstee"]},
+ {id:"sw",ws:1,cat:"Sweaters",name:"Changer Sweater",sub:"Winter Series 01",feat:T.sweat,v:[{c:"grey",n:"Dark Grey",img:["sw-grey-front","sw-grey-back"],model:[["m-swgrey-f1","f"],["m-swgrey-af","f"],["m-swgrey-ab","b"],["m-swgrey-cf","f"],["m-swgrey-cb","b"]]},{c:"yellow",n:"Nispero Yellow",img:["sw-yellow-front","sw-yellow-back"],model:[["m-swyellow-f","f"],["m-swyellow-b","b"]]},{c:"burgundy",n:"Burgundy",img:["sw-burgundy-front","sw-burgundy-back"],model:[["m-swburg-f","f"],["m-swburg-b","b"]]}],ed:["ed-sweaters"]},
+ {id:"vest",ws:1,cat:"Jackets",name:"Sherpa Vest",sub:"Winter Series 01",feat:["Sleeveless Sherpa jacket",...T.sherpa],v:[{c:"black",n:"Black",img:["vest-black-front","vest-black-back"],model:[["m-vestblack-f","f"],["m-vestblack-b","b"]]},{c:"burgundy",n:"Burgundy",img:["vest-burgundy-front","vest-burgundy-back"],model:[["m-vestburg-f","f"],["m-vestburg-b","b"]]},{c:"desert",n:"Desert",img:["vest-desert-front","vest-desert-back"],model:[["m-vestdesert-f","f"],["m-vestdesert-b","b"]]}],ed:["ed-wsvest"]},
+ {id:"jk",ws:1,cat:"Jackets",name:"Sherpa Jacket",sub:"Winter Series 01",feat:T.sherpa,v:[{c:"black",n:"Black",img:["jk-black-front","jk-black-back"],model:[["m-jkblack-f3","f"],["m-jkblack-sf","f"],["m-jkblack-sb","b"],["m-jkblack-f1","f"],["m-jkblack-b2","b"]]},{c:"desert",n:"Desert",img:["jk-desert-front","jk-desert-back"],model:[["m-jkdesert-f","f"]]},{c:"burgundy",n:"Burgundy",img:["jk-burgundy-front","jk-burgundy-back"],model:[["jk-burgundy-model-front","f"],["jk-burgundy-model-back","b"]]}],ed:["ed-sherpa"]},
+ {id:"min",cat:"Shirts",name:"Shirt Minimal Edition",sub:"Small chest logo",feat:T.tee,v:[{c:"black",n:"Black",img:["tee-min-black"]},{c:"desert",n:"Desert",img:["tee-min-desert"]}],ed:["ed-minimal"]},
+ {id:"free",cat:"Shirts",name:"Shirt Freestyler",sub:"Full chest logo",feat:T.tee,v:[{c:"black",n:"Black",img:["tee-free-black"]},{c:"desert",n:"Desert",img:["tee-free-desert"]}],ed:["ed-og","ed-colors"]},
+ {id:"hood",cat:"Hoodies",name:"Hoodie",sub:"Full chest logo",feat:T.hood,v:[{c:"black",n:"Black",img:["hood-black"]},{c:"desert",n:"Desert",img:["hood-desert"]}],ed:["ed-hoodie"]},
+ {id:"hoodmin",cat:"Hoodies",name:"Hoodie Minimal",sub:"Black · small chest logo",feat:T.hood,v:[{c:"black",n:"Black",img:["hood-min"]}],ed:[]},
+ {id:"soft",cat:"Jackets",name:"Softshell Discoverer",sub:"Navy blue",feat:["Softshell jacket with hood and reflective zippers","Recycled 3-layer fabric with TPU membrane and inner fleece lining","Windproof, water-repellent (10,000 mm) and breathable","Adjustable sleeve cuffs with hook-and-loop fastening","Stretch panels for freedom of movement","Fluorine-free Bionic DWR Eco finish"],v:[{c:"navy",n:"Navy Blue",img:["softshell-front","softshell-back"]}],ed:["ed-softshell"]},
+ {id:"trek",cat:"Jackets",name:"Fleece Trekker",sub:"Unisex fleece jacket",feat:["Unisex fleece jacket made from 100% recycled polyester","Brushed inside and out with anti-pilling treatment","Nylon zipper with metal pull and cord end","Side pockets with concealed zippers","Contrasting softshell panels on shoulder yoke and collar","Elastic binding at hem and cuffs"],v:[{c:"desert",n:"Desert",img:["trekker-front","trekker-back"]}],ed:["ed-trekker"]},
+ {id:"bomber",cat:"Jackets",name:"Bomber 16 Again",sub:"Special edition",tag:"Special edition",feat:["Unisex bomber jacket with silver metal zipper","Zipped sleeve pocket with pen loops","Fully quilted interior with inner chest pocket","Front welt pockets with snap button closure","Ribbed cuffs, collar and hem","100% recycled polyester with fluorine-free DWR finish"],v:[{c:"olive",n:"Olive",img:["bomber-front","bomber-back"]}],ed:["ed-16again"]},
+ {id:"stepp",cat:"Jackets",name:"Stepp Climber",sub:"Puffer vest",feat:T.stepp,v:[{c:"black",n:"Black",img:["stepp-black"]},{c:"desert",n:"Desert",img:["stepp-desert"]}],ed:[]},
+ {id:"cap",cat:"Accessories",name:"Cap",sub:"Navy / Black",feat:["5-panel snapback with plastic snap closure","Pre-curved visor","Reinforced front panel for shape retention","100% cotton"],v:[{c:"black",n:"Navy / Black",img:["cap"]}],ed:[],photo:1},
+ {id:"bottle",cat:"Accessories",name:"Bottle 500 ml",sub:"Made in the Netherlands",feat:["Leak-proof screw cap with carrying loop","Two openings for easy drinking and cleaning","Suitable for carbonated drinks","Odor- and taste-neutral Tritan and PP","Dishwasher safe, 100% recyclable"],v:[{c:"clear",n:"Clear / Black",img:["bottle"]}],ed:[],photo:1}
+].filter(p=>!p.ws);
+const TR={"Winter Series": "Winter Series", "Find Your Fit": "Grössenfinder", "Collection": "Kollektion", "FULL SEND home": "FULL SEND Startseite", "Made for everyday life. <span>Inspired by FPV.</span>": "Gemacht für den Alltag. <span>Inspiriert von FPV.</span>", "FULL SEND is independent streetwear from an FPV pilot. Every piece starts in the mountains, behind the goggles, and ends up in the clothes you wear on the ground.": "FULL SEND ist unabhängige Streetwear von einem FPV-Piloten. Jedes Teil entsteht in den Bergen, hinter der FPV-Brille, und landet in der Kleidung, die du am Boden trägst.", "The Collection": "Die Kollektion", "FPV pilot in black with drone and goggles on a mountain pass next to a wind turbine": "FPV-Pilot in Schwarz mit Drohne und FPV-Brille auf einem Bergpass neben einer Windturbine", "Limited drop · 2026": "Limitierter Drop · 2026", "Sherpa and heavyweight sweats with the Winter Series print, built for cold launch spots. Made to order in one batch and never restocked. When the drop closes, it's gone.": "Sherpa und schwere Sweater mit dem Winter-Series-Print, gemacht für eisige Spots. In einer einzigen Charge auf Bestellung produziert und nie nachproduziert. Wenn der Drop schliesst, ist er weg.", "Edition": "Edition", "Pieces": "Teile", "4 styles": "4 Styles", "Production": "Produktion", "Made to order": "Auf Bestellung", "Restock": "Nachproduktion", "Never": "Nie", "Sherpa jackets in burgundy and desert on stone steps": "Sherpa-Jacken in Burgunderrot und Desert auf Steinstufen", "Changer sweaters in yellow, dark grey and burgundy": "Changer Sweater in Gelb, Dunkelgrau und Burgunderrot", "Black sherpa vest with Winter Series chest print": "Schwarze Sherpa-Weste mit Winter-Series-Brustprint", "Fit finder · Lock on": "Grössenfinder · Lock on", "Find your fit": "Finde deine Grösse", "Grab a shirt or hoodie that fits you the way you like, lay it flat on a table and measure the garment. Enter width and length, and we lock on to every FULL SEND piece that fits, with the exact size to order.": "Nimm dein Lieblingsteil, ein Shirt oder einen Hoodie, der dir genau richtig sitzt. Leg es flach auf einen Tisch und miss das Kleidungsstück aus. Gib Breite und Länge ein, und wir finden jedes FULL SEND Teil, das dir passt, inklusive der genauen Grösse für deine Bestellung.", "<b>A</b> Width: armpit to armpit, straight across.<br><b>B</b> Length: highest point of the shoulder down to the hem.": "<b>A</b> Breite: von Achsel zu Achsel, gerade gemessen.<br><b>B</b> Länge: vom höchsten Punkt der Schulter bis zum Saum.", "<strong>Measure your clothes, not your body.</strong> Lay a well-fitting piece flat, without stretching it. You enter how big you want your garment to be, so the numbers match the official size charts.": "<strong>Miss deine Kleidung, nicht deinen Körper.</strong> Leg ein gut sitzendes Teil flach hin, ohne es zu dehnen. Du gibst an, wie gross dein Kleidungsstück sein soll. So stimmen die Werte mit den offiziellen Grössentabellen überein.", "<b>A</b> · Width": "<b>A</b> · Breite", "<b>B</b> · Length": "<b>B</b> · Länge", "Width under 46 cm? That looks like a body measurement. Measure a garment lying flat instead.": "Breite unter 46 cm? Das sieht nach einer Körpermessung aus. Miss stattdessen ein flach liegendes Kleidungsstück.", "Fit tolerance": "Passform-Toleranz", "locked": "erfasst", "Reset": "Zurücksetzen", "Filter fit results": "Ergebnisse filtern", "Always fits: <a href=\"#collection\">Cap</a> and <a href=\"#collection\">Bottle 500 ml</a>, one size.": "Passt immer: <a href=\"#collection\">Cap</a> und <a href=\"#collection\">Bottle 500 ml</a>, Einheitsgrösse.", "Tight": "Eng", "Normal": "Normal", "Relaxed": "Locker", "Width": "Breite", "Length": "Länge", "roomier": "weiter", "slimmer": "schmaler", "longer": "länger", "shorter": "kürzer", "Size to order": "Zu bestellende Grösse", "Spot on": "Passt perfekt", "also": "auch", "Need A and B": "A und B benötigt", "Awaiting input": "Warte auf Eingabe", "● Locked on": "● Erfasst", "No lock": "Kein Treffer", "Enter your measurements": "Gib deine Masse ein", "Nothing locked": "Kein Treffer", "No signal yet": "Noch kein Signal", "Two numbers. Every piece that fits.": "Zwei Zahlen. Jedes Teil, das passt.", "Every FULL SEND garment is cut differently. Shirts, hoodies, sweaters and jackets each have their own size chart. Enter A and B on the left and only the pieces that fit you stay on screen, each with the size you should order.": "Jedes FULL SEND Teil ist anders geschnitten. Shirts, Hoodies, Sweater und Jacken haben jeweils ihre eigene Grössentabelle. Gib A und B ein, und es bleiben nur die Teile sichtbar, die dir passen, jeweils mit der Grösse, die du bestellen solltest.", "Signal lost": "Signal verloren", "No piece within range": "Kein Teil im Bereich", "Try the Relaxed tolerance, or double-check that A is measured flat from armpit to armpit and B from the top of the shoulder to the hem.": "Versuch es mit der Toleranz «Locker», oder prüf nochmals, ob A flach von Achsel zu Achsel und B vom höchsten Punkt der Schulter bis zum Saum gemessen ist.", "These measurements fall outside every size chart. Double-check that A is measured flat from armpit to armpit and B from the top of the shoulder to the hem.": "Diese Masse liegen ausserhalb aller Grössentabellen. Prüf nochmals, ob A flach von Achsel zu Achsel und B vom höchsten Punkt der Schulter bis zum Saum gemessen ist.", "Core collection": "Kernkollektion", "Daily kit": "Daily Kit", "The pieces that are always in rotation. Hover a product to see the back, tap it for every angle and the full spec.": "Die Teile, die immer im Einsatz sind. Fahr mit der Maus über ein Produkt, um die Rückseite zu sehen, oder tipp darauf für alle Ansichten und sämtliche Details.", "Filter collection": "Kollektion filtern", "All": "Alle", "Shirts": "Shirts", "Hoodies": "Hoodies", "Jackets": "Jacken", "Sweaters": "Sweater", "Accessories": "Accessoires", "Shot on location": "Vor Ort fotografiert", "Winter Series shirt with back print at sunset": "Winter-Series-Shirt mit Rückenprint bei Sonnenuntergang", "Hoodies in desert and black": "Hoodies in Desert und Schwarz", "16 Again bomber jacket in olive": "Bomberjacke 16 Again in Oliv", "Minimal Edition shirts in black and desert": "Minimal-Edition-Shirts in Schwarz und Desert", "Discoverer softshell in navy": "Discoverer Softshell in Navy", "Folded shirts in four colors on a stone bench": "Gefaltete Shirts in vier Farben auf einer Steinbank", "Fleece Trekker in desert on rock": "Fleece Trekker in Desert auf einem Felsen", "The OG Shirt in desert and black": "The OG Shirt in Desert und Schwarz", "FULL SEND chalk poster with FPV sayings around the logo": "FULL SEND Kreideposter mit FPV-Sprüchen rund um das Logo", "It's a lifestyle": "Ein Lifestyle", "Built by a pilot. Worn by the crew.": "Von einem Piloten gemacht. Von der Crew getragen.", "The designs come out of real sessions: dawn packs on alpine ridges, long-range lines over the lake, the walk back after a crash. FPV culture, worn off the field.": "Die Designs entstehen aus echten Sessions: Packs im Morgengrauen auf Alpengraten, Long-Range-Flüge über den See, der Rückweg nach einem Crash. FPV-Kultur, getragen abseits vom Spot.", "Fly with the crew": "Flieg mit der Crew", "New drops are announced in the FULL SEND channel. Join for release dates, behind-the-scenes from the shoots and footage from the people wearing the gear.": "Neue Drops werden im FULL SEND Channel angekündigt. Tritt bei für Release-Daten, Einblicke hinter die Kulissen der Shootings und Footage von den Leuten, die unsere Teile tragen.", "Join the channel <span class=\"dash\"></span>": "Channel beitreten <span class=\"dash\"></span>", "FPV flight along a sunlit snowy peak": "FPV-Flug entlang eines sonnenbeschienenen, verschneiten Gipfels", "FPV dive over an alpine ridge at sunrise": "FPV-Dive über einen Alpengrat bei Sonnenaufgang", "Independent FPV streetwear": "Unabhängige FPV-Streetwear", "Made in limited batches": "In limitierten Auflagen gefertigt", "Close": "Schliessen", "Limited": "Limitiert", "Special edition": "Special Edition", "front": "Vorderseite", "Front": "Vorderseite", "Back": "Rückseite", "Product": "Produkt", "Colors: ": "Farben: ", "Limited Winter Series piece, made to order in a single batch.": "Limitiertes Teil der Winter Series, auf Bestellung in einer einzigen Charge gefertigt.", "Released in FULL SEND drops. Join the community for the next one.": "Erhältlich in FULL SEND Drops. Tritt der Community bei, um den nächsten nicht zu verpassen.", "Black": "Schwarz", "Burgundy": "Burgunderrot", "Clear / Black": "Transparent / Schwarz", "Dark Grey": "Dunkelgrau", "Desert": "Desert", "Heather Grey": "Grau meliert", "Navy / Black": "Navy / Schwarz", "Navy Blue": "Navyblau", "Nispero Yellow": "Nispero Yellow", "Olive": "Oliv", "Black · small chest logo": "Schwarz · kleines Brustlogo", "Full chest logo": "Grosses Brustlogo", "Heather grey · Winter Series back print": "Grau meliert · Winter-Series-Rückenprint", "Made in the Netherlands": "Hergestellt in den Niederlanden", "Navy blue": "Navyblau", "Puffer vest": "Steppweste", "Small chest logo": "Kleines Brustlogo", "Unisex fleece jacket": "Unisex-Fleecejacke", "Relaxed fit": "Relaxed Fit", "1x1 ribbed crew neck collar": "Rundhalskragen in 1x1-Rippstrick", "Self-fabric neck tape": "Nackenband aus Oberstoff", "Wide double-needle stitching at sleeve cuffs and bottom hem": "Breite Doppelnaht an Ärmelabschlüssen und Saum", "Slightly textured fabric feel": "Leicht strukturierte Haptik", "100% organic cotton, 240 g/m²": "100 % Bio-Baumwolle, 240 g/m²", "Set-in sleeves": "Eingesetzte Ärmel", "Double-layered hood with lining": "Doppellagige, gefütterte Kapuze", "Matching round drawcords, closed metal cord ends and metal eyelets": "Farblich passende runde Kordeln mit geschlossenen Metallenden und Metallösen", "Herringbone neck tape, half-moon panel at the back neck": "Nackenband mit Fischgratmuster, Halbmond-Blende im Nacken", "Front kangaroo pocket": "Kängurutasche vorne", "1x1 ribbed cuffs and hem": "Bündchen und Saum in 1x1-Rippstrick", "100% organic cotton, 350 g/m²": "100 % Bio-Baumwolle, 350 g/m²", "Recycled fleece lining": "Futter aus recyceltem Fleece", "Contrasting softshell panels on pockets, back yoke and collar": "Softshell-Einsätze in Kontrastfarbe an Taschen, Rückenpasse und Kragen", "Concealed zip pockets": "Verdeckte Reissverschlusstaschen", "Pre-washed Sherpa fabric with anti-pilling finish": "Vorgewaschener Sherpa-Stoff mit Anti-Pilling-Ausrüstung", "Zipper with metal puller and cord trim": "Reissverschluss mit Metallzipper und Kordelanhänger", "Elastic binding at hem and armholes": "Elastische Einfassung an Saum und Armausschnitten", "Sleeveless Sherpa jacket": "Ärmellose Sherpa-Jacke", "Heavyweight 350 GSM sweatshirt, made for cold days": "Schweres Sweatshirt mit 350 g/m², gemacht für kalte Tage", "100% organic cotton, GOTS or GRS certified": "100 % Bio-Baumwolle, GOTS- oder GRS-zertifiziert", "Pre-washed for enhanced shape retention": "Vorgewaschen für bessere Formstabilität", "Double-needle stitching and flatlock details": "Doppelnähte und Flatlock-Details", "Herringbone neck tape and internal half-moon detail": "Nackenband mit Fischgratmuster und Halbmond-Detail innen", "100% recycled nylon": "100 % recyceltes Nylon", "Fluorine-free, water-repellent DWR finish against light rain": "Fluorfreie, wasserabweisende DWR-Ausrüstung gegen leichten Regen", "Lightweight 38 GSM fabric, a warm mid-layer for layering": "Leichter Stoff mit 38 g/m², eine warme Mittelschicht für den Zwiebellook", "Medium fit with shaped side panels": "Medium Fit mit geformten Seitenteilen", "Stand-up collar and zipped side welt pockets": "Stehkragen und seitliche Paspeltaschen mit Reissverschluss", "Elastic binding at armholes and hem": "Elastische Einfassung an Armausschnitten und Saum", "Softshell jacket with hood and reflective zippers": "Softshelljacke mit Kapuze und reflektierenden Reissverschlüssen", "Recycled 3-layer fabric with TPU membrane and inner fleece lining": "Recyceltes 3-Lagen-Material mit TPU-Membran und Fleece-Innenfutter", "Windproof, water-repellent (10,000 mm) and breathable": "Winddicht, wasserabweisend (10'000 mm) und atmungsaktiv", "Adjustable sleeve cuffs with hook-and-loop fastening": "Verstellbare Ärmelabschlüsse mit Klettverschluss", "Stretch panels for freedom of movement": "Stretch-Einsätze für mehr Bewegungsfreiheit", "Fluorine-free Bionic DWR Eco finish": "Fluorfreie Bionic-DWR-Eco-Ausrüstung", "Unisex fleece jacket made from 100% recycled polyester": "Unisex-Fleecejacke aus 100 % recyceltem Polyester", "Brushed inside and out with anti-pilling treatment": "Innen und aussen angeraut, mit Anti-Pilling-Ausrüstung", "Nylon zipper with metal pull and cord end": "Nylon-Reissverschluss mit Metallzipper und Kordelende", "Side pockets with concealed zippers": "Seitentaschen mit verdeckten Reissverschlüssen", "Contrasting softshell panels on shoulder yoke and collar": "Softshell-Einsätze in Kontrastfarbe an Schulterpasse und Kragen", "Elastic binding at hem and cuffs": "Elastische Einfassung an Saum und Ärmelabschlüssen", "Unisex bomber jacket with silver metal zipper": "Unisex-Bomberjacke mit silbernem Metall-Reissverschluss", "Zipped sleeve pocket with pen loops": "Ärmeltasche mit Reissverschluss und Stiftschlaufen", "Fully quilted interior with inner chest pocket": "Komplett gestepptes Innenfutter mit Brustinnentasche", "Front welt pockets with snap button closure": "Paspeltaschen vorne mit Druckknopfverschluss", "Ribbed cuffs, collar and hem": "Gerippte Bündchen, Kragen und Saum", "100% recycled polyester with fluorine-free DWR finish": "100 % recyceltes Polyester mit fluorfreier DWR-Ausrüstung", "5-panel snapback with plastic snap closure": "5-Panel-Snapback mit Kunststoff-Druckverschluss", "Pre-curved visor": "Vorgebogener Schirm", "Reinforced front panel for shape retention": "Verstärktes Frontpanel für Formstabilität", "100% cotton": "100 % Baumwolle", "Leak-proof screw cap with carrying loop": "Auslaufsicherer Schraubdeckel mit Trageschlaufe", "Two openings for easy drinking and cleaning": "Zwei Öffnungen für einfaches Trinken und Reinigen", "Suitable for carbonated drinks": "Für kohlensäurehaltige Getränke geeignet", "Odor- and taste-neutral Tritan and PP": "Geruchs- und geschmacksneutrales Tritan und PP", "Dishwasher safe, 100% recyclable": "Spülmaschinenfest, 100 % recycelbar"};
+const src=n=>`img/${n}.webp`;
+let L='en';
+const t=s=>L==='de'&&Object.prototype.hasOwnProperty.call(TR,s)?TR[s]:s;
+const nViews=n=>n+' '+(L==='de'?(n>1?'Ansichten':'Ansicht'):(n>1?'views':'view'));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function card(p){
+  const el=document.createElement('article');el.className='prod';
+  el.innerHTML=`<button class="plate" aria-label="${L==='de'?esc(p.name)+' ansehen':'View '+esc(p.name)}"></button>
+   <div class="row"><div><h3>${esc(p.name)}</h3><div class="sub"></div>${SHOP[p.id]?`<div class="price">CHF ${SHOP[p.id].chf}.– / € ${SHOP[p.id].eur}</div>`:""}</div><div class="sw"></div></div>`;
+  const plate=el.querySelector('.plate'),sw=el.querySelector('.sw'),sub=el.querySelector('.sub');
+  let vi=0;
+  const render=()=>{
+    const v=p.v[vi];const alt=v.img[1];
+    plate.innerHTML=(p.tag?`<span class="tag">${esc(t(p.tag))}</span>`:p.ws?`<span class="tag">${t('Limited')}</span>`:'')+
+      `<img class="main${alt?' has-alt':''}${p.photo?' photo':''}" src="${src(v.img[0])}" alt="${esc(p.name)} ${esc(t(v.n))}${alt?' '+t('front'):''}" loading="lazy">`+
+      (alt?`<img class="alt" src="${src(alt)}" alt="" loading="lazy">`:'')+
+      (v.model?`<span class="om-tag">${t('On model')}</span>`:'')+`<span class="views">${nViews(v.img.length+p.ed.length+(v.model?v.model.length:0))}</span>`;
+    sub.textContent=t(p.v.length>1?v.n:p.sub);
+    [...sw.children].forEach((b,i)=>b.setAttribute('aria-pressed',i===vi));
+  };
+  if(p.v.length>1)p.v.forEach((v,i)=>{const b=document.createElement('button');b.style.background=C[v.c];b.title=t(v.n);b.setAttribute('aria-label',t(v.n));b.onclick=()=>{vi=i;render()};sw.appendChild(b)});
+  plate.onclick=()=>openDlg(p,vi);
+  render();return el;
+}
+const wsGrid=document.getElementById('wsGrid'),grid=document.getElementById('grid');
+const drawWs=()=>{if(!wsGrid)return;wsGrid.innerHTML='';P.filter(p=>p.ws).forEach(p=>wsGrid.appendChild(card(p)))};
+const core=P.filter(p=>!p.ws);
+const cats=["All",...new Set(core.map(p=>p.cat))];
+const filters=document.getElementById('filters');
+let curCat="All";
+function show(cat){curCat=cat;grid.innerHTML='';core.filter(p=>cat==="All"||p.cat===cat).forEach(p=>grid.appendChild(card(p)));[...filters.children].forEach(b=>{b.textContent=t(b.dataset.cat);b.setAttribute('aria-pressed',b.dataset.cat===cat)})}
+cats.forEach(c=>{const b=document.createElement('button');b.className='chip';b.dataset.cat=c;b.textContent=c;b.onclick=()=>show(c);filters.appendChild(b)});
+
+const dlg=document.getElementById('dlg'),stage=document.getElementById('stage'),thumbs=document.getElementById('thumbs');
+let startModel=false;
+function openDlg(p,vi,model){startModel=!!model;
+  const draw=()=>{
+    const v=p.v[vi];
+    const views=[...v.img.map((n,i)=>({n,label:t(v.img.length>1?(i?'Back':'Front'):'Product'),photo:p.photo})),...(v.model||[]).map(([n,sd])=>({n,label:t(sd==='b'?'On model · Back':'On model · Front'),photo:1,model:1})),...p.ed.map(n=>({n,label:'Lookbook',photo:1}))];
+    let cur=0;
+    if(startModel&&v.model){startModel=false;views.unshift(...views.splice(v.img.length,v.model.length))}
+    const pick=i=>{cur=i;const x=views[i];stage.innerHTML=`<img class="${x.photo?'photo':''}${x.model?' model':''}" src="${src(x.n)}" alt="${esc(p.name)} ${esc(t(v.n))}, ${x.label}">`;[...thumbs.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i))};
+    thumbs.innerHTML='';
+    views.forEach((x,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',x.label);b.innerHTML=`<img src="${src(x.n)}" alt="" style="${x.photo?'mix-blend-mode:normal':''}">`;b.onclick=()=>pick(i);thumbs.appendChild(b)});
+    if(views.length<2)thumbs.hidden=true;else thumbs.hidden=false;
+    pick(0);
+    document.getElementById('dlgCat').textContent=(p.ws?'Winter Series 01 · '+t('Limited')+' · ':'')+t(p.cat);
+    document.getElementById('dlgTitle').textContent='FULL SEND '+p.name;
+    const sw=document.getElementById('dlgSw');sw.innerHTML='';
+    if(p.v.length>1)p.v.forEach((x,i)=>{const b=document.createElement('button');b.style.background=C[x.c];b.title=t(x.n);b.setAttribute('aria-label',t(x.n));b.setAttribute('aria-pressed',i===vi);b.onclick=()=>{vi=i;draw()};sw.appendChild(b)});
+    document.getElementById('dlgFeat').innerHTML=p.feat.map(f=>`<li>${esc(t(f))}</li>`).join('');
+    document.getElementById('dlgNote').textContent=(p.v.length>1?t('Colors: ')+p.v.map(x=>t(x.n)).join(', ')+'. ':'')+t(p.ws?'Limited Winter Series piece, made to order in a single batch.':'Released in FULL SEND drops. Join the community for the next one.');
+    renderBuy(p,vi);
+  };
+  draw();
+  if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');
+}
+document.getElementById('dlgClose').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+/* ---------- Fit finder: flat garment measurements per size, from the official size charts ---------- */
+const S8=["XXS","XS","S","M","L","XL","XXL","3XL"],S10=[...S8,"4XL","5XL"];
+const mk=(sizes,A,B)=>sizes.map((s,i)=>({s,a:A[i],b:B[i]}));
+const CH={
+ tee:mk(S8,[49.5,52,55,58,61,64,67,70],[68,70,73,76,78,80,82,84]),
+ hood:mk(S10,[51,53,55,59,62,65,69,73,78,83],[64,67,71,74,76,78,80,82,84,85]),
+ sweat:mk(S10,[51,53,55,59,62,65,69,73,78,83],[64,67,71,74,76,78,80,82,84,85]),
+ soft:mk(["S","M","L","XL","XXL","3XL","4XL","5XL"],[58,61,64,67,71,75,80,85],[70,72,74,76,78.5,81,83,84]),
+ trek:mk(S8,[48,50,52,56,59,62,66,70],[61,64,68,72,74,76,78.5,80.5]),
+ bomber:mk(S8,[56,58,60,64,67,70,74,78],[61.5,64.5,67.5,69.5,71.5,73.5,76,78]),
+ stepp:mk(["XS","S","M","L","XL","XXL","3XL","4XL","5XL"],[51,53.5,56,59.5,63,67,71,75,80],[63.5,65,68.5,70.5,72.5,74.5,76.5,78.5,80.5]),
+ vest:mk(S8,[48,50,52,56,59,62,66,70],[59,62,66,70,72,74.5,76.5,79]),
+ jk:mk(S8,[51,53,55,59,62,65,69,73],[61,64,68,72,74,76.5,78.5,81])
+};
+const CHART={"ws-tee":CH.tee,min:CH.tee,free:CH.tee,hood:CH.hood,hoodmin:CH.hood,sw:CH.sweat,soft:CH.soft,trek:CH.trek,bomber:CH.bomber,stepp:CH.stepp,vest:CH.vest,jk:CH.jk};
+const TOL=[{n:"Tight",a:1.5,b:2},{n:"Normal",a:3,b:4},{n:"Relaxed",a:5,b:6}];
+let tol=1,ffCat="All";
+const ffW=document.getElementById('ffW'),ffL=document.getElementById('ffL'),ffGrid=document.getElementById('ffGrid');
+const fmt=n=>L==='de'?String(n).replace('.',','):String(n);
+const sgn=n=>(n>0?'+':'−')+fmt(Math.abs(Math.round(n*2)/2));
+const sized=P.filter(p=>CHART[p.id]);
+document.getElementById('ffTot').textContent=String(sized.length).padStart(2,'0');
+
+const tolBox=document.getElementById('ffTol');
+TOL.forEach((x,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.onclick=()=>{tol=i;runFit()};tolBox.appendChild(b)});
+
+function matchP(p,a,b){
+  const t=TOL[tol];
+  const hits=CHART[p.id].map(x=>({...x,da:x.a-a,db:x.b-b})).filter(x=>Math.abs(x.da)<=t.a&&Math.abs(x.db)<=t.b)
+    .map(x=>({...x,sc:(x.da/t.a)**2+(x.db/t.b)**2})).sort((x,y)=>x.sc-y.sc);
+  return hits.length?{p,best:hits[0],alt:hits.slice(1).map(h=>h.s),sc:hits[0].sc}:null;
+}
+function fitCard(r){
+  const el=card(r.p),x=r.best;
+  const spot=Math.abs(x.da)<=1.5&&Math.abs(x.db)<=2;
+  const notes=[];
+  if(Math.abs(x.da)>1)notes.push(`${sgn(x.da)} cm ${t(x.da>0?'roomier':'slimmer')}`);
+  if(Math.abs(x.db)>1)notes.push(`${sgn(x.db)} cm ${t(x.db>0?'longer':'shorter')}`);
+  const line=document.createElement('div');line.className='fitline';
+  line.innerHTML=`<span class="sz" title="${t('Size to order')}">${x.s}</span><div class="fl"><span class="q${spot?'':' close'}">${spot?t('Spot on'):notes.join(' · ')}</span><span class="m">A ${fmt(x.a)} · B ${fmt(x.b)} cm${r.alt.length?' · '+t('also')+' '+r.alt.join(', '):''}</span></div>`;
+  el.appendChild(line);return el;
+}
+function runFit(){
+  [...tolBox.children].forEach((b,i)=>{const x=TOL[i];b.textContent=t(x.n);b.title=`${t('Width')} ±${fmt(x.a)} cm · ${t('Length')} ±${fmt(x.b)} cm`;b.setAttribute('aria-pressed',i===tol)});
+  const a=parseFloat(String(ffW.value).replace(',','.')),b=parseFloat(String(ffL.value).replace(',','.'));
+  try{localStorage.setItem('fs-fit',JSON.stringify({w:ffW.value,l:ffL.value,tol}))}catch(e){}
+  const ok=a>=30&&a<=100&&b>=40&&b<=110;
+  document.getElementById('ffHint').hidden=!(a>0&&a<46);
+  const status=document.getElementById('ffStatus'),count=document.getElementById('ffCount'),cats=document.getElementById('ffCats');
+  ffGrid.innerHTML='';cats.innerHTML='';
+  document.getElementById('ffOne').hidden=!ok;
+  if(!ok){
+    status.textContent=t((ffW.value||ffL.value)?'Need A and B':'Awaiting input');status.className='';
+    document.getElementById('ffNum').textContent='00';
+    count.textContent=t('Enter your measurements');
+    const em=document.getElementById('ffEmpty');em.hidden=false;em.querySelector('.eyebrow').textContent=t(EMPTY[0]);em.querySelector('h3').textContent=t(EMPTY[1]);em.querySelector('p').textContent=t(EMPTY[2]);return;
+  }
+  const res=sized.map(p=>matchP(p,a,b)).filter(Boolean).sort((x,y)=>x.sc-y.sc);
+  document.getElementById('ffNum').textContent=String(res.length).padStart(2,'0');
+  status.textContent=t(res.length?'● Locked on':'No lock');status.className=res.length?'lock':'';
+  const present=["All",...new Set(res.map(r=>r.p.cat))];
+  if(!present.includes(ffCat))ffCat="All";
+  if(present.length>2)present.forEach(c=>{const btn=document.createElement('button');btn.type='button';btn.className='chip';btn.textContent=t(c);btn.setAttribute('aria-pressed',c===ffCat);btn.onclick=()=>{ffCat=c;runFit()};cats.appendChild(btn)});
+  const shown=res.filter(r=>ffCat==="All"||r.p.cat===ffCat);
+  count.innerHTML=res.length?(L==='de'?`<span>${res.length}</span> ${res.length>1?'Teile passen':'Teil passt'} dir`:`<span>${res.length}</span> piece${res.length>1?'s':''} fit${res.length>1?'':'s'} you`):t('Nothing locked');
+  shown.forEach(r=>ffGrid.appendChild(fitCard(r)));
+  const empty=document.getElementById('ffEmpty');
+  empty.hidden=res.length>0;
+  if(!res.length){empty.querySelector('.eyebrow').textContent=t('Signal lost');empty.querySelector('h3').textContent=t('No piece within range');empty.querySelector('p').textContent=t(tol<2?'Try the Relaxed tolerance, or double-check that A is measured flat from armpit to armpit and B from the top of the shoulder to the hem.':'These measurements fall outside every size chart. Double-check that A is measured flat from armpit to armpit and B from the top of the shoulder to the hem.')}
+}
+const EMPTY=['.eyebrow','h3','p'].map(q=>document.querySelector('#ffEmpty '+q).textContent);
+[ffW,ffL].forEach(i=>i.addEventListener('input',runFit));
+document.getElementById('ffReset').onclick=()=>{ffW.value='';ffL.value='';tol=1;ffCat="All";runFit();ffW.focus()};
+try{const s=JSON.parse(localStorage.getItem('fs-fit')||'null');if(s){ffW.value=s.w||'';ffL.value=s.l||'';if(s.tol>=0&&s.tol<3)tol=s.tol}}catch(e){}
+
+/* ---------- Winter looks: 4 model tiles ---------- */
+const WSL=[{p:"ws-tee",c:"heather"},{p:"sw",c:"yellow"},{p:"jk",c:"black"},{p:"vest",c:"burgundy"}];
+let drawLook=()=>{};
+(()=>{const box=document.getElementById('wsLooks');if(!box)return;const touch=matchMedia('(hover:none)').matches;
+ const pick=(v,side)=>{const m=(v.model||[]).find(x=>x[1]===side);return m&&m[0]};
+ const srcs=n=>`src="img/${n}.webp" srcset="img/${n}-sm.webp 400w, img/${n}.webp 800w" sizes="(max-width:1000px) 50vw, 25vw"`;
+ const state=WSL.map(w=>({...w}));
+ const tile=(st,i)=>{const p=P.find(x=>x.id===st.p);const vi=p.v.findIndex(x=>x.c===st.c),v=p.v[vi];
+  const f=pick(v,'f')||v.img[0],b=pick(v,'b');
+  const el=document.createElement('figure');el.className='wl'+(b?' has-b':'');el.tabIndex=0;
+  el.setAttribute('aria-label',p.name+' · '+t(v.n));
+  el.innerHTML=`<img class="f" ${srcs(f)} alt="${esc((L==='de'?'Model trägt ':'Model wearing ')+p.name+' '+t(v.n))}" loading="lazy">`+(b?`<img class="b" ${srcs(b)} alt="" loading="lazy">`:'')+
+   `<span class="tag">${t('Limited')}</span>
+   <div class="base"><h3>${esc(p.name)}</h3><span>${p.v.length>1?p.v.length+' '+(L==='de'?'Farben':'colors'):esc(t(v.n))}</span></div>
+   <div class="det"><span class="eb">Winter Series 01 · ${esc(t(p.cat))}</span><h3>${esc(p.name)}</h3>
+    <ul>${p.feat.slice(0,3).map(x=>`<li>${esc(t(x))}</li>`).join('')}</ul>
+    <div class="cl"><div class="sw"></div><span class="cn">${esc(t(v.n))}</span></div>
+    <div class="acts"><button type="button" class="vw">${t('View product')}</button><a href="#finder">${t('Find your size')}</a></div></div>`;
+  const sw=el.querySelector('.sw');
+  if(p.v.length>1)p.v.forEach(x=>{const btn=document.createElement('button');btn.type='button';btn.style.background=C[x.c];btn.title=t(x.n);btn.setAttribute('aria-label',t(x.n));btn.setAttribute('aria-pressed',x.c===st.c);
+   btn.onclick=e=>{e.stopPropagation();if(x.c===st.c)return;st.c=x.c;const n=tile(st,i);n.classList.add('open');box.replaceChild(n,el);n.focus({preventScroll:true})};sw.appendChild(btn)});
+  el.querySelector('.vw').onclick=e=>{e.stopPropagation();openDlg(p,vi,true)};
+  el.querySelector('.acts a').onclick=e=>e.stopPropagation();
+  el.addEventListener('click',()=>{if(touch&&!el.classList.contains('open')){[...box.children].forEach(c=>c.classList.remove('open'));el.classList.add('open')}else openDlg(p,vi,true)});
+  el.addEventListener('mouseleave',()=>el.classList.remove('open'));
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target===el)openDlg(p,vi,true)});
+  return el};
+ drawLook=()=>{box.innerHTML='';state.forEach((st,i)=>box.appendChild(tile(st,i)))};
+ drawLook();
+})();
+Object.assign(TR,{"Front":"Vorderseite","Back":"Rückseite","View":"Ansicht","Sherpa Jacket · Burgundy":"Sherpa Jacket · Burgunderrot","On model · Winter Series 01":"Am Model · Winter Series 01","Worn on the pass":"Getragen auf dem Pass","The Sherpa Jacket in burgundy, shot above the lake at first frost. Soft sherpa body, softshell yoke with the FULL SEND print across the shoulders, and the Winter Series patch on the chest.":"Die Sherpa Jacket in Burgunderrot, fotografiert über dem See beim ersten Frost. Weicher Sherpa-Körper, Softshell-Passe mit dem FULL SEND Print über den Schultern und dem Winter-Series-Patch auf der Brust.","Color":"Farbe","Fabric":"Material","Sherpa with recycled fleece lining":"Sherpa mit Futter aus recyceltem Fleece","Fit":"Passform","View the jacket":"Jacke ansehen","View product":"Produkt ansehen","Looks":"Looks","Previous look":"Vorheriger Look","Next look":"Nächster Look","Above the treeline":"Über der Baumgrenze","The Sherpa Jacket in black on a snowed-in terrace. All-black sherpa, softshell yoke and the FULL SEND print across the shoulders.":"Die Sherpa Jacket in Schwarz auf einer verschneiten Terrasse. Komplett schwarzer Sherpa, Softshell-Passe und der FULL SEND Print über den Schultern.","Last light":"Letztes Licht","The Changer Sweater in dark grey at golden hour. Heavyweight organic cotton, a small logo up front and the full Winter Series print on the back.":"Der Changer Sweater in Dunkelgrau zur Golden Hour. Schwere Bio-Baumwolle, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","350 GSM organic cotton":"Bio-Baumwolle, 350 g/m²","Layer up":"Zwiebellook","The Sherpa Vest in desert, layered over a black long sleeve. Sherpa body, softshell panels and the FULL SEND print on the back yoke.":"Die Sherpa Vest in Desert, getragen über einem schwarzen Longsleeve. Sherpa-Körper, Softshell-Einsätze und der FULL SEND Print auf der Rückenpasse.","After the rain":"Nach dem Regen","The Winter Series 01 shirt in heather grey. Relaxed fit, a small logo up front and the full Winter Series print on the back.":"Das Winter Series 01 Shirt in Grau meliert. Relaxed Fit, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","240 g/m² organic cotton":"Bio-Baumwolle, 240 g/m²","Find your size":"Grösse finden","On model":"Am Model","On model · Front":"Am Model · Vorderseite","On model · Back":"Am Model · Rückseite","Model wearing the Sherpa Jacket in burgundy, front view, on a mountain terrace":"Model trägt die Sherpa Jacket in Burgunderrot, Vorderansicht, auf einer Bergterrasse","Model wearing the Sherpa Jacket in burgundy, back view with FULL SEND print across the shoulders":"Model trägt die Sherpa Jacket in Burgunderrot, Rückansicht mit FULL SEND Print über den Schultern"});
+
+
+/* ---------- Shop: cart + checkout -> Google Form (DRAFT) ---------- */
+const FORM_ID='1FAIpQLSeEaEhoGUZFEP_eUUsQ6QrGbvuI8_mwHv1xl7-q0KVmjm_TLQ';
+const FORM_POST=`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
+const FORM_VIEW=`https://docs.google.com/forms/d/e/${FORM_ID}/viewform`;
+const Z8=["XXS","XS","S","M","L","XL","XXL","3XL"],Z10=[...Z8,"4XL","5XL"];
+/* product id -> price (CHF), size list, and Google Form entry per colour */
+const SHOP={
+ "ws-tee":{chf:45,eur:47,sz:Z8,e:{heather:2032493676}},
+ sw:{chf:45,eur:49,sz:Z10,e:{grey:1975951618,yellow:1363984627,burgundy:1804801767}},
+ vest:{chf:80,eur:85,sz:Z8,e:{black:1859501408,burgundy:1985383615,desert:224500979}},
+ jk:{chf:90,eur:95,sz:Z8,e:{black:499319296,desert:2003877312,burgundy:468527718}},
+ min:{chf:38,eur:40,sz:Z8,e:{black:844339820,desert:1060568791}},
+ free:{chf:38,eur:40,sz:Z8,e:{black:1594818545,desert:429427269}},
+ hood:{chf:60,eur:65,sz:Z10,e:{black:36109641,desert:1431043029}},
+ hoodmin:{chf:60,eur:65,sz:Z10,e:{black:1859203494}},
+ soft:{chf:105,eur:115,sz:["S","M","L","XL","XXL","3XL","4XL","5XL"],e:{navy:1757097654}},
+ trek:{chf:90,eur:99,sz:Z8,e:{desert:2043316279},pilot:"Pilot Name in the Front?"},
+ bomber:{chf:99,eur:109,sz:Z8,e:{olive:1230320347}},
+ stepp:{chf:85,eur:93,sz:["XS","S","M","L","XL","XXL","3XL","5XL"],e:{black:1625284844,desert:1246976194}},
+ cap:{chf:30,eur:32,sz:["Navy","Black"],szLabel:"Color",e:{black:327398684}},
+ bottle:{chf:30,eur:33,sz:null,one:"Yes",e:{clear:25503703}}
+};
+const DROP_OPEN=false;
+const IG_COMMUNITY='https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/';
+const F={name:1170100077,pre:1053728752,street:487463756,country:760210919,zip:1032444947,city:1460208402,insta:1497783167,phone:2025006327,email:700730236,pay:714641328,note:2031610876};
+const PAY=["Twint (Only Switzerland)","Paypal","Bank transfer","Other (Write me a DM)"];
+const SHIP=10; /* flat shipping per order, CHF and EUR */
+const BANK={holder:"Fabian Maissen",iban:"CH78 0026 2262 1437 2040 P",bic:"UBSWCHZH80A"};
+const PAYINFO={
+ "Bank transfer":{h:'Bank details',rows:[['Account holder',BANK.holder],['IBAN',BANK.iban,BANK.iban.replace(/ /g,'')],['BIC / SWIFT',BANK.bic]]},
+ "Paypal":{h:'PayPal details',rows:[['PayPal','fabian.maissen@gmail.com','fabian.maissen@gmail.com'],['Send as','Friends and family']]},
+ "Twint (Only Switzerland)":{h:'TWINT details',rows:[['TWINT','+41 76 227 84 14','+41762278414']]}
+};
+const payBox=m=>{const x=PAYINFO[m];if(!x)return '';return `<div class="ship bank"><strong>${t(x.h)}</strong><dl class="bk">${x.rows.map(([l,v,c])=>`<div><dt>${t(l)}</dt><dd>${esc(t(v))}${c?` <button type="button" class="cp" data-cp="${esc(c)}">${t('Copy')}</button>`:''}</dd></div>`).join('')}</dl></div>`};
+const copyTxt=async(s,host)=>{try{await navigator.clipboard.writeText(s);return true}catch(e){try{const a=document.createElement('textarea');a.value=s;a.style.cssText='position:fixed;opacity:0';host.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(_){return false}}};
+const wireCopy=root=>root.querySelectorAll('.cp').forEach(b=>b.onclick=async()=>{b.textContent=t(await copyTxt(b.dataset.cp,b.parentNode)?'Copied':'Copy failed')});
+/* ---------- PDF order confirmation (built in the browser, no library) ---------- */
+const PDFMAP={'€':128,'‚':130,'„':132,'…':133,'‘':145,'’':146,'“':147,'”':148,'•':149,'–':150,'—':151};
+const pdfTxt=s=>[...String(s)].map(ch=>{let c=PDFMAP[ch]||ch.charCodeAt(0);if(c>255)c=63;const h=String.fromCharCode(c);return h==='('||h===')'||h==='\\'?'\\'+h:h}).join('');
+function fsPdf(D,logo){
+ const W=595,H=842,M=48,xE=W-M-14,xC=xE-92;
+ const C={dark:[.059,.055,.051],chalk:[.937,.914,.875],desert:[.804,.71,.576],dd:[.541,.427,.271],burg:[.49,.165,.18],ink:[.09,.082,.075],muted:[.42,.388,.345],line:[.835,.804,.753],tint:[.945,.929,.902]};
+ const pages=[];let o=[],y=0;
+ const col=(c,f)=>c.join(' ')+(f?' rg':' RG');
+ const txt=(s,x,yy,sz,f,c,cs)=>o.push(`BT ${col(c,1)} /${f} ${sz} Tf ${cs||0} Tc ${x.toFixed(1)} ${yy.toFixed(1)} Td (${pdfTxt(s)}) Tj ET`);
+ const mw=(s,sz,cs)=>{const n=[...String(s)].length;return n*sz*.6+Math.max(0,n-1)*(cs||0)};
+ const rtxt=(s,xr,yy,sz,f,c,cs)=>txt(s,xr-mw(s,sz,cs),yy,sz,f,c,cs);
+ const rect=(x,yy,w,h,c)=>o.push(`${col(c,1)} ${x.toFixed(1)} ${yy.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)} re f`);
+ const hl=(yy,c,w)=>o.push(`${col(c)} ${w||.5} w ${M} ${yy.toFixed(1)} m ${W-M} ${yy.toFixed(1)} l S`);
+ const label=(s,x,yy)=>txt(String(s).toUpperCase(),x,yy,7.5,'F4',C.dd,1.2);
+ const wrap=(s,sz,maxW)=>{const max=Math.floor(maxW/(sz*.52)),ls=[];let cur='';String(s).replace(/\s+/g,' ').trim().split(' ').forEach(w=>{if(cur&&(cur+' '+w).length>max){ls.push(cur);cur=w}else cur=cur?cur+' '+w:w});ls.push(cur);return ls};
+ const foot=()=>{hl(58,C.line);txt(D.footer,M,42,7,'F3',C.muted,.8);rtxt('@FULLSEND.BRAND',W-M,42,7,'F3',C.muted,.8)};
+ const lh=30,lw=lh*1254/280;
+ const page=first=>{if(o.length){foot();pages.push(o)}o=[];
+  if(first){rect(0,H-118,W,118,C.dark);rect(0,H-122,W,4,C.burg);
+   if(logo)o.push(`q ${col(C.chalk,1)} ${lw.toFixed(1)} 0 0 ${lh} ${M} ${H-59-lh/2} cm /Lg Do Q`);else txt('FULL SEND',M,H-68,24,'F2',C.chalk);
+   rtxt(String(D.lab.title).toUpperCase(),W-M,H-46,7.5,'F4',C.desert,1.2);
+   rtxt(D.nr,W-M,H-68,15,'F4',C.chalk,.4);
+   rtxt(D.date,W-M,H-86,8.5,'F3',C.desert,.3);
+   y=H-122-34}
+  else{rect(0,H-6,W,6,C.burg);txt('FULL SEND',M,H-40,11,'F2',C.ink);rtxt(D.nr,W-M,H-40,9,'F4',C.muted,.3);y=H-72}};
+ const need=h=>{if(y-h<80)page(false)};
+ page(true);
+ /* customer + order meta */
+ label(D.lab.customer,M,y);label(D.lab.order,322,y);
+ let yl=y-17,yr=y-17;
+ D.cust.forEach((s,i)=>{if(!s)return;txt(s,M,yl,i?9.5:11,i?'F1':'F2',C.ink);yl-=i?13.5:16});
+ [[D.lab.nr,D.nr],[D.lab.date,D.date],[D.lab.pay,D.payName]].forEach(([l,v])=>{txt(l,322,yr,8.5,'F1',C.muted);txt(v,410,yr,9.5,'F2',C.ink);yr-=15});
+ y=Math.min(yl,yr)-12;
+ /* items */
+ hl(y,C.ink,.9);y-=16;
+ label(D.lab.items,M,y);rtxt('CHF',xC,y,7.5,'F4',C.dd,1.2);rtxt('EUR',xE,y,7.5,'F4',C.dd,1.2);
+ y-=9;hl(y,C.line);
+ D.items.forEach(it=>{const sub=it.sub?wrap(it.sub,8.5,xC-M-70):[];need(26+sub.length*12);
+  y-=17;txt(it.name,M,y,10.5,'F2',C.ink);rtxt(it.c,xC,y,10,'F4',C.ink);rtxt(it.e,xE,y,10,'F4',C.ink);
+  sub.forEach(s=>{y-=12;txt(s,M,y,8.5,'F1',C.muted)});y-=10;hl(y,C.line)});
+ need(70);
+ y-=16;txt(D.lab.ship,M,y,9.5,'F1',C.muted);rtxt(D.ship.c,xC,y,10,'F3',C.muted);rtxt(D.ship.e,xE,y,10,'F3',C.muted);
+ if(D.disc){y-=16;txt(D.disc.l,M,y,9.5,'F2',C.burg);rtxt(D.disc.c,xC,y,10,'F4',C.burg);rtxt(D.disc.e,xE,y,10,'F4',C.burg)}
+ y-=12;rect(M,y-32,W-2*M,32,C.burg);
+ txt(String(D.lab.total).toUpperCase(),M+14,y-20,10,'F4',C.chalk,1.5);
+ rtxt(D.tot.c,xC,y-20.5,12.5,'F4',C.chalk);rtxt(D.tot.e,xE,y-20.5,12.5,'F4',C.chalk);
+ y-=32+24;
+ /* payment */
+ const rows=D.payRows.length?D.payRows:null;
+ const pl=rows?[]:wrap(D.payOther,9.5,W-2*M-40);
+ const bh=34+(rows?rows.length*16:pl.length*13)+6;
+ need(bh+10);
+ rect(M,y-bh,W-2*M,bh,C.tint);rect(M,y-bh,3,bh,C.desert);
+ label(D.lab.pay+' · '+D.payName,M+18,y-18);
+ let py=y-37;
+ if(rows)rows.forEach(([l,v])=>{txt(l,M+18,py,8.5,'F1',C.muted);txt(v,M+128,py,10,'F4',C.ink,.2);py-=16});
+ else pl.forEach(s=>{txt(s,M+18,py,9.5,'F1',C.ink);py-=13});
+ y-=bh+22;
+ /* note */
+ if(D.note){const ls=wrap(D.note,9.5,W-2*M);need(24+ls.length*13);label(D.lab.note,M,y);y-=15;ls.forEach(s=>{txt(s,M,y,9.5,'F1',C.ink);y-=13});y-=12}
+ /* notice */
+ const nl=wrap(D.notice,9.5,W-2*M-32),nh=18+nl.length*13+18;
+ need(nh+6);
+ o.push(`${col(C.burg)} .9 w ${M} ${(y-nh).toFixed(1)} ${W-2*M} ${nh} re S`);
+ let ny=y-19;nl.forEach(s=>{txt(s,M+16,ny,9.5,'F2',C.burg);ny-=13});txt(D.contact,M+16,ny-1,8.5,'F1',C.muted);
+ foot();pages.push(o);
+ /* assemble */
+ const objs=['<< /Type /Catalog /Pages 2 0 R >>',''];
+ ['Helvetica','Helvetica-Bold','Courier','Courier-Bold'].forEach(f=>objs.push(`<< /Type /Font /Subtype /Type1 /BaseFont /${f} /Encoding /WinAnsiEncoding >>`));
+ let xo='';
+ if(logo){objs.push(`<< /Type /XObject /Subtype /Image /Width ${logo.w} /Height ${logo.h} /ImageMask true /BitsPerComponent 1 /Decode [1 0] /Length ${logo.s.length} >>\nstream\n${logo.s}\nendstream`);xo=` /XObject << /Lg ${objs.length} 0 R >>`}
+ const res=`<< /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >>${xo} >>`,kids=[];
+ pages.forEach(p=>{const st=p.join('\n');objs.push(`<< /Length ${st.length} >>\nstream\n${st}\nendstream`);const c=objs.length;objs.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources ${res} /Contents ${c} 0 R >>`);kids.push(objs.length)});
+ objs[1]=`<< /Type /Pages /Kids [${kids.map(k=>k+' 0 R').join(' ')}] /Count ${kids.length} >>`;
+ let out='%PDF-1.4\n';const off=[];
+ objs.forEach((ob,i)=>{off.push(out.length);out+=`${i+1} 0 obj\n${ob}\nendobj\n`});
+ const x=out.length;
+ out+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+off.map(n=>String(n).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${x}\n%%EOF`;
+ const b=new Uint8Array(out.length);for(let i=0;i<out.length;i++)b[i]=out.charCodeAt(i)&255;
+ return new Blob([b],{type:'application/pdf'});
+}
+let LOGO=null;
+const loadLogo=()=>LOGO||(LOGO=new Promise(res=>{const im=new Image();im.onload=()=>{try{const w=627,h=140,c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(im,0,0,w,h);const d=x.getImageData(0,0,w,h).data,rb=Math.ceil(w/8);let s='';for(let r=0;r<h;r++)for(let q=0;q<rb;q++){let v=0;for(let k=0;k<8;k++){const px=q*8+k;v<<=1;if(px<w&&d[(r*w+px)*4+3]>127)v|=1}s+=String.fromCharCode(v)}res({w,h,s})}catch(e){res(null)}};im.onerror=()=>res(null);setTimeout(()=>res(null),4000);im.src='img/logo-white.png'}));
+function buildD(){const O=lastOrder,o=O.o,n=money,pi=PAYINFO[O.pay];
+ const D={lab:{title:t('Order confirmation'),customer:t('Customer'),order:t('Order'),nr:t('Order number'),date:t('Date'),pay:t('Payment'),items:t('Items'),ship:t('Shipping (flat rate)'),total:t('Total'),note:t('Special requests')},
+  nr:O.nr,date:O.date,payName:t(O.pay),
+  cust:[`${o.pre} ${o.name}`,o.street,`${o.zip} ${o.city}`,o.country,o.email,o.phone,'Instagram: '+o.insta].map(x=>String(x||'').trim()),
+  items:O.items.map(x=>({name:x.n,sub:[t(x.cn),x.s==='Yes'?t('One size'):t(x.s),x.pilot?t('Pilot name')+': '+x.pilot:''].filter(Boolean).join(' · '),c:n(x.chf),e:String(x.eur)})),
+  ship:{c:n(SHIP),e:String(SHIP)},disc:O.crew?{l:t('Crew discount'),c:'-'+n(O.dC),e:'-'+(Number.isInteger(O.dE)?O.dE:O.dE.toFixed(2))}:null,tot:{c:n(O.totC),e:Number.isInteger(O.totE)?String(O.totE):O.totE.toFixed(2)},
+  payRows:pi?pi.rows.map(([l,v])=>[t(l),t(v)]):[],payOther:t("Write us a DM on Instagram and we'll sort out the payment with you."),
+  note:String(o.note||'').trim(),notice:t('Please keep this confirmation. You will not receive an order confirmation by email.'),contact:t('Questions? Write to @fullsend.brand on Instagram.'),
+  footer:('FULL SEND · '+t('Independent FPV streetwear')).toUpperCase()};
+ return D}
+async function orderPdf(){return fsPdf(buildD(),await loadLogo())}
+Object.assign(TR,{"You can close this window now.":"Du kannst dieses Fenster jetzt schliessen.","Your order confirmation with the PDF opened in a new window.":"Deine Bestellbestätigung mit PDF wurde in einem neuen Fenster geöffnet.","Order":"Bestellung","Write us a DM on Instagram and we'll sort out the payment with you.":"Schreib uns eine DM auf Instagram, wir klären die Zahlung mit dir."});
+Object.assign(TR,{"Order confirmation":"Bestellbestätigung","Order number":"Bestellnummer","Date":"Datum","Customer":"Kunde","Items":"Artikel","Please keep this confirmation. You will not receive an order confirmation by email.":"Bitte bewahre diese Bestätigung auf. Du erhältst keine Bestellbestätigung per E-Mail.","Questions? Write to @fullsend.brand on Instagram.":"Fragen? Schreib uns auf Instagram an @fullsend.brand.","You will not receive an order confirmation by email. Please download your confirmation as a PDF and keep it.":"Du erhältst keine Bestellbestätigung per E-Mail. Bitte lade dir die Bestätigung als PDF herunter und bewahre sie auf.","Download confirmation (PDF)":"Bestätigung herunterladen (PDF)"});
+Object.assign(TR,{"Bank transfer":"Banküberweisung","Bank details":"Bankverbindung","Account holder":"Kontoinhaber","Copy":"Kopieren","Copied":"Kopiert ✓","Copy failed":"Bitte manuell kopieren","Shipping (flat rate)":"Versand (pauschal)","Shipping":"Versand","Flat rate CHF 10 / € 10 per order, already included in the total.":"Pauschal CHF 10 / € 10 pro Bestellung, im Total bereits enthalten.","Thanks! Your pre-order has been sent. Please send the total using the details below.":"Danke! Deine Vorbestellung wurde gesendet. Bitte sende das Total mit den Angaben unten.","PayPal details":"PayPal-Angaben","TWINT details":"TWINT-Angaben","Send as":"Senden als","Friends and family":"Freunde und Familie"});
+Object.assign(TR,{"Size":"Grösse","Color":"Farbe","Quantity":"Anzahl","Add to cart":"In den Warenkorb","Choose a size":"Bitte Grösse wählen","Added to cart":"Zum Warenkorb hinzugefügt","Open cart":"Warenkorb öffnen","Cart":"Warenkorb","Your cart":"Dein Warenkorb","Your cart is empty.":"Dein Warenkorb ist leer.","Total":"Total","Checkout":"Zur Bestellung","Remove":"Entfernen","Back to cart":"Zurück zum Warenkorb","Last name":"Name","First name":"Vorname","Street and number":"Strasse und Nr.","Postal code":"PLZ","City":"Ort","Country":"Land","Instagram name":"Instagram-Name","Phone number":"Telefonnummer","Email":"E-Mail","Payment":"Zahlung","Special requests":"Spezielle Wünsche","Order summary":"Bestellübersicht","Send order":"Bestellung absenden","Sending…":"Wird gesendet…","Please fill in all required fields.":"Bitte alle Pflichtfelder ausfüllen.","Order sent":"Bestellung gesendet","Thanks! Your pre-order has been sent. We'll get in touch about payment via Instagram or email.":"Danke! Deine Vorbestellung wurde gesendet. Wir melden uns wegen der Zahlung per Instagram oder E-Mail.","Continue shopping":"Weiter einkaufen","Pilot name on the front":"Pilotenname vorne","Pilot name":"Pilotenname","One size":"Einheitsgrösse","Almost done":"Fast fertig","The order form opened in a new tab with everything pre-filled. Click Next twice and then Submit to complete your order.":"Das Bestellformular wurde in einem neuen Tab geöffnet, alles ist schon ausgefüllt. Bitte dort zweimal auf «Weiter» und dann auf «Senden» klicken, um die Bestellung abzuschliessen.","Open the form again":"Formular nochmals öffnen","Shipping costs":"Versandkosten","Shipping costs are not included in the prices above and will be added to your order total.":"Die Versandkosten sind in den Preisen oben nicht enthalten und kommen zum Bestelltotal dazu.","Switzerland: Swiss Post, flat rate CHF 10.":"Schweiz: Die Post, pauschal CHF 10.","International: DHL Standard, cost depends on the destination country.":"International: DHL Standard, Kosten je nach Zielland.","After your order, Fabo will contact you via Instagram with your final total including shipping and the payment details.":"Nach deiner Bestellung meldet sich Fabo per Instagram mit dem Endbetrag inkl. Versand und den Zahlungsdetails.","I have read the shipping information and accept that shipping costs will be added.":"Ich habe die Versandinfos gelesen und bin einverstanden, dass die Versandkosten dazukommen.","Please confirm the shipping information.":"Bitte bestätige die Versandinfos.","excl. shipping":"exkl. Versand","Already in your cart (max. 1 per item)":"Schon im Warenkorb (max. 1 pro Artikel)","Max. 1 per item and size":"Max. 1 Stück pro Artikel und Grösse","A Google confirmation tab opened. You can simply close it.":"Es hat sich ein Google-Tab mit der Bestätigung geöffnet. Den kannst du einfach schliessen.","Your browser blocked the confirmation window. Tap the button below to send your order.":"Dein Browser hat das Bestätigungsfenster blockiert. Tippe auf den Button, um die Bestellung zu senden.","Pre-order · paid after the drop closes":"Vorbestellung · Bezahlung nach Drop-Ende","Fit finder says":"Grössenfinder empfiehlt"});
+let CART=[];try{CART=JSON.parse(localStorage.getItem('fs-cart')||'[]')}catch(e){}
+const saveCart=()=>{try{localStorage.setItem('fs-cart',JSON.stringify(CART))}catch(e){};paintBadge()};
+const money=n=>Number.isInteger(n)?n+'.–':n.toFixed(2);
+const chf=n=>'CHF '+money(n);
+const eu=n=>'€ '+(Number.isInteger(n)?n:n.toFixed(2));
+const both=(c,e)=>chf(c)+' / '+eu(e);
+CART.forEach(x=>{x.q=1;if(!x.eur&&SHOP[x.id])x.eur=SHOP[x.id].eur});CART=CART.filter((x,i)=>CART.findIndex(y=>y.k===x.k)===i);
+const cartN=()=>CART.length,cartT=()=>CART.reduce((a,x)=>a+x.chf,0),cartE=()=>CART.reduce((a,x)=>a+(x.eur||0),0);
+/* ---------- Crew coupon ---------- */
+const CREW_HASH='8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',CREW_PCT=20;
+let CREW=false;try{CREW=localStorage.getItem('fs-crew')===CREW_HASH}catch(e){}
+const r2=n=>Math.round(n*100)/100;
+const CREW_PCT_ITEM={min:30,free:30}; /* Shirts Minimal + Freestyler: 30 %, everything else 20 % */
+const crewPct=id=>CREW_PCT_ITEM[id]||CREW_PCT;
+const discC=()=>CREW?r2(CART.reduce((a,x)=>a+x.chf*crewPct(x.id)/100,0)):0,discE=()=>CREW?r2(CART.reduce((a,x)=>a+(x.eur||0)*crewPct(x.id)/100,0)):0;
+const totC=()=>r2(cartT()-discC()+SHIP),totE=()=>r2(cartE()-discE()+SHIP);
+const sha=async v=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
+Object.assign(TR,{"Coupon code":"Gutscheincode","Apply":"Einlösen","Remove":"Entfernen","Crew discount":"Crew-Rabatt","Crew discount applied (20 %, shirts 30 %)":"Crew-Rabatt aktiviert (20 %, Shirts 30 %)","This code is not valid.":"Dieser Code ist ungültig."});
+const sumHTML=items=>`<div class="st">${items?CART.map(x=>`<div class="sr"><span>${esc(x.n)}<small>${esc(t(x.cn))} · ${esc(x.s==='Yes'?t('One size'):t(x.s))}${x.pilot?' · '+esc(x.pilot):''}</small></span><b>${chf(x.chf)}<small>${eu(x.eur)}</small></b></div>`).join(''):''}
+<div class="sr sub"><span>${t('Subtotal')}</span><b>${chf(cartT())}<small>${eu(cartE())}</small></b></div>
+${CREW?`<div class="sr dsc"><span>${t('Crew discount')}</span><b>− ${chf(discC())}<small>− ${eu(discE())}</small></b></div>`:''}
+<div class="sr"><span>${t('Shipping (flat rate)')}</span><b>${chf(SHIP)}<small>${eu(SHIP)}</small></b></div>
+<div class="sr gt"><span>${t('Total')}</span><b>${chf(totC())}<small>${eu(totE())}</small></b></div></div>`;
+Object.assign(TR,{"Subtotal":"Zwischensumme"});
+const cartBtn=document.getElementById('cartBtn');
+function paintBadge(){cartBtn.querySelector('b').textContent=cartN();cartBtn.querySelector('.t').textContent=t('Cart')}
+cartBtn.onclick=()=>openCart();
+
+/* buy block inside the product dialog */
+function renderBuy(p,vi){
+  const box=document.getElementById('dlgBuy');const S=SHOP[p.id];if(!S){box.innerHTML='';return}
+  if(!DROP_OPEN){box.innerHTML=`<div class="bp">${chf(S.chf)} <span style="color:var(--muted)">/</span> ${eu(S.eur)}</div><button type="button" class="btn add" disabled aria-disabled="true">${t('Ordering closed')}</button><p class="closedmsg">${t('The drop is over. You can order again at the next drop. Info in the')} <a href="${IG_COMMUNITY}" target="_blank" rel="noopener">${t('FULL SEND community on Instagram')}</a>.</p>`;return}
+  const v=p.v[vi];const entry=S.e[v.c];
+  let size=null,q=1,pilot=false;
+  const rec=(()=>{const a=parseFloat(String(ffW.value).replace(',','.')),b=parseFloat(String(ffL.value).replace(',','.'));if(!CHART[p.id]||!(a>=30&&b>=40))return null;const r=matchP(p,a,b);return r&&r.best.s})();
+  box.innerHTML=`<div class="bp">${chf(S.chf)} <span style="color:var(--muted)">/</span> ${eu(S.eur)}<small>${t('Pre-order · paid after the drop closes')}</small></div>
+   ${S.sz?`<div class="lbl">${t(S.szLabel||'Size')}${rec?` · ${t('Fit finder says')} <b style="color:var(--desert)">${rec}</b>`:''}</div><div class="sizes"></div>`:`<div class="lbl">${t('One size')}</div>`}
+   ${S.pilot?`<label class="opt"><input type="checkbox" class="pc"> ${t('Pilot name on the front')}</label><input class="fin pn" placeholder="${t('Pilot name')}" hidden maxlength="30">`:''}
+   <div class="row2"><button type="button" class="btn add">${t('Add to cart')}</button></div><p class="msg" aria-live="polite"></p>`;
+  const add=box.querySelector('.add'),msg=box.querySelector('.msg');
+  if(S.sz){const sz=box.querySelector('.sizes');S.sz.forEach(s=>{const b=document.createElement('button');b.type='button';b.textContent=t(s);b.setAttribute('aria-pressed','false');b.onclick=()=>{size=s;[...sz.children].forEach(x=>x.setAttribute('aria-pressed',x===b));msg.textContent=''};sz.appendChild(b)});
+    if(rec&&S.sz.includes(rec))[...sz.children][S.sz.indexOf(rec)].click()}
+  else size=S.one;
+  const pc=box.querySelector('.pc'),pn=box.querySelector('.pn');
+  if(pc)pc.onchange=()=>{pilot=pc.checked;pn.hidden=!pilot;if(pilot)pn.focus()};
+  add.onclick=()=>{
+    if(!size){msg.textContent=t('Choose a size');return}
+    const pname=pilot?pn.value.trim():'';
+    const key=[p.id,v.c,size,pname].join('|');
+        if(CART.some(x=>x.k.startsWith([p.id,v.c,size].join('|')+'|'))){msg.innerHTML=`${t('Already in your cart (max. 1 per item)')} · <a href="#" class="oc">${t('Open cart')}</a>`;msg.querySelector('.oc').onclick=e=>{e.preventDefault();dlg.close();openCart()};return}
+    CART.push({k:key,id:p.id,c:v.c,n:p.name,cn:v.n,s:size,q:1,chf:S.chf,eur:S.eur,e:entry,img:v.img[0],pilot:pname,photo:!!p.photo});
+    saveCart();cartBtn.classList.remove('bump');void cartBtn.offsetWidth;cartBtn.classList.add('bump');
+    msg.innerHTML=`✓ ${t('Added to cart')} · <a href="#" class="oc">${t('Open cart')}</a>`;
+    msg.querySelector('.oc').onclick=e=>{e.preventDefault();dlg.close();openCart()};
+  };
+}
+
+/* cart drawer */
+const cart=document.getElementById('cart'),cartBody=document.getElementById('cartBody');
+let view='cart',lastPrefill='',lastPay='',lastTot='',lastOrder=null;
+function openCart(){if(!DROP_OPEN)return;view='cart';drawCart();if(!cart.open)cart.showModal()}
+document.getElementById('cartClose').onclick=()=>cart.close();
+cart.addEventListener('click',e=>{if(e.target===cart)cart.close()});
+const lineTxt=x=>`1× ${x.n} · ${x.cn} · ${x.s==='Yes'?'One size':x.s}${x.pilot?` · Pilot name: "${x.pilot}"`:''} · ${x.chf} CHF / ${x.eur} EUR`;
+function drawCart(){
+  document.getElementById('cartTitle').textContent=t({done:'Order sent',prefill:'Almost done',co:'Checkout'}[view]||'Your cart');
+  if(view==='done'){const bk=!!PAYINFO[lastPay];cartBody.innerHTML=`<div class="done"><h3>✓ ${t('Order sent')}</h3><p>${bk?t('Thanks! Your pre-order has been sent. Please send the total using the details below.'):t("Thanks! Your pre-order has been sent. We'll get in touch about payment via Instagram or email.")}</p>${bk?`<p>${t('Total')}: <b style="color:var(--fg)">${lastTot}</b></p>${payBox(lastPay)}`:''}${lastOrder&&WEBAPP?`<p>${t('Your order confirmation with the PDF opened in a new window.')}</p>`:''}${false&&lastOrder&&!WEBAPP?`<div class="ship"><strong>${t('Order confirmation')} · ${lastOrder.nr}</strong>${t('You will not receive an order confirmation by email. Please download your confirmation as a PDF and keep it.')}</div><a class="btn solid" id="pdfDl" href="#" style="justify-content:center">${t('Download confirmation (PDF)')} <span class="dash"></span></a>`:''}${WEBAPP?'':`<p>${t('A Google confirmation tab opened. You can simply close it.')}</p>`}<button class="btn" type="button" id="cs">${t('Continue shopping')}</button></div>`;cartBody.querySelector('#cs').onclick=()=>cart.close();wireCopy(cartBody);
+    const dl=cartBody.querySelector('#pdfDl');if(dl)dl.onclick=async e=>{e.preventDefault();
+      let blob;try{blob=await orderPdf()}catch(_){return}
+      const fn='FULL-SEND-'+lastOrder.nr+'.pdf';
+      let D=null;try{D=window.claude&&claude.use?await claude.use('downloads'):null}catch(_){}
+      if(D){try{await D.save({filename:fn,data:blob});return}catch(err){if(err&&err.code==='declined')return}}
+      try{const u=URL.createObjectURL(blob);if(!window.open(u,'_blank')){const a=document.createElement('a');a.href=u;a.download=fn;a.target='_blank';document.body.appendChild(a);a.click();a.remove()}}catch(_){}
+    };
+    return}
+  if(view==='prefill'){cartBody.innerHTML=`<div class="done"><h3>${t('Almost done')}</h3><p>${t('Your browser blocked the confirmation window. Tap the button below to send your order.')}</p><a class="btn solid" target="_blank" id="sendNow" href="${esc(lastPrefill)}">${t('Send order')}</a></div>`;cartBody.querySelector('#sendNow').onclick=()=>{CART=[];saveCart();try{localStorage.removeItem('fs-co')}catch(e){};setTimeout(()=>{view='done';drawCart()},300)};return}
+  if(!CART.length){cartBody.innerHTML=`<div class="cb"><p class="cempty">${t('Your cart is empty.')}</p></div>`;return}
+  if(view==='cart'){
+    cartBody.innerHTML=`<div class="cb">${CART.map((x,i)=>`<div class="ci"><img src="${src(x.img)}" alt="" style="${x.photo?'object-fit:cover;padding:0':''}"><div><h4>${esc(x.n)}</h4><div class="m">${esc(t(x.cn))} · ${esc(x.s==='Yes'?t('One size'):t(x.s))}${x.pilot?' · '+esc(x.pilot):''}</div><div class="m">${both(x.chf,x.eur)}</div></div>
+     <div class="r"><button class="x" type="button" data-r="${i}">${t('Remove')}</button></div></div>`).join('')}</div>
+     <div class="cf">${sumHTML(false)}<p style="margin:0;font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em">${t('Max. 1 per item and size')}</p><button class="btn solid" type="button" id="toCo" style="justify-content:center">${t('Checkout')} <span class="dash"></span></button></div>`;
+    cartBody.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{CART.splice(+b.dataset.r,1);saveCart();drawCart()});
+    cartBody.querySelector('#toCo').onclick=()=>{view='co';drawCart()};return;
+  }
+  /* checkout form */
+  let d={};try{d=JSON.parse(localStorage.getItem('fs-co')||'{}')}catch(e){}
+  const fld=(k,l,type='text',ac='')=>`<label>${t(l)} *<input class="fin" name="${k}" type="${type}" autocomplete="${ac}" required value="${esc(d[k]||'')}"></label>`;
+  cartBody.innerHTML=`<form class="co" id="coForm" novalidate>
+    <div class="two">${fld('pre','First name','text','given-name')}${fld('name','Last name','text','family-name')}</div>
+    ${fld('street','Street and number','text','street-address')}
+    <div class="two">${fld('zip','Postal code','text','postal-code')}${fld('city','City','text','address-level2')}</div>
+    ${fld('country','Country','text','country-name')}
+    <div class="two">${fld('insta','Instagram name')}${fld('phone','Phone number','tel','tel')}</div>
+    ${fld('email','Email','email','email')}
+    <div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Payment')} *</div>
+    <div class="pay">${PAY.map(p=>`<label><input type="radio" name="pay" value="${esc(p)}" ${d.pay===p?'checked':''}> ${esc(t(p))}</label>`).join('')}</div>
+    <div id="payBox" data-m="${esc(d.pay||'')}">${payBox(d.pay)}</div>
+    <div class="cpn" style="display:grid;gap:6px"><div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Coupon code')}</div>${CREW?`<p class="msg" style="margin:0">✓ ${t('Crew discount applied (20 %, shirts 30 %)')} · <a href="#" id="cpRm">${t('Remove')}</a></p>`:`<div style="display:flex;gap:8px"><input class="fin" id="cpIn" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="button" class="btn" id="cpBtn" style="flex:none">${t('Apply')}</button></div><p class="err" id="cpMsg" style="margin:0"></p>`}</div>
+    <label>${t('Special requests')}<textarea class="fin" name="note">${esc(d.note||'')}</textarea></label>
+    <div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Order summary')}</div>
+    ${sumHTML(true)}
+    <div class="ship"><strong>${t('Shipping costs')}</strong>${t('Flat rate CHF 10 / € 10 per order, already included in the total.')}</div>
+    <p class="err" id="coErr"></p>
+    <div class="row2" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" id="coBack">${t('Back to cart')}</button><a class="btn solid" id="coSend" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-align:center">${t('Send order')} <span class="dash"></span></a></div>
+  </form>`;
+  const f=cartBody.querySelector('#coForm');
+  f.oninput=()=>{const o=Object.fromEntries(new FormData(f));const pb=cartBody.querySelector('#payBox');if(pb.dataset.m!==(o.pay||'')){pb.dataset.m=o.pay||'';pb.innerHTML=payBox(o.pay);wireCopy(pb)}try{localStorage.setItem('fs-co',JSON.stringify(o))}catch(e){}};
+  wireCopy(cartBody);
+  {const ci=cartBody.querySelector('#cpIn'),cb=cartBody.querySelector('#cpBtn'),rm=cartBody.querySelector('#cpRm');
+   const apply=async()=>{const v=(ci.value||'').trim().toUpperCase();if(!v)return;let h='';try{h=await sha(v)}catch(e){}
+     if(h===CREW_HASH){CREW=true;try{localStorage.setItem('fs-crew',h)}catch(e){};drawCart()}else cartBody.querySelector('#cpMsg').textContent=t('This code is not valid.')};
+   if(cb)cb.onclick=apply;if(ci)ci.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();apply()}};
+   if(rm)rm.onclick=e=>{e.preventDefault();CREW=false;try{localStorage.removeItem('fs-crew')}catch(_){};drawCart()}}
+  cartBody.querySelector('#coBack').onclick=()=>{view='cart';drawCart()};
+  const coNr=(()=>{const dt=new Date(),p2=n=>String(n).padStart(2,'0');return 'FS-'+String(dt.getFullYear()).slice(2)+p2(dt.getMonth()+1)+p2(dt.getDate())+'-'+Math.random().toString(36).slice(2,6).toUpperCase()})();
+  const send=cartBody.querySelector('#coSend'),err=cartBody.querySelector('#coErr');
+  const invalid=o=>{const miss=['pre','name','street','zip','city','country','insta','phone','email'].filter(k=>!String(o[k]||'').trim());return miss.length||!o.pay||!/^\S+@\S+\.\S+$/.test(o.email||'')};
+  const prep=()=>{const o=Object.fromEntries(new FormData(f));if(invalid(o))return null;
+    const dt=new Date(),p2=n=>String(n).padStart(2,'0');
+    lastPay=o.pay;lastTot=chf(totC())+' / '+eu(totE());
+    lastOrder={nr:coNr,date:dt.toLocaleDateString('de-CH')+' '+p2(dt.getHours())+':'+p2(dt.getMinutes()),o:{...o},items:CART.map(x=>({...x})),pay:o.pay,tot:lastTot,totC:totC(),totE:totE(),crew:CREW,dC:discC(),dE:discE()};
+    lastPrefill=orderUrl(o);return lastPrefill};
+  const refresh=()=>{try{const u=prep();send.href=u||'#'}catch(x){send.href='#'}};
+  f.addEventListener('input',refresh);f.addEventListener('change',refresh);refresh();
+  f.onsubmit=e=>{e.preventDefault()};
+  send.onclick=e=>{const u=prep();
+    if(!u){e.preventDefault();err.textContent=t('Please fill in all required fields.');f.querySelectorAll('[required]').forEach(i=>i.style.borderColor=String(i.value).trim()?'':'#e2786d');return}
+    send.href=u; /* the link itself opens the order page: one tap, no popup blocker */
+    setTimeout(()=>{CART=[];saveCart();try{localStorage.removeItem('fs-co')}catch(_){};view='done';drawCart()},600)};
+}
+
+/* Google Form submission */
+function orderParams(o){
+  const P=new URLSearchParams();
+  const add=(id,v)=>P.append('entry.'+id,v);
+  add(F.name,o.name.trim());add(F.pre,o.pre.trim());add(F.street,o.street.trim());add(F.country,o.country.trim());
+  add(F.zip,o.zip.trim());add(F.city,o.city.trim());add(F.insta,o.insta.trim());add(F.phone,o.phone.trim());add(F.email,o.email.trim());add(F.pay,o.pay);
+  const seen=new Set();
+  CART.forEach(x=>{const k=x.e+'|'+x.s;if(!seen.has(k)){seen.add(k);add(x.e,x.s)}
+    if(x.pilot&&SHOP[x.id].pilot&&!seen.has(x.e+'|pilot')){seen.add(x.e+'|pilot');add(x.e,SHOP[x.id].pilot)}});
+  const cl=v=>String(v||'').trim().replace(/\s*\|\s*/g,' / ');
+  const note=['WEBSHOP ORDER'+(lastOrder?' '+lastOrder.nr:'')+(CREW?' CREW':''),'CUSTOMER: '+cl(o.pre)+' '+cl(o.name),'ADDRESS: '+[cl(o.street),cl(o.zip)+' '+cl(o.city),cl(o.country)].join(', '),'EMAIL: '+cl(o.email),'PHONE: '+cl(o.phone),'INSTAGRAM: '+cl(o.insta),'PAYMENT: '+o.pay,...CART.map(lineTxt),...(CREW?['DISCOUNT: CREW -'+discC()+' CHF / -'+discE()+' EUR']:[]),'SHIPPING: '+SHIP+' CHF / '+SHIP+' EUR','TOTAL: '+totC()+' CHF / '+totE()+' EUR (incl. shipping)',o.note&&o.note.trim()?'Customer note: '+o.note.trim():''].filter(Boolean).join(' | ');
+  add(F.note,note);
+  return P;
+}
+const WEBAPP='https://script.google.com/macros/s/AKfycbxGvwVxnzeBYzzMu0SjB_zKfPHeyOatuAzCFWNlXeVGkx8IZlei8wbzjtPz_InT27Rq/exec'; /* Google Apps Script web app (FULL SEND confirmation page); empty = Google Form */
+function orderUrl(o){
+  const P=orderParams(o);
+  if(WEBAPP){
+    const pi=PAYINFO[o.pay],paid=!!pi;
+    const payload={l:L,note:P.get('entry.'+F.note),o:{pre:o.pre,name:o.name,street:o.street,zip:o.zip,city:o.city,country:o.country,email:o.email,phone:o.phone,insta:o.insta,pay:o.pay},D:buildD(),
+      pi:pi?{h:t(pi.h),rows:pi.rows.map(([l,v,c])=>[t(l),t(v),c||''])}:null,
+      txt:{sent:t('Order sent'),thanks:paid?t('Thanks! Your pre-order has been sent. Please send the total using the details below.'):t("Thanks! Your pre-order has been sent. We'll get in touch about payment via Instagram or email."),dl:t('Download confirmation (PDF)'),close:t('You can close this window now.'),copy:t('Copy'),copied:t('Copied')}};
+    const b64=btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/\+/g,'-').replace(/\//g,'_');
+    return WEBAPP+'?d='+encodeURIComponent(b64);
+  }
+  const G=new URLSearchParams(P);G.append('pageHistory','0,1,2');G.append('submit','Submit');
+  return FORM_POST+'?'+G.toString();
+}
+if(!DROP_OPEN){cartBtn.hidden=true;CART=[];try{localStorage.removeItem('fs-cart')}catch(e){}}
+else{const n=document.querySelector('.notice');if(n)n.innerHTML='<span data-i>Drop open · Orders are open now · Shipping flat CHF 10 / € 10</span>';const dr=document.getElementById('drop');if(dr)dr.hidden=true;const nb=document.querySelector('.hero a.btn[href="#drop"]');if(nb)nb.remove();Object.assign(TR,{'Drop open · Orders are open now · Shipping flat CHF 10 / € 10':'Drop offen · Jetzt bestellen · Versand pauschal CHF 10 / € 10'})}
+paintBadge();
+
+Object.assign(TR,{"Drop closed · Orders are paused until the next drop · Info in the": "Drop geschlossen · Bestellungen pausiert bis zum nächsten Drop · Infos in der", "FULL SEND community on Instagram": "FULL SEND Community auf Instagram", "The Collection <span class=\"dash\"></span>": "Die Kollektion <span class=\"dash\"></span>", "Next drop": "Nächster Drop", "Drop closed": "Drop geschlossen", "See you at the next drop": "Wir sehen uns beim nächsten Drop", "The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.": "Der letzte Drop ist vorbei und Bestellungen sind im Moment pausiert. Die Kollektion kannst du weiterhin anschauen und deine Grösse finden. Der nächste Drop wird zuerst in der FULL SEND Community auf Instagram angekündigt.", "Join the community <span class=\"dash\"></span>": "Community beitreten <span class=\"dash\"></span>", "Ordering closed": "Bestellung geschlossen", "The drop is over. You can order again at the next drop. Info in the": "Der Drop ist vorbei. Bestellen kannst du wieder beim nächsten Drop. Infos in der"});
+Object.assign(TR,{"News · Coming early 2027":"News · Anfang 2027","First Light. <span>A new cut.</span>":"First Light. <span>Ein neuer Schnitt.</span>","At the start of 2027 the FIRST LIGHT special edition joins the collection, and with it a brand-new piece: the boxy hoodie. A new print, a new cut and the heaviest fabric we have ever used. Here is a first look.":"Zum Start ins Jahr 2027 kommt die Special Edition FIRST LIGHT in die Kollektion, und mit ihr ein ganz neues Teil: der Boxy Hoodie. Ein neuer Print, ein neuer Schnitt und der schwerste Stoff, den wir je verwendet haben. Hier ein erster Blick darauf.","Heather Grey · black print":"Grau meliert · schwarzer Print","French Navy · white print":"French Navy · weisser Print","Be first to know <span class=\"dash\"></span>":"Als Erste:r erfahren <span class=\"dash\"></span>","Weight":"Gewicht","Fit":"Passform","Fabric":"Material","Release":"Release","Boxy · Oversized":"Boxy · Oversized","100% organic cotton":"100 % Bio-Baumwolle","Early 2027":"Anfang 2027","Extremely heavy 400 g/m² fabric":"Extrem schwere Qualität mit 400 g/m² Flächengewicht","Unique dry hand feel for a modern look":"Einzigartige trockene Haptik für einen modernen Look","Double-layer hood with matching drawcord":"Doppellagige Kapuze mit farblich passender Kordel","Classic kangaroo pocket on the front":"Klassische Kängurutasche auf der Vorderseite","Wide rib cuffs and hem":"Breite Rippbündchen an Ärmelabschlüssen und Saum","High-quality make, 100% organic cotton":"Hochwertige Verarbeitung aus 100 % Bio-Baumwolle","Comfortable unisex fit for women and men":"Bequeme Unisex-Passform für Damen und Herren","Boxy hoodie in French Navy with white FULL SEND chest logo, front view in a subway station":"Boxy Hoodie in French Navy mit weissem FULL SEND Brustlogo, Vorderansicht in einer U-Bahn-Station","Boxy hoodie in French Navy with the white FIRST LIGHT back print":"Boxy Hoodie in French Navy mit weissem FIRST LIGHT Rückenprint","Boxy hoodie in heather grey with black FULL SEND chest logo, front view in a concrete stairwell":"Boxy Hoodie in Grau meliert mit schwarzem FULL SEND Brustlogo, Vorderansicht in einem Betontreppenhaus","Boxy hoodie in heather grey with the black FIRST LIGHT back print":"Boxy Hoodie in Grau meliert mit schwarzem FIRST LIGHT Rückenprint"});
+
+/* ---------- Colour vote: Google Apps Script web app (counts kept in the script) ---------- */
+const VOTE_API='https://script.google.com/macros/s/AKfycbxBbaqn5hUFe0p-xRfFineTOY9B7STA5jBjaTYylK2x_asK3cioujNdikgKphNlktiv/exec';
+const VOTE_KEY='fs-vote-boxy-2027';
+const VCOL=[["White","#ffffff"],["French Navy","#262c3d"],["Heather Grey","heather"],["Fraiche Peche","#f5b47c"],["Red Earth","#7e3237"],["Kaffa Coffee","#85615f"],["Bright Blue","#26357a"],["Aloe","#a9bdb0"],["Stargazer","#374e5a"],["Butter","#f5edc5"],["Desert Dust","#c2b5a5"]];
+Object.assign(TR,{"Colour vote · Boxy hoodie":"Farb-Umfrage · Boxy Hoodie","Which colour do you want?":"Welche Farbe willst du?","Tap your favourite colour and send your vote. One vote per person. The current standings are live for everyone.":"Tipp auf deine Lieblingsfarbe und schick deine Stimme ab. Eine Stimme pro Person. Den aktuellen Stand sieht jeder live.","Leading right now":"Aktuell vorne","Choose a colour":"Farbe wählen","Send vote <span class=\"dash\"></span>":"Vote senden <span class=\"dash\"></span>","Pick a colour":"Wähl eine Farbe","Sending…":"Wird gesendet…","Thanks! Your vote is in.":"Danke! Deine Stimme ist drin.","You already voted":"Du hast schon abgestimmt","No votes yet":"Noch keine Stimmen","Be the first to vote":"Sei der Erste","votes":"Stimmen","vote":"Stimme","Could not send. Please try again.":"Senden fehlgeschlagen. Bitte nochmals versuchen.","Vote opens soon":"Abstimmung startet gleich"});
+let vSel=null,vCounts={},vMine=null;
+try{vMine=localStorage.getItem(VOTE_KEY)}catch(e){}
+const vGrid=document.getElementById('voteGrid'),vBtn=document.getElementById('voteBtn'),vMsg=document.getElementById('voteMsg');
+function vJsonp(params){return new Promise((res,rej)=>{if(!VOTE_API)return rej(0);const cb='fsv'+Date.now()+Math.floor(Math.random()*1e4);const s=document.createElement('script');const to=setTimeout(()=>{clean();rej(0)},12000);function clean(){clearTimeout(to);delete window[cb];s.remove()}window[cb]=d=>{clean();res(d)};s.onerror=()=>{clean();rej(0)};s.src=VOTE_API+'?'+new URLSearchParams({...params,callback:cb});document.head.appendChild(s)})}
+function drawVote(){
+  const total=Object.values(vCounts).reduce((a,b)=>a+(+b||0),0);
+  vGrid.innerHTML='';
+  VCOL.forEach(([n,c])=>{const k=+vCounts[n]||0,p=total?Math.round(k/total*100):0;
+    const b=document.createElement('button');b.type='button';b.className='vote-opt'+(vMine===n?' mine':'');b.setAttribute('role','radio');b.setAttribute('aria-checked',vSel===n);if(vMine)b.disabled=true;
+    b.innerHTML=`<i class="${c==='heather'?'heather':''}" style="${c==='heather'?'':'background:'+c}"></i><span class="nm">${esc(n)}</span><span class="bar"><span style="width:${p}%"></span></span><span class="pc">${total?p+'% · '+k:'&nbsp;'}</span>`;
+    b.onclick=()=>{if(vMine)return;vSel=n;vMsg.textContent='';drawVote()};vGrid.appendChild(b)});
+  let lead=null;VCOL.forEach(([n])=>{if((+vCounts[n]||0)>0&&(!lead||(+vCounts[n])>(+vCounts[lead])))lead=n});
+  const sw=document.getElementById('vlSw'),c=lead?VCOL.find(x=>x[0]===lead)[1]:'transparent';
+  sw.className=c==='heather'?'heather':'';sw.style.background=c==='heather'?'':c;sw.style.visibility=lead?'visible':'hidden';
+  document.getElementById('vlName').textContent=lead||t('No votes yet');
+  document.getElementById('vlN').textContent=lead?`${vCounts[lead]} / ${total} ${t(total===1?'vote':'votes')}`:t('Be the first to vote');
+  vBtn.disabled=!!vMine||!vSel||!VOTE_API;
+  if(vMine)vMsg.textContent=t('You already voted')+': '+vMine;
+  else if(!VOTE_API)vMsg.textContent=t('Vote opens soon');
+}
+async function loadVotes(){try{const d=await vJsonp({a:'get'});if(d&&d.counts){vCounts=d.counts;drawVote()}}catch(e){}}
+vBtn.onclick=async()=>{
+  if(!vSel||vMine)return;vBtn.disabled=true;vMsg.textContent=t('Sending…');
+  try{const d=await vJsonp({a:'vote',c:vSel});if(!d||!d.ok)throw 0;vCounts=d.counts||vCounts;vMine=vSel;try{localStorage.setItem(VOTE_KEY,vSel)}catch(e){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.')}
+  catch(e){vMsg.textContent=t('Could not send. Please try again.');vBtn.disabled=false}
+};
+loadVotes();setInterval(()=>{if(!document.hidden)loadVotes()},30000);
+/* ---------- Language switch ---------- */
+const I18N_EL=[...document.querySelectorAll('[data-i]')].map(el=>({el,en:el.innerHTML.trim()}));
+const I18N_AT=[...document.querySelectorAll('[data-ta]')].map(el=>({el,a:el.dataset.ta,en:el.getAttribute(el.dataset.ta)}));
+function setLang(l){
+  L=l==='de'?'de':'en';
+  document.documentElement.lang=L;
+  I18N_EL.forEach(x=>{x.el.innerHTML=t(x.en)});
+  I18N_AT.forEach(x=>x.el.setAttribute(x.a,t(x.en)));
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===L));
+  drawWs();show(curCat);runFit();drawLook();paintBadge();drawVote();if(cart.open)drawCart();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+setLang('en');
+</script>
+
+
+</body></html>
