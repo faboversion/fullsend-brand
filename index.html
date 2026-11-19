@@ -590,11 +590,11 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
           <div class="vote-head">
             <span class="eyebrow" data-i>Colour vote · Boxy hoodie</span>
             <h3 data-i>Which colour do you want?</h3>
-            <p class="lede" data-i>Tap your favourite colour and send your vote. One vote per person. The current standings are live for everyone.</p>
+            <p class="lede" data-i>Tap one or more colours you like and send your vote. You can pick several colours, once per person. The current standings are live for everyone.</p>
           </div>
           <div class="vote-lead" id="voteLead" aria-live="polite"><span class="eyebrow" data-i>Leading right now</span><div class="vl-row"><i id="vlSw"></i><b id="vlName">–</b></div><span class="vl-n" id="vlN"></span></div>
         </div>
-        <div class="vote-grid" id="voteGrid" role="radiogroup" aria-label="Choose a colour" data-ta="aria-label"></div>
+        <div class="vote-grid" id="voteGrid" role="group" aria-label="Choose a colour" data-ta="aria-label"></div>
         <div class="vote-bar">
           <button type="button" class="btn solid" id="voteBtn" disabled data-i>Send vote <span class="dash"></span></button>
           <span class="vote-msg" id="voteMsg" aria-live="polite"></span>
@@ -1269,32 +1269,34 @@ Object.assign(TR,{"News · Coming early 2027":"News · Anfang 2027","First Light
 const VOTE_API='https://script.google.com/macros/s/AKfycbxBbaqn5hUFe0p-xRfFineTOY9B7STA5jBjaTYylK2x_asK3cioujNdikgKphNlktiv/exec';
 const VOTE_KEY='fs-vote-boxy-2027';
 const VCOL=[["White","#ffffff"],["French Navy","#262c3d"],["Heather Grey","heather"],["Fraiche Peche","#f5b47c"],["Red Earth","#7e3237"],["Kaffa Coffee","#85615f"],["Bright Blue","#26357a"],["Aloe","#a9bdb0"],["Stargazer","#374e5a"],["Butter","#f5edc5"],["Desert Dust","#c2b5a5"]];
-Object.assign(TR,{"Colour vote · Boxy hoodie":"Farb-Umfrage · Boxy Hoodie","Which colour do you want?":"Welche Farbe willst du?","Tap your favourite colour and send your vote. One vote per person. The current standings are live for everyone.":"Tipp auf deine Lieblingsfarbe und schick deine Stimme ab. Eine Stimme pro Person. Den aktuellen Stand sieht jeder live.","Leading right now":"Aktuell vorne","Choose a colour":"Farbe wählen","Send vote <span class=\"dash\"></span>":"Vote senden <span class=\"dash\"></span>","Pick a colour":"Wähl eine Farbe","Sending…":"Wird gesendet…","Thanks! Your vote is in.":"Danke! Deine Stimme ist drin.","You already voted":"Du hast schon abgestimmt","No votes yet":"Noch keine Stimmen","Be the first to vote":"Sei der Erste","votes":"Stimmen","vote":"Stimme","Could not send. Please try again.":"Senden fehlgeschlagen. Bitte nochmals versuchen.","Vote opens soon":"Abstimmung startet gleich"});
-let vSel=null,vCounts={},vMine=null;
-try{vMine=localStorage.getItem(VOTE_KEY)}catch(e){}
+Object.assign(TR,{"Colour vote · Boxy hoodie":"Farb-Umfrage · Boxy Hoodie","Which colour do you want?":"Welche Farbe willst du?","Tap one or more colours you like and send your vote. You can pick several colours, once per person. The current standings are live for everyone.":"Tipp auf eine oder mehrere Farben, die dir gefallen, und schick deine Stimme ab. Du kannst mehrere Farben wählen, einmal pro Person. Den aktuellen Stand sieht jeder live.","Leading right now":"Aktuell vorne","Choose a colour":"Farbe wählen","Send vote <span class=\"dash\"></span>":"Vote senden <span class=\"dash\"></span>","Pick a colour":"Wähl eine Farbe","colour selected":"Farbe gewählt","colours selected":"Farben gewählt","Sending…":"Wird gesendet…","Thanks! Your vote is in.":"Danke! Deine Stimme ist drin.","You already voted":"Du hast schon abgestimmt","No votes yet":"Noch keine Stimmen","Be the first to vote":"Sei der Erste","votes":"Stimmen","vote":"Stimme","Could not send. Please try again.":"Senden fehlgeschlagen. Bitte nochmals versuchen.","Vote opens soon":"Abstimmung startet gleich"});
+let vSel=new Set(),vCounts={},vMine=null;
+try{const s=localStorage.getItem(VOTE_KEY);if(s)vMine=s.startsWith('[')?JSON.parse(s):[s]}catch(e){}
 const vGrid=document.getElementById('voteGrid'),vBtn=document.getElementById('voteBtn'),vMsg=document.getElementById('voteMsg');
 function vJsonp(params){return new Promise((res,rej)=>{if(!VOTE_API)return rej(0);const cb='fsv'+Date.now()+Math.floor(Math.random()*1e4);const s=document.createElement('script');const to=setTimeout(()=>{clean();rej(0)},12000);function clean(){clearTimeout(to);delete window[cb];s.remove()}window[cb]=d=>{clean();res(d)};s.onerror=()=>{clean();rej(0)};s.src=VOTE_API+'?'+new URLSearchParams({...params,callback:cb});document.head.appendChild(s)})}
 function drawVote(){
   const total=Object.values(vCounts).reduce((a,b)=>a+(+b||0),0);
   vGrid.innerHTML='';
   VCOL.forEach(([n,c])=>{const k=+vCounts[n]||0,p=total?Math.round(k/total*100):0;
-    const b=document.createElement('button');b.type='button';b.className='vote-opt'+(vMine===n?' mine':'');b.setAttribute('role','radio');b.setAttribute('aria-checked',vSel===n);if(vMine)b.disabled=true;
+    const b=document.createElement('button');b.type='button';b.className='vote-opt'+(vMine&&vMine.includes(n)?' mine':'');b.setAttribute('role','checkbox');b.setAttribute('aria-checked',vSel.has(n));if(vMine)b.disabled=true;
     b.innerHTML=`<i class="${c==='heather'?'heather':''}" style="${c==='heather'?'':'background:'+c}"></i><span class="nm">${esc(n)}</span><span class="bar"><span style="width:${p}%"></span></span><span class="pc">${total?p+'% · '+k:'&nbsp;'}</span>`;
-    b.onclick=()=>{if(vMine)return;vSel=n;vMsg.textContent='';drawVote()};vGrid.appendChild(b)});
+    b.onclick=()=>{if(vMine)return;vSel.has(n)?vSel.delete(n):vSel.add(n);vMsg.textContent='';drawVote()};vGrid.appendChild(b)});
   let lead=null;VCOL.forEach(([n])=>{if((+vCounts[n]||0)>0&&(!lead||(+vCounts[n])>(+vCounts[lead])))lead=n});
   const sw=document.getElementById('vlSw'),c=lead?VCOL.find(x=>x[0]===lead)[1]:'transparent';
   sw.className=c==='heather'?'heather':'';sw.style.background=c==='heather'?'':c;sw.style.visibility=lead?'visible':'hidden';
   document.getElementById('vlName').textContent=lead||t('No votes yet');
   document.getElementById('vlN').textContent=lead?`${vCounts[lead]} / ${total} ${t(total===1?'vote':'votes')}`:t('Be the first to vote');
-  vBtn.disabled=!!vMine||!vSel||!VOTE_API;
-  if(vMine)vMsg.textContent=t('You already voted')+': '+vMine;
+  vBtn.disabled=!!vMine||!vSel.size||!VOTE_API;
+  if(vMine)vMsg.textContent=t('You already voted')+': '+vMine.join(', ');
   else if(!VOTE_API)vMsg.textContent=t('Vote opens soon');
+  else if(vSel.size)vMsg.textContent=vSel.size+' '+t(vSel.size===1?'colour selected':'colours selected');
 }
 async function loadVotes(){try{const d=await vJsonp({a:'get'});if(d&&d.counts){vCounts=d.counts;drawVote()}}catch(e){}}
 vBtn.onclick=async()=>{
-  if(!vSel||vMine)return;vBtn.disabled=true;vMsg.textContent=t('Sending…');
-  try{const d=await vJsonp({a:'vote',c:vSel});if(!d||!d.ok)throw 0;vCounts=d.counts||vCounts;vMine=vSel;try{localStorage.setItem(VOTE_KEY,vSel)}catch(e){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.')}
-  catch(e){vMsg.textContent=t('Could not send. Please try again.');vBtn.disabled=false}
+  if(!vSel.size||vMine)return;vBtn.disabled=true;vMsg.textContent=t('Sending…');
+  const picks=[...vSel],done=[];
+  try{for(const c of picks){const d=await vJsonp({a:'vote',c});if(!d||!d.ok)throw 0;vCounts=d.counts||vCounts;done.push(c)}vMine=picks;try{localStorage.setItem(VOTE_KEY,JSON.stringify(picks))}catch(e){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.')}
+  catch(e){if(done.length){vMine=done;try{localStorage.setItem(VOTE_KEY,JSON.stringify(done))}catch(_){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.');return}vMsg.textContent=t('Could not send. Please try again.');vBtn.disabled=false}
 };
 loadVotes();setInterval(()=>{if(!document.hidden)loadVotes()},30000);
 /* ---------- Language switch ---------- */
