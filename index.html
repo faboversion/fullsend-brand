@@ -1295,7 +1295,7 @@ async function loadVotes(){try{const d=await vJsonp({a:'get'});if(d&&d.counts){v
 vBtn.onclick=async()=>{
   if(!vSel.size||vMine)return;vBtn.disabled=true;vMsg.textContent=t('Sending…');
   const picks=[...vSel],done=[];
-  try{for(const c of picks){const d=await vJsonp({a:'vote',c});if(!d||!d.ok)throw 0;vCounts=d.counts||vCounts;done.push(c)}vMine=picks;try{localStorage.setItem(VOTE_KEY,JSON.stringify(picks))}catch(e){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.')}
+  try{for(const c of picks){const d=await vJsonp({a:'vote',color:c});if(!d||!d.ok)throw 0;vCounts=d.counts||vCounts;done.push(c)}vMine=picks;try{localStorage.setItem(VOTE_KEY,JSON.stringify(picks))}catch(e){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.')}
   catch(e){if(done.length){vMine=done;try{localStorage.setItem(VOTE_KEY,JSON.stringify(done))}catch(_){}drawVote();vMsg.textContent=t('Thanks! Your vote is in.');return}vMsg.textContent=t('Could not send. Please try again.');vBtn.disabled=false}
 };
 loadVotes();setInterval(()=>{if(!document.hidden)loadVotes()},30000);
