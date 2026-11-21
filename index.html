@@ -542,6 +542,16 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 .g-bar::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--osd);color:#111;display:grid;place-items:center;font-weight:700}
 .g-lb{position:absolute;bottom:14px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#f4f1ea;padding:5px 9px}
 .g-lb.l{left:14px}.g-lb.r{right:14px;color:#cdb593}
+.g-o4{background:var(--burgundy);color:var(--burgundy-fg);border-bottom:1px solid var(--line)}
+.g-o4 .eyebrow,.g-o4 .lede{color:color-mix(in srgb,var(--burgundy-fg) 75%,transparent)}
+.g-o4 h2{margin:14px 0 20px}.g-o4 h2 span{display:block;color:#f3dcd8;opacity:.75}
+.g-o4grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:34px 0 30px}
+.g-o4grid div{border:1px solid color-mix(in srgb,var(--burgundy-fg) 30%,transparent);padding:22px}
+.g-o4grid b{display:block;font:800 22px/1.05 var(--display);font-stretch:125%;text-transform:uppercase;margin:8px 0}
+.g-o4grid p{margin:0;font-size:15px;color:color-mix(in srgb,var(--burgundy-fg) 78%,transparent)}
+.g-o4grid .g-num{color:var(--burgundy-fg)}
+.g-o4btn{border-color:var(--burgundy-fg);color:var(--burgundy-fg)}.g-o4btn:hover{background:var(--burgundy-fg);color:var(--burgundy)}
+@media (max-width:860px){.g-o4grid{grid-template-columns:minmax(0,1fr)}}
 .g-sec{border-bottom:1px solid var(--line)}
 .g-sec .head p{max-width:60ch}
 .g-new{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -848,14 +858,17 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
     </div>
   </section>
 
-  <section class="g-sec">
+  <section class="g-o4">
     <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>What's new</span><h2 class="disp" data-i>The update</h2></div></div>
-      <div class="g-new">
-        <div class="g-card"><span class="g-num">+9</span><b data-i>New looks</b><p data-i>Signal Lost, Failsafe, Cinewhoop and six Full Send Editions: Dive Bomb, Blackout, Punch Out, Afterburner, Proximity and Hang Time.</p></div>
-        <div class="g-card"><span class="g-num">O4</span><b data-i>DJI O4 Air Unit</b><p data-i>Own folder for footage straight from the drone, built on DJI's official O4 conversion.</p></div>
-        <div class="g-card"><span class="g-num">01:1</span><b data-i>Official conversions</b><p data-i>All Log folders now start from the official DJI and GoPro LUTs: true colors, rich reds. The look comes on top.</p></div>
+      <span class="eyebrow" data-i>For DJI O4 pilots</span>
+      <h2 class="disp" data-i>Flying O4? <span>You're in the right place.</span></h2>
+      <p class="lede" data-i>O4 Air Unit, O4 Pro or O4 Wide: your footage gets its own folder, built on DJI's official O4 conversion. No guessing, no extra steps – the easiest way to the best result.</p>
+      <div class="g-o4grid">
+        <div><span class="g-num">01</span><b data-i>Film in D-Log M</b><p data-i>Set your O4 to D-Log M. More dynamic range for bright skies and deep shadows.</p></div>
+        <div><span class="g-num">02</span><b data-i>Take folder 4</b><p data-i>“4 - DJI O4 Air Unit D-Log M”. The conversion is already inside: no CST, no DJI LUT.</p></div>
+        <div><span class="g-num">03</span><b data-i>Drop a look</b><p data-i>19 looks, one drag each. Correct exposure first, then the look on top. Done.</p></div>
       </div>
+      <a class="btn g-o4btn" href="https://drive.google.com/drive/folders/1_7YzkavTQXxk-MHgjP5wuTeBnhJDOzcV?usp=sharing" target="_blank" rel="noopener"><span data-i>Get the O4 LUTs</span></a>
     </div>
   </section>
 
@@ -1208,7 +1221,7 @@ let drawLook=()=>{};
  drawLook=()=>{box.innerHTML='';state.forEach((st,i)=>box.appendChild(tile(st,i)))};
  drawLook();
 })();
-Object.assign(TR,{"Front":"Vorderseite","Back":"Rückseite","View":"Ansicht","Sherpa Jacket · Burgundy":"Sherpa Jacket · Burgunderrot","On model · Winter Series 01":"Am Model · Winter Series 01","Worn on the pass":"Getragen auf dem Pass","The Sherpa Jacket in burgundy, shot above the lake at first frost. Soft sherpa body, softshell yoke with the FULL SEND print across the shoulders, and the Winter Series patch on the chest.":"Die Sherpa Jacket in Burgunderrot, fotografiert über dem See beim ersten Frost. Weicher Sherpa-Körper, Softshell-Passe mit dem FULL SEND Print über den Schultern und dem Winter-Series-Patch auf der Brust.","Color":"Farbe","Fabric":"Material","Sherpa with recycled fleece lining":"Sherpa mit Futter aus recyceltem Fleece","Fit":"Passform","View the jacket":"Jacke ansehen","View product":"Produkt ansehen","Looks":"Looks","Previous look":"Vorheriger Look","Next look":"Nächster Look","Above the treeline":"Über der Baumgrenze","The Sherpa Jacket in black on a snowed-in terrace. All-black sherpa, softshell yoke and the FULL SEND print across the shoulders.":"Die Sherpa Jacket in Schwarz auf einer verschneiten Terrasse. Komplett schwarzer Sherpa, Softshell-Passe und der FULL SEND Print über den Schultern.","Last light":"Letztes Licht","The Changer Sweater in dark grey at golden hour. Heavyweight organic cotton, a small logo up front and the full Winter Series print on the back.":"Der Changer Sweater in Dunkelgrau zur Golden Hour. Schwere Bio-Baumwolle, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","350 GSM organic cotton":"Bio-Baumwolle, 350 g/m²","Layer up":"Zwiebellook","The Sherpa Vest in desert, layered over a black long sleeve. Sherpa body, softshell panels and the FULL SEND print on the back yoke.":"Die Sherpa Vest in Desert, getragen über einem schwarzen Longsleeve. Sherpa-Körper, Softshell-Einsätze und der FULL SEND Print auf der Rückenpasse.","After the rain":"Nach dem Regen","The Winter Series 01 shirt in heather grey. Relaxed fit, a small logo up front and the full Winter Series print on the back.":"Das Winter Series 01 Shirt in Grau meliert. Relaxed Fit, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","240 g/m² organic cotton":"Bio-Baumwolle, 240 g/m²","Find your size":"Grösse finden","On model":"Am Model","On model · Front":"Am Model · Vorderseite","On model · Back":"Am Model · Rückseite","Model wearing the Sherpa Jacket in burgundy, front view, on a mountain terrace":"Model trägt die Sherpa Jacket in Burgunderrot, Vorderansicht, auf einer Bergterrasse","Model wearing the Sherpa Jacket in burgundy, back view with FULL SEND print across the shoulders":"Model trägt die Sherpa Jacket in Burgunderrot, Rückansicht mit FULL SEND Print über den Schultern"});
+Object.assign(TR,{"For DJI O4 pilots": "Für DJI-O4-Piloten", "Flying O4? <span>You're in the right place.</span>": "Du fliegst O4? <span>Dann bist du hier genau richtig.</span>", "O4 Air Unit, O4 Pro or O4 Wide: your footage gets its own folder, built on DJI's official O4 conversion. No guessing, no extra steps – the easiest way to the best result.": "O4 Air Unit, O4 Pro oder O4 Wide: Dein Footage bekommt einen eigenen Ordner, aufgebaut auf der offiziellen O4-Conversion von DJI. Kein Rätselraten, keine Extraschritte – der einfachste Weg zum besten Ergebnis.", "Film in D-Log M": "In D-Log M filmen", "Set your O4 to D-Log M. More dynamic range for bright skies and deep shadows.": "Stell deine O4 auf D-Log M. Mehr Dynamikumfang für helle Himmel und tiefe Schatten.", "Take folder 4": "Ordner 4 nehmen", "“4 - DJI O4 Air Unit D-Log M”. The conversion is already inside: no CST, no DJI LUT.": "«4 - DJI O4 Air Unit D-Log M». Die Conversion steckt schon drin: keine CST, kein DJI-LUT.", "Drop a look": "Look draufziehen", "19 looks, one drag each. Correct exposure first, then the look on top. Done.": "19 Looks, je ein Zug mit der Maus. Zuerst Belichtung korrigieren, dann den Look obendrauf. Fertig.", "Get the O4 LUTs": "O4-LUTs holen"});Object.assign(TR,{"Front":"Vorderseite","Back":"Rückseite","View":"Ansicht","Sherpa Jacket · Burgundy":"Sherpa Jacket · Burgunderrot","On model · Winter Series 01":"Am Model · Winter Series 01","Worn on the pass":"Getragen auf dem Pass","The Sherpa Jacket in burgundy, shot above the lake at first frost. Soft sherpa body, softshell yoke with the FULL SEND print across the shoulders, and the Winter Series patch on the chest.":"Die Sherpa Jacket in Burgunderrot, fotografiert über dem See beim ersten Frost. Weicher Sherpa-Körper, Softshell-Passe mit dem FULL SEND Print über den Schultern und dem Winter-Series-Patch auf der Brust.","Color":"Farbe","Fabric":"Material","Sherpa with recycled fleece lining":"Sherpa mit Futter aus recyceltem Fleece","Fit":"Passform","View the jacket":"Jacke ansehen","View product":"Produkt ansehen","Looks":"Looks","Previous look":"Vorheriger Look","Next look":"Nächster Look","Above the treeline":"Über der Baumgrenze","The Sherpa Jacket in black on a snowed-in terrace. All-black sherpa, softshell yoke and the FULL SEND print across the shoulders.":"Die Sherpa Jacket in Schwarz auf einer verschneiten Terrasse. Komplett schwarzer Sherpa, Softshell-Passe und der FULL SEND Print über den Schultern.","Last light":"Letztes Licht","The Changer Sweater in dark grey at golden hour. Heavyweight organic cotton, a small logo up front and the full Winter Series print on the back.":"Der Changer Sweater in Dunkelgrau zur Golden Hour. Schwere Bio-Baumwolle, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","350 GSM organic cotton":"Bio-Baumwolle, 350 g/m²","Layer up":"Zwiebellook","The Sherpa Vest in desert, layered over a black long sleeve. Sherpa body, softshell panels and the FULL SEND print on the back yoke.":"Die Sherpa Vest in Desert, getragen über einem schwarzen Longsleeve. Sherpa-Körper, Softshell-Einsätze und der FULL SEND Print auf der Rückenpasse.","After the rain":"Nach dem Regen","The Winter Series 01 shirt in heather grey. Relaxed fit, a small logo up front and the full Winter Series print on the back.":"Das Winter Series 01 Shirt in Grau meliert. Relaxed Fit, ein kleines Logo vorne und der komplette Winter-Series-Print auf dem Rücken.","240 g/m² organic cotton":"Bio-Baumwolle, 240 g/m²","Find your size":"Grösse finden","On model":"Am Model","On model · Front":"Am Model · Vorderseite","On model · Back":"Am Model · Rückseite","Model wearing the Sherpa Jacket in burgundy, front view, on a mountain terrace":"Model trägt die Sherpa Jacket in Burgunderrot, Vorderansicht, auf einer Bergterrasse","Model wearing the Sherpa Jacket in burgundy, back view with FULL SEND print across the shoulders":"Model trägt die Sherpa Jacket in Burgunderrot, Rückansicht mit FULL SEND Print über den Schultern"});
 
 
 /* ---------- Shop: cart + checkout -> Google Form (DRAFT) ---------- */
@@ -1575,7 +1588,7 @@ gDlg.addEventListener('close',()=>gCur=-1);
 function gDraw(){
   const A=document.getElementById('gLooksA'),B=document.getElementById('gLooksB');A.innerHTML='';B.innerHTML='';
   G_LOOKS.forEach(([n,d],i)=>{const b=document.createElement('button');b.type='button';b.className='g-look';
-    b.innerHTML=`<img src="img/grading/look_${gNum(i)}.jpg" alt="${esc(n)}" loading="lazy"><b>${esc(n)}${G_NEW.has(n)?`<span class="g-new-tag">· ${esc(t('New'))}</span>`:''}</b><span>${esc(t(d))}</span>`;
+    b.innerHTML=`<img src="img/grading/look_${gNum(i)}.jpg" alt="${esc(n)}" loading="lazy"><b>${esc(n)}</b><span>${esc(t(d))}</span>`;
     b.onclick=()=>gOpen(i);(i<13?A:B).appendChild(b)});
   const M=document.getElementById('gMgrid');M.innerHTML='';
   G_LOOKS.forEach(([n],i)=>{const d=document.createElement('div');d.className='g-mt';d.innerHTML=`<img src="img/grading/look_${gNum(i)}.jpg" alt="" loading="lazy">${esc(n)}`;
