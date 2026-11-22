@@ -1,8 +1,8 @@
 FSGU1
-version=1.3.0
+version=1.4.0
 looks_rev=1
-mac=https://fullsend-brand.com/grading/update/FullSendGrading-1.3.0-mac.pkg
-win=https://fullsend-brand.com/grading/update/FullSendGrading-1.3.0-win-Setup.exe
+mac=https://fullsend-brand.com/grading/update/FullSendGrading-1.4.0-mac.pkg
+win=https://fullsend-brand.com/grading/update/FullSendGrading-1.4.0-win-Setup.exe
 download=https://fullsend-brand.com/
-notes=Automatic updates
-sig=b89ee49bd3d31e4a2cf69fc3c7a9dc1fe3efa11b8db310fe328f35e1d5d458ca68b18ac2772ae78b691588eff8043d5d88b46bc62610b90c4a1b426cbcfa9a0b
+notes=Premium Film, 5 new looks, more cameras, custom LUT, before/after
+sig=c008271819cc2dcefe0a42aee5009166273c9d6c614e61406cb39fbef258de16e7a49e73399d90aab001ed10656a80b4a39d662b66fbc963dd9f50bb19058a03
