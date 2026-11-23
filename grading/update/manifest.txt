@@ -1,10 +1,10 @@
 FSGU1
-version=1.6.0
+version=1.6.1
 looks_rev=3
 looks_url=https://fullsend-brand.com/grading/update/looks-3.fsl
 looks_sha512=45bbffdb72114c2bbed75d88bcedf2a406069822e294d072c34b4b5e675e01bf817fcefab761745e602dd8b05d05a1a2c1d936e71ec150187a70fd94b0a514e8
-mac=https://fullsend-brand.com/grading/update/ONE-NODE-1.6.0-mac.pkg
-win=https://fullsend-brand.com/grading/update/ONE-NODE-1.6.0-win-Setup.exe
+mac=https://fullsend-brand.com/grading/update/ONE-NODE-1.6.1-mac.pkg
+win=https://fullsend-brand.com/grading/update/ONE-NODE-1.6.1-win-Setup.exe
 download=https://fullsend-brand.com/
-notes=New name: ONE NODE (made by Full Send Brand)
-sig=3bea40e0b12be67d1baf2c18997f8b8b882f685957a0baea61f1bc694270bbb1e358d2259250d33d5cc40eedb2ff41ab54b0d72d7d716cffc705d8b7b5b42708
+notes=Color picker + fixed Instagram Reel overlay
+sig=faae1ae3c57a072d4f3c90927bb8791d36b23a40e80faf8b74260118039327daaea430a17e18132e3b53036e86396905ad1e841abeed14ce064ea63c2589110d
