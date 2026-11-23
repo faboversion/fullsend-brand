@@ -525,104 +525,25 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 .vote-bar .btn[disabled]:hover{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 .vote-msg{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
-/* ---------- FULL SEND GRADING ---------- */
+/* ---------- ONE NODE TEASER ---------- */
 .nav ul{min-width:0;overflow-x:auto;scrollbar-width:none}.nav ul::-webkit-scrollbar{display:none}
 .nav a[aria-current="page"]{color:var(--fg)}
 #grading[hidden]{display:none!important}
-.g-hero{padding-block:clamp(40px,7vw,96px) clamp(40px,6vw,80px);border-bottom:1px solid var(--line)}
-.g-hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,64px);align-items:center}
-.g-hero h1{font-size:clamp(40px,7vw,96px);margin:14px 0 22px}
-.g-hero h1 span{display:block;color:var(--desert)}
-.g-hero .lede{margin-bottom:30px}
-.g-meta{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px}
-.g-cmp{position:relative;aspect-ratio:958/1550;width:100%;max-width:400px;margin-left:auto;overflow:hidden;user-select:none;touch-action:none;cursor:ew-resize;background:#000}
-.g-cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-.g-cmp .g-after{clip-path:inset(0 0 0 50%)}
-.g-bar{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--osd);transform:translateX(-50%)}
-.g-bar::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--osd);color:#111;display:grid;place-items:center;font-weight:700}
-.g-lb{position:absolute;bottom:14px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#f4f1ea;padding:5px 9px}
-.g-lb.l{left:14px}.g-lb.r{right:14px;color:#cdb593}
-.g-o4{background:var(--burgundy);color:var(--burgundy-fg);border-bottom:1px solid var(--line)}
-.g-o4 .eyebrow,.g-o4 .lede{color:color-mix(in srgb,var(--burgundy-fg) 75%,transparent)}
-.g-o4 h2{margin:14px 0 20px}.g-o4 h2 span{display:block;color:#f3dcd8;opacity:.75}
-.g-o4grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:34px 0 30px}
-.g-o4grid div{border:1px solid color-mix(in srgb,var(--burgundy-fg) 30%,transparent);padding:22px}
-.g-o4grid b{display:block;font:800 22px/1.05 var(--display);font-stretch:125%;text-transform:uppercase;margin:8px 0}
-.g-o4grid p{margin:0;font-size:15px;color:color-mix(in srgb,var(--burgundy-fg) 78%,transparent)}
-.g-o4grid .g-num{color:var(--burgundy-fg)}
-.g-o4btn{border-color:var(--burgundy-fg);color:var(--burgundy-fg)}.g-o4btn:hover{background:var(--burgundy-fg);color:var(--burgundy)}
-@media (max-width:860px){.g-o4grid{grid-template-columns:minmax(0,1fr)}}
-.g-sec{border-bottom:1px solid var(--line)}
-.g-sec .head p{max-width:60ch}
-.g-new{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.g-card{background:var(--surface);border:1px solid var(--line);padding:22px}
-.g-card b{display:block;font:800 22px/1.05 var(--display);font-stretch:125%;text-transform:uppercase;margin:8px 0 8px}
-.g-card p{margin:0;color:var(--muted);font-size:15px}
-.g-num{font:500 11px var(--mono);letter-spacing:.14em;color:var(--desert)}
-.g-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
-.g-opt{appearance:none;text-align:left;background:var(--surface);border:1px solid var(--line);color:var(--fg);padding:18px;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}
-.g-opt:hover{border-color:var(--muted)}.g-opt[aria-pressed="true"]{border-color:var(--desert);outline:1px solid var(--desert)}
-.g-opt b{font-weight:600}.g-opt span{color:var(--muted);font-size:14px}
-.g-ans{margin-top:12px;background:var(--surface);border-left:3px solid var(--desert);padding:16px 20px;display:none}
-.g-ans.on{display:block}.g-ans b{color:var(--desert)}
-.g-note{margin-top:14px;color:var(--muted);font-size:15px;max-width:70ch}.g-note b{color:var(--fg)}
-.g-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.g-panel{display:none}.g-panel.on{display:block}
-.g-list{list-style:none;counter-reset:s;margin:0;padding:0;border:1px solid var(--line)}
-.g-list li{counter-increment:s;position:relative;padding:16px 18px 16px 62px;border-bottom:1px solid var(--line)}
-.g-list li:last-child{border-bottom:0}
-.g-list li::before{content:"0" counter(s);position:absolute;left:18px;top:16px;font:500 12px var(--mono);color:var(--desert);letter-spacing:.1em}
-.g-list li small{display:block;color:var(--muted);font-size:14px}
-.g-list kbd,.g-steps kbd{font:500 12px var(--mono);border:1px solid var(--line);padding:1px 6px;background:var(--surface)}
-.g-steps{display:grid;gap:10px;margin-bottom:16px}
-.g-step{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);padding:16px 18px}
-.g-step .g-num{flex:none;width:22px}
-.g-step b{display:block;font-weight:600}.g-step p{margin:2px 0 0;color:var(--muted);font-size:15px}
-.g-mock{border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 70%,#1d1b19);font-size:12px;margin-bottom:16px}
-.g-mbar{display:flex;align-items:center;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line);color:var(--muted);font-family:var(--mono)}
-.g-mbtn{padding:4px 10px;background:var(--fg);color:var(--bg);font-weight:500}
-.g-mbody{display:grid;grid-template-columns:160px minmax(0,1fr) minmax(0,1fr)}
-.g-mside{border-right:1px solid var(--line);padding:10px;color:var(--muted);line-height:2;font-family:var(--mono);font-size:11px}
-.g-mside .on{color:var(--fg);background:var(--surface);padding:0 6px}
-.g-mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px;max-height:330px;overflow:auto;align-content:start}
-.g-mt{cursor:pointer;color:var(--muted);text-align:center;font-size:11px}
-.g-mt img{width:100%;aspect-ratio:4/3;object-fit:cover;border:2px solid transparent;display:block;margin-bottom:3px}
-.g-mt.on{color:var(--fg)}.g-mt.on img{border-color:var(--desert)}
-.g-mview{border-left:1px solid var(--line);background:#0b0a09;display:flex;align-items:center;justify-content:center;position:relative;padding:12px}
-.g-mview img{max-height:360px;max-width:100%}
-.g-mview span{position:absolute;top:16px;left:16px;font:500 10px var(--mono);letter-spacing:.12em;background:rgba(0,0,0,.6);color:#cdb593;padding:4px 8px}
-.g-mhint{padding:9px 12px;border-top:1px solid var(--line);color:var(--muted);text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.g-key{border:1px solid var(--line);background:var(--surface);padding:20px;margin-bottom:16px}
-.g-khead{display:flex;justify-content:space-between;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-.g-khead b{color:var(--desert)}
-.g-key input{width:100%;accent-color:#cdb593}
-.g-kcmp{display:flex;gap:18px;align-items:center;margin-top:14px}
-.g-kcmp div{position:relative;width:120px;flex:none;aspect-ratio:958/1550;overflow:hidden}
-.g-kcmp div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.g-kcmp p{margin:0;color:var(--muted);font-size:15px}
-.g-gal-h{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:28px 0 12px}
-.g-looks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.g-look{appearance:none;background:none;border:0;padding:0;color:var(--fg);text-align:left;cursor:pointer;font:inherit;align-self:start}
-.g-look img{width:100%;aspect-ratio:958/1550;object-fit:cover;display:block;transition:transform .3s}
-.g-look:hover img{transform:translateY(-3px)}
-.g-look b{display:block;margin-top:8px;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.g-look span{display:block;color:var(--muted);font-size:13px;line-height:1.4}
-.g-look .g-new-tag{display:inline-block;margin-left:6px;color:var(--desert)}
-.g-fb{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-#gDlg{border:0;padding:0;background:transparent;max-width:min(860px,94vw);color:var(--fg)}
-#gDlg::backdrop{background:rgba(0,0,0,.88)}
-.g-dlg{display:flex;gap:28px;align-items:center}
-.g-dlg .g-cmp{height:min(76vh,660px);width:auto;max-width:none;margin:0;flex:none}
-.g-dlg h3{font:800 40px/1 var(--display);font-stretch:125%;text-transform:uppercase;margin:8px 0 12px}
-.g-dlg p{color:var(--muted);margin:0 0 18px}
-@media (max-width:860px){
-  .g-hero .wrap{grid-template-columns:minmax(0,1fr)}.g-hero .g-cmp{margin:0 auto;max-height:520px}
-  .g-new,.g-fb{grid-template-columns:minmax(0,1fr)}
-  .g-looks{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .g-mbody{grid-template-columns:minmax(0,1fr)}.g-mside{border-right:0;border-bottom:1px solid var(--line);line-height:1.8}
-  .g-mview{border-left:0;border-top:1px solid var(--line)}
-  .g-dlg{flex-direction:column;gap:14px}.g-dlg .g-cmp{height:58vh;width:auto}.g-dlg h3{font-size:28px}
-}
+.on-tease{position:relative;overflow:hidden;padding-block:clamp(36px,6vw,80px) clamp(40px,6vw,72px);text-align:center;background:#0b0a0d;color:#efe9df;border-bottom:1px solid var(--line)}
+.on-amb{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(70px) saturate(1.3);opacity:.45;pointer-events:none}
+.on-tease::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 30%,rgba(11,10,13,.85) 85%);pointer-events:none}
+.on-tease .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.on-tease .eyebrow{color:#cdb593}
+.on-vid{display:block;margin-top:22px;height:min(78vh,860px);aspect-ratio:9/16;width:auto;max-width:100%;border-radius:22px;background:#000;object-fit:cover;
+  box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(239,233,223,.08)}
+.on-tag{margin:26px 0 0;max-width:520px;color:rgba(239,233,223,.72);font-size:17px}
+.on-beta{padding-block:clamp(48px,7vw,96px);text-align:center}
+.on-beta .wrap{display:flex;flex-direction:column;align-items:center}
+.on-beta h2{font-size:clamp(32px,5vw,60px);margin:12px 0 16px}
+.on-beta p{max-width:540px;color:var(--muted);margin:0 0 26px}
+.on-slots{display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg);margin-top:18px}
+.on-slots i{width:8px;height:8px;border-radius:50%;background:#e5483b;box-shadow:0 0 0 4px rgba(229,72,59,.18)}
+@media (max-width:640px){.on-vid{height:auto;width:100%;border-radius:16px}}
 </style>
 
 <div class="notice"><span data-i>Drop closed · Orders are paused until the next drop · Info in the</span> <a href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>FULL SEND community on Instagram</a></div>
@@ -840,147 +761,24 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 </main>
 
 <main id="grading" hidden>
-  <section class="g-hero">
+  <section class="on-tease">
+    <img class="on-amb" src="img/onenode-poster.webp" alt="" aria-hidden="true">
     <div class="wrap">
-      <div>
-        <span class="eyebrow" data-i>Full Send Grading · Beta</span>
-        <h1 class="disp" data-i>Cinematic <span>LUT Pack</span></h1>
-        <p class="lede" data-i>19 cinematic looks made for FPV. Built on the official DJI and GoPro conversions, with the Full Send look on top. One LUT on your clip – done.</p>
-        <a class="btn solid" href="https://drive.google.com/drive/folders/1_7YzkavTQXxk-MHgjP5wuTeBnhJDOzcV?usp=sharing" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M6 11l6 6 6-6M4 21h16"/></svg><span data-i>Download LUT Pack</span></a>
-        <p class="g-meta" data-i>Free beta · Opens Google Drive · 5 folders · 80 LUTs + guide</p>
-      </div>
-      <div class="g-cmp" id="gHeroCmp" data-n="01">
-        <img src="img/grading/big_00.jpg" alt="">
-        <img class="g-after" src="img/grading/big_01.jpg" alt="">
-        <div class="g-bar"></div>
-        <span class="g-lb l" data-i>Before</span><span class="g-lb r">Full Send</span>
-      </div>
+      <span class="eyebrow" data-i>Coming February 2027</span>
+      <video class="on-vid" id="onVid" src="vid/onenode-teaser.mp4" poster="img/onenode-poster.webp" muted loop playsinline preload="metadata" aria-label="ONE NODE teaser"></video>
+      <p class="on-tag" data-i>One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.</p>
     </div>
   </section>
-
-  <section class="g-o4">
+  <section class="on-beta">
     <div class="wrap">
-      <span class="eyebrow" data-i>For DJI O4 pilots</span>
-      <h2 class="disp" data-i>Flying O4? <span>You're in the right place.</span></h2>
-      <p class="lede" data-i>O4 Air Unit, O4 Pro or O4 Wide: your footage gets its own folder, built on DJI's official O4 conversion. No guessing, no extra steps – the easiest way to the best result.</p>
-      <div class="g-o4grid">
-        <div><span class="g-num">01</span><b data-i>Film in D-Log M</b><p data-i>Set your O4 to D-Log M. More dynamic range for bright skies and deep shadows.</p></div>
-        <div><span class="g-num">02</span><b data-i>Take folder 4</b><p data-i>“4 - DJI O4 Air Unit D-Log M”. The conversion is already inside: no CST, no DJI LUT.</p></div>
-        <div><span class="g-num">03</span><b data-i>Drop a look</b><p data-i>19 looks, one drag each. Correct exposure first, then the look on top. Done.</p></div>
-      </div>
-      <a class="btn g-o4btn" href="https://drive.google.com/drive/folders/1_7YzkavTQXxk-MHgjP5wuTeBnhJDOzcV?usp=sharing" target="_blank" rel="noopener"><span data-i>Get the O4 LUTs</span></a>
-    </div>
-  </section>
-
-  <section class="g-sec">
-    <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>Step 1</span><h2 class="disp" data-i>Pick your folder</h2></div><p class="lede" data-i>How does your footage look? Tap what fits.</p></div>
-      <div class="g-opts" id="gOpts">
-        <button type="button" class="g-opt" data-f="1 - Normal or Flat"><b data-i>Already colorful</b><span data-i>Normal or Flat profile, any camera</span></button>
-        <button type="button" class="g-opt" data-f="2 - GoPro GP-Log"><b data-i>GoPro – grey &amp; flat</b><span data-i>GP-Log or GP-Log 2</span></button>
-        <button type="button" class="g-opt" data-f="3 - DJI Action 6 D-Log M"><b data-i>DJI Action 6 – grey &amp; flat</b><span data-i>D-Log M on the Osmo Action 6</span></button>
-        <button type="button" class="g-opt" data-f="4 - DJI O4 Air Unit D-Log M"><b data-i>DJI O4 – grey &amp; flat</b><span data-i>D-Log M straight from the drone</span></button>
-        <button type="button" class="g-opt" data-f="5 - Clean (conversion only)"><b data-i>I grade myself</b><span data-i>Clean base: official conversion + a touch of pop</span></button>
-      </div>
-      <div class="g-ans" id="gAns"><span data-i>Use the folder</span> <b id="gAnsF"></b></div>
-      <p class="g-note" data-i><b>Log footage:</b> the conversion is already built in. No Color Space Transform and no DJI or GoPro LUT needed – just the Full Send LUT. Use a normal project (DaVinci YRGB), not Color Managed.</p>
-    </div>
-  </section>
-
-  <section class="g-sec">
-    <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>Step 2</span><h2 class="disp" data-i>Install once</h2></div><p class="lede" data-i>Takes a minute. After that the looks are always there.</p></div>
-      <div class="g-tabs">
-        <button type="button" class="chip" data-p="gP1" aria-pressed="true">DaVinci Resolve</button>
-        <button type="button" class="chip" data-p="gP2" aria-pressed="false">Premiere Pro</button>
-        <button type="button" class="chip" data-p="gP3" aria-pressed="false">Final Cut Pro</button>
-      </div>
-      <div class="g-panel on" id="gP1"><ol class="g-list">
-        <li data-i>Download and unzip<small>Open the Google Drive folder, download, unzip. You get the folder “Full Send LUT Pack”.</small></li>
-        <li data-i><kbd>File</kbd> › <kbd>Project Settings</kbd> › <kbd>Color Management</kbd></li>
-        <li data-i>Click “Open LUT Folder”<small>A folder opens on your computer.</small></li>
-        <li data-i>Copy the whole “Full Send LUT Pack” folder into it</li>
-        <li data-i>Back in Resolve: “Update Lists”, then Save</li>
-      </ol></div>
-      <div class="g-panel" id="gP2"><ol class="g-list">
-        <li data-i>Download and unzip</li>
-        <li data-i>Select your clip › <kbd>Lumetri Color</kbd> › <kbd>Creative</kbd> › <kbd>Look</kbd> › <kbd>Browse…</kbd></li>
-        <li data-i>Pick a .cube file from your folder<small>If your app already converts Log automatically, use folder 1.</small></li>
-      </ol></div>
-      <div class="g-panel" id="gP3"><ol class="g-list">
-        <li data-i>Download and unzip</li>
-        <li data-i><kbd>Effects</kbd> › <kbd>Color</kbd> › drag <kbd>Custom LUT</kbd> onto your clip</li>
-        <li data-i>Inspector › <kbd>LUT</kbd> › <kbd>Choose Custom LUT…</kbd><small>If your app already converts Log automatically, use folder 1.</small></li>
-      </ol></div>
-    </div>
-  </section>
-
-  <section class="g-sec">
-    <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>Step 3</span><h2 class="disp" data-i>Find your look</h2></div><p class="lede" data-i>In DaVinci Resolve on the Color page. The fastest way: the LUT browser with live preview.</p></div>
-      <div class="g-steps">
-        <div class="g-step"><span class="g-num">A</span><div><b data-i>Open the LUT browser</b><p data-i>Color page › click <kbd>LUTs</kbd> top left › Full Send LUT Pack › your folder.</p></div></div>
-        <div class="g-step"><span class="g-num">B</span><div><b data-i>Hover for a live preview</b><p data-i>Move the mouse over a look: your clip shows it live in the viewer. Slide across the thumbnail to scrub through your shot.</p></div></div>
-      </div>
-      <div class="g-mock" aria-hidden="true">
-        <div class="g-mbar"><span class="g-mbtn">LUTs</span><span>Full Send LUT Pack › 1 - Normal or Flat</span></div>
-        <div class="g-mbody">
-          <div class="g-mside"><div>ACES</div><div>DJI</div><div>▾ Full Send LUT Pack</div><div class="on">&nbsp;1 - Normal or Flat</div><div>&nbsp;2 - GoPro GP-Log</div><div>&nbsp;3 - DJI Action 6</div><div>&nbsp;4 - DJI O4</div><div>&nbsp;5 - Clean</div></div>
-          <div class="g-mgrid" id="gMgrid"></div>
-          <div class="g-mview"><img id="gMprev" src="img/grading/big_00.jpg" alt=""><span id="gMlabel">ORIGINAL</span></div>
-        </div>
-        <div class="g-mhint" data-i>Try it: hover over the looks</div>
-      </div>
-      <div class="g-steps">
-        <div class="g-step"><span class="g-num">C</span><div><b data-i>Correct first, then drag the look onto a node</b><p data-i>Node 1: exposure and white balance. Then add a node (<kbd>Alt</kbd>+<kbd>S</kbd>) and drag the look onto node 2.</p></div></div>
-        <div class="g-step"><span class="g-num">D</span><div><b data-i>Too strong? Don't throw it away</b><p data-i>Open the <kbd>Key</kbd> tab (key icon in the bottom toolbar) › <kbd>Key Output</kbd> › <kbd>Gain</kbd>. 1.0 = full look, 0.6 = 60 %.</p></div></div>
-      </div>
-      <div class="g-key">
-        <div class="g-khead"><span data-i>Key Output</span><span>Gain <b id="gKval">0.80</b></span></div>
-        <input type="range" id="gKsl" min="0" max="100" value="80" aria-label="Key Output Gain">
-        <div class="g-kcmp"><div><img src="img/grading/big_00.jpg" alt=""><img id="gKimg" src="img/grading/big_01.jpg" alt="" style="opacity:.8"></div><p data-i>Drag the slider: that's what Key Output Gain does to the look.</p></div>
-      </div>
-      <p class="g-note" data-i><b>Tip:</b> No live preview? In the LUT browser options (···) turn on “Live Preview”. More sharpness? A LUT only changes color – use the Blur palette › Sharpening.</p>
-    </div>
-  </section>
-
-  <section class="g-sec">
-    <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>The looks</span><h2 class="disp" data-i>Pick your vibe</h2></div><p class="lede" data-i>Tap a look to compare before / after.</p></div>
-      <div class="g-gal-h" data-i>Full Send Originals</div>
-      <div class="g-looks" id="gLooksA"></div>
-      <div class="g-gal-h" data-i>Full Send Editions</div>
-      <div class="g-looks" id="gLooksB"></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="head"><div><span class="eyebrow" data-i>Beta feedback</span><h2 class="disp" data-i>Tell us what you think</h2></div></div>
-      <div class="g-fb">
-        <div class="g-card"><b data-i>Please tell us</b><p data-i>Your camera and color profile · your favorite look · anything that looked off (too strong, skin tones, skies).</p></div>
-        <div class="g-card"><b data-i>Show us</b><p data-i>A before / after screenshot or a short clip helps a lot. Send a DM to <a href="https://www.instagram.com/faboversion/" target="_blank" rel="noopener">@faboversion</a> on Instagram.</p></div>
-      </div>
+      <span class="eyebrow" data-i>Free beta</span>
+      <h2 class="disp" data-i>Test it first</h2>
+      <p data-i>Want to try ONE NODE for free before it launches? Send me a DM on Instagram. Test slots are limited.</p>
+      <a class="btn solid" href="https://www.instagram.com/faboversion/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>@faboversion</span></a>
+      <span class="on-slots"><i></i><span data-i>Limited test slots</span></span>
     </div>
   </section>
 </main>
-
-<dialog id="gDlg" aria-labelledby="gDlgT">
-  <div class="g-dlg">
-    <div class="g-cmp" id="gDlgCmp">
-      <img src="img/grading/big_00.jpg" alt="">
-      <img class="g-after" id="gDlgAfter" src="" alt="">
-      <div class="g-bar"></div>
-      <span class="g-lb l" data-i>Before</span><span class="g-lb r" id="gDlgLb"></span>
-    </div>
-    <div>
-      <span class="eyebrow" id="gDlgN"></span>
-      <h3 id="gDlgT"></h3>
-      <p id="gDlgD"></p>
-      <button type="button" class="btn" id="gDlgClose" data-i>Close</button>
-    </div>
-  </div>
-</dialog>
 
 <footer>
   <div class="wrap">
@@ -1557,55 +1355,17 @@ vBtn.onclick=async()=>{
 };
 loadVotes();setInterval(()=>{if(!document.hidden)loadVotes()},30000);
 
-/* ---------- FULL SEND GRADING ---------- */
-const G_LOOKS=[["Full Send", "Punchy teal & orange. The signature look."], ["First Light", "Sunrise mood. Warm highlights, cool shadows."], ["Whiteout", "Fog & clouds. Soft, milky, cool."], ["Golden Dive", "Golden hour. Rich warm gold."], ["Dead Stick", "Dark & moody. Deep shadows, muted color."], ["Alpine", "Crisp & clean. Cold blues, pure whites."], ["Bando", "Urban & gritty. Industrial green-yellow."], ["Prop Wash", "Vintage film. Faded blacks, analog color."], ["Freefall", "Black & white with cinema contrast."], ["Low Batt", "Night & neon. Magenta and cyan."], ["Signal Lost", "Cinematic blue. Cold, steely, moody."], ["Failsafe", "Cinematic green. Thriller tension."], ["Cinewhoop", "Pure cinema. Soft film curve, rich color."], ["Dive Bomb", "Deep teal sky, crisp contrast."], ["Blackout", "Bright skies, deep shadows. Silhouette drama."], ["Punch Out", "Bold, saturated, full of energy."], ["Afterburner", "Fiery orange against teal skies."], ["Proximity", "Earthy, warm and muted."], ["Hang Time", "Light, airy, soft. Floating feeling."]],G_NEW=new Set(["Afterburner", "Blackout", "Cinewhoop", "Dive Bomb", "Failsafe", "Hang Time", "Proximity", "Punch Out", "Signal Lost"]);
-Object.assign(TR,{"Grading": "Grading", "Full Send Grading · Beta": "Full Send Grading · Beta", "Cinematic <span>LUT Pack</span>": "Cinematic <span>LUT Pack</span>", "19 cinematic looks made for FPV. Built on the official DJI and GoPro conversions, with the Full Send look on top. One LUT on your clip – done.": "19 Cinematic Looks für FPV. Aufgebaut auf den offiziellen DJI- und GoPro-Conversions, der Full-Send-Look obendrauf. Ein LUT auf deinen Clip – fertig.", "Download LUT Pack": "LUT Pack herunterladen", "Free beta · Opens Google Drive · 5 folders · 80 LUTs + guide": "Gratis-Beta · Öffnet Google Drive · 5 Ordner · 80 LUTs + Anleitung", "Before": "Vorher", "What's new": "Neu", "The update": "Das Update", "New looks": "Neue Looks", "Signal Lost, Failsafe, Cinewhoop and six Full Send Editions: Dive Bomb, Blackout, Punch Out, Afterburner, Proximity and Hang Time.": "Signal Lost, Failsafe, Cinewhoop und sechs Full Send Editions: Dive Bomb, Blackout, Punch Out, Afterburner, Proximity und Hang Time.", "DJI O4 Air Unit": "DJI O4 Air Unit", "Own folder for footage straight from the drone, built on DJI's official O4 conversion.": "Eigener Ordner für Footage direkt von der Drohne, aufgebaut auf der offiziellen O4-Conversion von DJI.", "Official conversions": "Offizielle Conversions", "All Log folders now start from the official DJI and GoPro LUTs: true colors, rich reds. The look comes on top.": "Alle Log-Ordner basieren jetzt auf den offiziellen DJI- und GoPro-LUTs: echte Farben, satte Rottöne. Der Look kommt obendrauf.", "Step 1": "Schritt 1", "Step 2": "Schritt 2", "Step 3": "Schritt 3", "Pick your folder": "Ordner wählen", "How does your footage look? Tap what fits.": "Wie sieht dein Material aus? Tipp an, was passt.", "Already colorful": "Schon farbig", "Normal or Flat profile, any camera": "Normales oder flaches Profil, jede Kamera", "GoPro – grey &amp; flat": "GoPro – grau &amp; flau", "GP-Log or GP-Log 2": "GP-Log oder GP-Log 2", "DJI Action 6 – grey &amp; flat": "DJI Action 6 – grau &amp; flau", "D-Log M on the Osmo Action 6": "D-Log M auf der Osmo Action 6", "DJI O4 – grey &amp; flat": "DJI O4 – grau &amp; flau", "D-Log M straight from the drone": "D-Log M direkt von der Drohne", "I grade myself": "Ich grade selbst", "Clean base: official conversion + a touch of pop": "Saubere Basis: offizielle Conversion + ein Ticken Pop", "Use the folder": "Nimm den Ordner", "<b>Log footage:</b> the conversion is already built in. No Color Space Transform and no DJI or GoPro LUT needed – just the Full Send LUT. Use a normal project (DaVinci YRGB), not Color Managed.": "<b>Log-Material:</b> Die Conversion ist schon eingebaut. Keine Color Space Transform und kein LUT von DJI oder GoPro nötig – nur der Full-Send-LUT. Nutze ein normales Projekt (DaVinci YRGB), nicht Color Managed.", "Install once": "Einmal installieren", "Takes a minute. After that the looks are always there.": "Dauert eine Minute. Danach sind die Looks immer da.", "Download and unzip<small>Open the Google Drive folder, download, unzip. You get the folder “Full Send LUT Pack”.</small>": "Herunterladen und entpacken<small>Google-Drive-Ordner öffnen, herunterladen, entpacken. Du bekommst den Ordner «Full Send LUT Pack».</small>", "<kbd>File</kbd> › <kbd>Project Settings</kbd> › <kbd>Color Management</kbd>": "<kbd>File</kbd> › <kbd>Project Settings</kbd> › <kbd>Color Management</kbd>", "Click “Open LUT Folder”<small>A folder opens on your computer.</small>": "«Open LUT Folder» klicken<small>Ein Ordner auf deinem Computer öffnet sich.</small>", "Copy the whole “Full Send LUT Pack” folder into it": "Den ganzen Ordner «Full Send LUT Pack» hineinkopieren", "Back in Resolve: “Update Lists”, then Save": "Zurück in Resolve: «Update Lists», dann Save", "Download and unzip": "Herunterladen und entpacken", "Select your clip › <kbd>Lumetri Color</kbd> › <kbd>Creative</kbd> › <kbd>Look</kbd> › <kbd>Browse…</kbd>": "Clip wählen › <kbd>Lumetri Color</kbd> › <kbd>Creative</kbd> › <kbd>Look</kbd> › <kbd>Browse…</kbd>", "Pick a .cube file from your folder<small>If your app already converts Log automatically, use folder 1.</small>": "Eine .cube-Datei aus deinem Ordner wählen<small>Wandelt dein Programm Log schon automatisch um, nimm Ordner 1.</small>", "<kbd>Effects</kbd> › <kbd>Color</kbd> › drag <kbd>Custom LUT</kbd> onto your clip": "<kbd>Effects</kbd> › <kbd>Color</kbd> › <kbd>Custom LUT</kbd> auf den Clip ziehen", "Inspector › <kbd>LUT</kbd> › <kbd>Choose Custom LUT…</kbd><small>If your app already converts Log automatically, use folder 1.</small>": "Inspector › <kbd>LUT</kbd> › <kbd>Choose Custom LUT…</kbd><small>Wandelt dein Programm Log schon automatisch um, nimm Ordner 1.</small>", "Find your look": "Look finden", "In DaVinci Resolve on the Color page. The fastest way: the LUT browser with live preview.": "In DaVinci Resolve auf der Color-Seite. Am schnellsten mit dem LUT-Browser und Live-Vorschau.", "Open the LUT browser": "LUT-Browser öffnen", "Color page › click <kbd>LUTs</kbd> top left › Full Send LUT Pack › your folder.": "Color-Seite › oben links auf <kbd>LUTs</kbd> › Full Send LUT Pack › dein Ordner.", "Hover for a live preview": "Hovern für die Live-Vorschau", "Move the mouse over a look: your clip shows it live in the viewer. Slide across the thumbnail to scrub through your shot.": "Fahr mit der Maus über einen Look: Dein Clip zeigt ihn live im Viewer. Fahr über das Vorschaubild, um durch deine Szene zu scrubben.", "Try it: hover over the looks": "Probier es aus: Fahr über die Looks", "Correct first, then drag the look onto a node": "Zuerst korrigieren, dann den Look auf einen Node ziehen", "Node 1: exposure and white balance. Then add a node (<kbd>Alt</kbd>+<kbd>S</kbd>) and drag the look onto node 2.": "Node 1: Belichtung und Weissabgleich. Dann einen Node hinzufügen (<kbd>Alt</kbd>+<kbd>S</kbd>) und den Look auf Node 2 ziehen.", "Too strong? Don't throw it away": "Zu stark? Nicht verwerfen", "Open the <kbd>Key</kbd> tab (key icon in the bottom toolbar) › <kbd>Key Output</kbd> › <kbd>Gain</kbd>. 1.0 = full look, 0.6 = 60 %.": "Tab <kbd>Key</kbd> öffnen (Schlüssel-Symbol unten in der Leiste) › <kbd>Key-Ausgabe</kbd> › <kbd>Gain</kbd>. 1.0 = voller Look, 0.6 = 60 %.", "Key Output": "Key-Ausgabe", "Drag the slider: that's what Key Output Gain does to the look.": "Zieh den Regler: So wirkt Key-Ausgabe Gain auf den Look.", "<b>Tip:</b> No live preview? In the LUT browser options (···) turn on “Live Preview”. More sharpness? A LUT only changes color – use the Blur palette › Sharpening.": "<b>Tipp:</b> Keine Live-Vorschau? In den Optionen des LUT-Browsers (···) «Live Preview» einschalten. Mehr Schärfe? Ein LUT ändert nur Farben – nutze die Blur-Palette › Sharpening.", "The looks": "Die Looks", "Pick your vibe": "Finde deinen Vibe", "Tap a look to compare before / after.": "Tipp auf einen Look für Vorher / Nachher.", "Full Send Originals": "Full Send Originals", "Full Send Editions": "Full Send Editions", "Beta feedback": "Beta-Feedback", "Tell us what you think": "Sag uns deine Meinung", "Please tell us": "Bitte sag uns", "Your camera and color profile · your favorite look · anything that looked off (too strong, skin tones, skies).": "Deine Kamera und dein Farbprofil · dein Lieblings-Look · was nicht passt (zu stark, Hauttöne, Himmel).", "Show us": "Zeig es uns", "A before / after screenshot or a short clip helps a lot. Send a DM to <a href=\"https://www.instagram.com/faboversion/\" target=\"_blank\" rel=\"noopener\">@faboversion</a> on Instagram.": "Ein Vorher/Nachher-Screenshot oder ein kurzer Clip hilft enorm. Schick eine DM an <a href=\"https://www.instagram.com/faboversion/\" target=\"_blank\" rel=\"noopener\">@faboversion</a> auf Instagram.", "Look": "Look", "New": "Neu", "Punchy teal & orange. The signature look.": "Knallig, Teal & Orange. Der Signatur-Look.", "Sunrise mood. Warm highlights, cool shadows.": "Morgenstimmung. Warme Lichter, kühle Schatten.", "Fog & clouds. Soft, milky, cool.": "Nebel & Wolken. Weich, milchig, kühl.", "Golden hour. Rich warm gold.": "Golden Hour. Sattes, warmes Gold.", "Dark & moody. Deep shadows, muted color.": "Dunkel & moody. Tiefe Schatten, wenig Farbe.", "Crisp & clean. Cold blues, pure whites.": "Klar & frisch. Kühles Blau, reines Weiss.", "Urban & gritty. Industrial green-yellow.": "Urban & rau. Industrie-Grün-Gelb.", "Vintage film. Faded blacks, analog color.": "Vintage-Film. Verblasste Schwarztöne.", "Black & white with cinema contrast.": "Schwarz-Weiss mit Kino-Kontrast.", "Night & neon. Magenta and cyan.": "Nacht & Neon. Magenta und Cyan.", "Cinematic blue. Cold, steely, moody.": "Cinematic Blue. Kühl, stählern, moody.", "Cinematic green. Thriller tension.": "Cinematic Green. Thriller-Spannung.", "Pure cinema. Soft film curve, rich color.": "Reines Kino. Weiche Filmkurve, satte Farben.", "Deep teal sky, crisp contrast.": "Tief türkisfarbener Himmel, knackiger Kontrast.", "Bright skies, deep shadows. Silhouette drama.": "Heller Himmel, tiefe Schatten. Silhouetten-Drama.", "Bold, saturated, full of energy.": "Kräftig, satt, voller Energie.", "Fiery orange against teal skies.": "Feuriges Orange gegen türkisfarbenen Himmel.", "Earthy, warm and muted.": "Erdig, warm und gedämpft.", "Light, airy, soft. Floating feeling.": "Leicht, luftig, weich. Schwebegefühl."});
-const gMain=document.getElementById('top'),gView=document.getElementById('grading');
+/* ---------- ONE NODE TEASER ---------- */
+Object.assign(TR,{"Grading":"Grading","Coming February 2027":"Kommt im Februar 2027","One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.":"Ein Node. Komplettes Grading. Ein neues Grading-Plugin für DaVinci Resolve, made by Full Send Brand.","Free beta":"Gratis-Beta","Test it first":"Teste es zuerst","Want to try ONE NODE for free before it launches? Send me a DM on Instagram. Test slots are limited.":"Du willst ONE NODE vor dem Launch gratis testen? Schreib mir eine DM auf Instagram. Die Testplätze sind begrenzt.","Limited test slots":"Begrenzte Testplätze"});
+const gMain=document.getElementById('top'),gView=document.getElementById('grading'),onVid=document.getElementById('onVid');
 function gRoute(){
   const g=location.hash==='#grading';
   gView.hidden=!g;gMain.hidden=g;
   document.querySelectorAll('.nav a[href="#grading"]').forEach(a=>a.setAttribute('aria-current',g?'page':'false'));
-  if(g){window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0));setTimeout(()=>window.scrollTo(0,0),60)}
-  else if(location.hash&&location.hash.length>1){const el=document.getElementById(location.hash.slice(1));if(el)requestAnimationFrame(()=>el.scrollIntoView())}
+  if(g){onVid.preload='auto';const p=onVid.play();if(p&&p.catch)p.catch(()=>{});window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0));setTimeout(()=>window.scrollTo(0,0),60)}
+  else{onVid.pause();if(location.hash&&location.hash.length>1){const el=document.getElementById(location.hash.slice(1));if(el)requestAnimationFrame(()=>el.scrollIntoView())}}
 }
 window.addEventListener('hashchange',gRoute);gRoute();
-function gCmp(box){const after=box.querySelector('.g-after'),bar=box.querySelector('.g-bar');
-  const set=p=>{p=Math.max(0,Math.min(100,p));after.style.clipPath=`inset(0 0 0 ${p}%)`;bar.style.left=p+'%'};
-  let down=false;const mv=e=>{const r=box.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
-  box.addEventListener('pointerdown',e=>{down=true;box.setPointerCapture(e.pointerId);mv(e)});
-  box.addEventListener('pointermove',e=>{if(down)mv(e)});box.addEventListener('pointerup',()=>down=false);
-  box.addEventListener('pointercancel',()=>down=false);return set}
-gCmp(document.getElementById('gHeroCmp'));
-const gDlgSet=gCmp(document.getElementById('gDlgCmp')),gDlg=document.getElementById('gDlg');let gCur=-1;
-function gNum(i){return String(i+1).padStart(2,'0')}
-function gFill(i){const [n,d]=G_LOOKS[i];document.getElementById('gDlgAfter').src=`img/grading/big_${gNum(i)}.jpg`;
-  document.getElementById('gDlgN').textContent=t('Look')+' '+gNum(i)+' / '+G_LOOKS.length;document.getElementById('gDlgT').textContent=n;
-  document.getElementById('gDlgD').textContent=t(d);document.getElementById('gDlgLb').textContent=n}
-function gOpen(i){gCur=i;gFill(i);gDlgSet(50);if(gDlg.showModal)gDlg.showModal();else gDlg.setAttribute('open','')}
-document.getElementById('gDlgClose').onclick=()=>gDlg.close();
-gDlg.addEventListener('click',e=>{if(e.target===gDlg)gDlg.close()});
-gDlg.addEventListener('close',()=>gCur=-1);
-function gDraw(){
-  const A=document.getElementById('gLooksA'),B=document.getElementById('gLooksB');A.innerHTML='';B.innerHTML='';
-  G_LOOKS.forEach(([n,d],i)=>{const b=document.createElement('button');b.type='button';b.className='g-look';
-    b.innerHTML=`<img src="img/grading/look_${gNum(i)}.jpg" alt="${esc(n)}" loading="lazy"><b>${esc(n)}</b><span>${esc(t(d))}</span>`;
-    b.onclick=()=>gOpen(i);(i<13?A:B).appendChild(b)});
-  const M=document.getElementById('gMgrid');M.innerHTML='';
-  G_LOOKS.forEach(([n],i)=>{const d=document.createElement('div');d.className='g-mt';d.innerHTML=`<img src="img/grading/look_${gNum(i)}.jpg" alt="" loading="lazy">${esc(n)}`;
-    d.onmouseenter=d.onclick=()=>{M.querySelectorAll('.g-mt').forEach(x=>x.classList.remove('on'));d.classList.add('on');
-      document.getElementById('gMprev').src=`img/grading/big_${gNum(i)}.jpg`;document.getElementById('gMlabel').textContent=n.toUpperCase()};
-    M.appendChild(d)});
-  if(gCur>=0)gFill(gCur);
-}
-document.getElementById('gMgrid').addEventListener('mouseleave',()=>{document.querySelectorAll('.g-mt').forEach(x=>x.classList.remove('on'));
-  document.getElementById('gMprev').src='img/grading/big_00.jpg';document.getElementById('gMlabel').textContent='ORIGINAL'});
-document.querySelectorAll('#gOpts .g-opt').forEach(o=>{o.setAttribute('aria-pressed','false');o.onclick=()=>{
-  document.querySelectorAll('#gOpts .g-opt').forEach(x=>x.setAttribute('aria-pressed','false'));o.setAttribute('aria-pressed','true');
-  document.getElementById('gAnsF').textContent='«'+o.dataset.f+'»';document.getElementById('gAns').classList.add('on')}});
-document.querySelectorAll('.g-tabs .chip').forEach(c=>c.onclick=()=>{
-  document.querySelectorAll('.g-tabs .chip').forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');
-  document.querySelectorAll('.g-panel').forEach(p=>p.classList.toggle('on',p.id===c.dataset.p))});
-const gKs=document.getElementById('gKsl');gKs.oninput=()=>{const v=gKs.value/100;document.getElementById('gKval').textContent=v.toFixed(2);document.getElementById('gKimg').style.opacity=v};
 /* ---------- Language switch ---------- */
 const I18N_EL=[...document.querySelectorAll('[data-i]')].map(el=>({el,en:el.innerHTML.trim()}));
 const I18N_AT=[...document.querySelectorAll('[data-ta]')].map(el=>({el,a:el.dataset.ta,en:el.getAttribute(el.dataset.ta)}));
@@ -1615,7 +1375,7 @@ function setLang(l){
   I18N_EL.forEach(x=>{x.el.innerHTML=t(x.en)});
   I18N_AT.forEach(x=>x.el.setAttribute(x.a,t(x.en)));
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===L));
-  drawWs();show(curCat);runFit();drawLook();paintBadge();drawVote();if(cart.open)drawCart();gDraw();
+  drawWs();show(curCat);runFit();drawLook();paintBadge();drawVote();if(cart.open)drawCart();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 setLang('en');
