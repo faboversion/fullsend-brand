@@ -138,6 +138,17 @@ details p{margin:12px 0 0;color:#c5bdb1;max-width:760px}
 .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:12px;font:700 15px "Public Sans",sans-serif;text-decoration:none;border:1px solid var(--line);background:rgba(11,10,13,.55)}
 .btn.solid{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.beta{max-width:560px;margin:0 auto;text-align:left}
+.beta .row{display:flex;gap:10px;flex-wrap:wrap}
+.beta input[type=email]{flex:1 1 240px;min-width:0;padding:15px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(11,10,13,.7);color:var(--fg);font:500 16px "Public Sans",sans-serif;outline:none}
+.beta input[type=email]:focus{border-color:var(--red)}
+.beta .btn{cursor:pointer}
+.beta .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.beta .ok{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;color:var(--mute);line-height:1.5;cursor:pointer}
+.beta .ok input{margin-top:3px;accent-color:var(--red)}
+.beta .ok a{color:var(--fg)}
+.beta .msg{min-height:1.4em;margin:14px 0 0;font-size:15px}
+.beta .msg.good{color:#9be29b}.beta .msg.bad{color:#ff7a6e}
 footer{padding:40px 0 60px;border-top:1px solid var(--line);font:500 12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 footer a{text-decoration:none}
@@ -173,7 +184,7 @@ footer a{text-decoration:none}
         <span lang="de">Von flachem Log zum fertigen Look, in einem einzigen Node. Kamera-Umrechnung, Looks, Halation, Bloom, Grain und Feinschliff an einem Ort. Gemacht für FPV, Action-Cams und alle, die lieber fliegen als graden.</span>
         <span lang="en">From flat log to a finished look in a single node. Camera conversion, looks, halation, bloom, grain and fine-tuning in one place. Made for FPV, action cams and everyone who would rather fly than grade.</span>
       </p>
-      <span class="pill"><i></i><span lang="de">Bald erhältlich</span><span lang="en">Soon available</span></span>
+      <a class="pill" href="#beta" style="text-decoration:none"><i></i><span lang="de">Gratis-Beta: jetzt eintragen</span><span lang="en">Free beta: sign up now</span></a>
       <a class="scroll" href="#vergleich"><span lang="de">Ansehen</span><span lang="en">See it</span></a>
     </div>
   </section>
@@ -364,13 +375,27 @@ footer a{text-decoration:none}
   </section>
 
   <!-- SOON -->
-  <section class="soon" id="soon">
+  <section class="soon" id="beta">
     <div class="wrap reveal">
-      <span class="pill"><i></i><span lang="de">Bald erhältlich</span><span lang="en">Soon available</span></span>
-      <h2 class="disp" style="margin-top:26px"><span lang="de">Bald<br>erhältlich.</span><span lang="en">Soon<br>available.</span></h2>
-      <p class="lead"><span lang="de">ONE NODE erscheint in Kürze. Folge auf Instagram, um den Start nicht zu verpassen, oder schreib uns.</span><span lang="en">ONE NODE launches soon. Follow on Instagram so you don't miss the launch, or drop us a line.</span></p>
-      <div class="btns">
-        <a class="btn solid" href="https://www.instagram.com/faboversion/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@faboversion</a>
+      <span class="pill"><i></i><span lang="de">Gratis-Beta · 1.–31. Dezember</span><span lang="en">Free beta · 1–31 December</span></span>
+      <h2 class="disp" style="margin-top:26px"><span lang="de">Teste vor<br>allen anderen.</span><span lang="en">Test it<br>before anyone.</span></h2>
+      <p class="lead"><span lang="de">Trag dich bis zum 30. November ein. Am 1. Dezember bekommst du den Download und einen Aktivierungscode, mit dem du ONE NODE den ganzen Dezember gratis nutzt. Dazu 20 % Rabatt zum Release am 1. Februar.</span><span lang="en">Sign up by 30 November. On 1 December you get the download and an activation code to use ONE NODE free all December, plus 20% off at the release on 1 February.</span></p>
+      <form class="beta" id="betaForm" novalidate>
+        <div class="row">
+          <input type="email" name="email" required autocomplete="email" placeholder="deine@email.ch" aria-label="E-Mail">
+          <button class="btn solid" type="submit"><span lang="de">Eintragen</span><span lang="en">Sign up</span></button>
+        </div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="ok"><input type="checkbox" name="consent" value="1" required>
+          <span lang="de">Ich bin einverstanden, dass Full Send Brand mir zur Beta und zum Release von ONE NODE E-Mails schickt. Abmelden geht jederzeit. <a href="/datenschutz/">Datenschutz</a></span>
+          <span lang="en">I agree that Full Send Brand may e-mail me about the ONE NODE beta and release. Unsubscribe any time. <a href="/datenschutz/">Privacy</a></span></label>
+        <p class="msg" id="betaMsg" role="status" aria-live="polite"></p>
+      </form>
+      <div class="closed" id="betaClosed" hidden>
+        <p class="lead"><span lang="de">Die Anmeldung zur Beta ist geschlossen. ONE NODE erscheint am 1. Februar.</span><span lang="en">Beta sign-up is closed. ONE NODE launches on 1 February.</span></p>
+      </div>
+      <div class="btns" style="margin-top:30px">
+        <a class="btn" href="https://www.instagram.com/faboversion/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@faboversion</a>
         <a class="btn" href="mailto:support@fullsend-brand.com">support@fullsend-brand.com</a>
       </div>
     </div>
@@ -380,7 +405,7 @@ footer a{text-decoration:none}
 <footer>
   <div class="wrap">
     <span>ONE NODE · Made by Full Send Brand</span>
-    <a href="/">fullsend-brand.com</a>
+    <span><a href="/datenschutz/"><span lang="de">Datenschutz</span><span lang="en">Privacy</span></a> · <a href="/">fullsend-brand.com</a></span>
   </div>
 </footer>
 
@@ -394,6 +419,25 @@ footer a{text-decoration:none}
     try{localStorage.setItem('on-lang',L)}catch(e){}}
   document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){setLang(b.dataset.lang)}});
   setLang(L);
+
+  // beta sign-up (until 30 Nov 2026, 24:00 Swiss time)
+  var bf=document.getElementById('betaForm'),bm=document.getElementById('betaMsg');
+  var T={de:{email:'Bitte gib eine gültige E-Mail-Adresse ein.',consent:'Bitte bestätige die Einwilligung.',rate:'Zu viele Versuche. Bitte später nochmals.',closed:'Die Anmeldung ist geschlossen.',err:'Das hat nicht geklappt. Bitte nochmals versuchen oder an support@fullsend-brand.com schreiben.',ok:'Du bist dabei! Wir haben dir eine Bestätigung geschickt. Am 1. Dezember kommt dein Code.',again:'Du bist bereits eingetragen. Am 1. Dezember kommt dein Code.'},
+         en:{email:'Please enter a valid e-mail address.',consent:'Please tick the consent box.',rate:'Too many attempts. Please try again later.',closed:'Sign-up is closed.',err:'That did not work. Please try again or write to support@fullsend-brand.com.',ok:"You're in! We've sent you a confirmation. Your code arrives on 1 December.",again:"You're already signed up. Your code arrives on 1 December."}};
+  function say(k,good){bm.textContent=T[L][k];bm.className='msg '+(good?'good':'bad')}
+  if(Date.now()>=Date.parse('2026-11-30T23:00:00Z')){bf.hidden=true;document.getElementById('betaClosed').hidden=false}
+  bf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var fd=new FormData(bf),em=String(fd.get('email')||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em))return say('email');
+    if(!fd.get('consent'))return say('consent');
+    var b=bf.querySelector('button');b.disabled=true;bm.textContent='…';bm.className='msg';
+    var body=new URLSearchParams({email:em,lang:L,consent:'1',website:fd.get('website')||''});
+    fetch('https://onenode-license.fabian-maissen.workers.dev/beta-signup',{method:'POST',body:body})
+      .then(function(r){return r.json()})
+      .then(function(j){if(j.ok){say(j.already?'again':'ok',true);bf.reset()}else{say(T[L][j.error]?j.error:'err');b.disabled=false}})
+      .catch(function(){say('err');b.disabled=false});
+  });
 
   // nav background
   var nav=document.getElementById('nav');
