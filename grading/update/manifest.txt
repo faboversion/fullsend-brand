@@ -1,10 +1,10 @@
 FSGU1
-version=1.7.0
+version=1.8.0
 looks_rev=3
 looks_url=https://fullsend-brand.com/grading/update/looks-3.fsl
 looks_sha512=45bbffdb72114c2bbed75d88bcedf2a406069822e294d072c34b4b5e675e01bf817fcefab761745e602dd8b05d05a1a2c1d936e71ec150187a70fd94b0a514e8
-mac=https://fullsend-brand.com/grading/update/ONE-NODE-1.7.0-mac.pkg
-win=https://fullsend-brand.com/grading/update/ONE-NODE-1.7.0-win-Setup.exe
+mac=https://fullsend-brand.com/grading/update/ONE-NODE-1.8.0-mac.pkg
+win=https://fullsend-brand.com/grading/update/ONE-NODE-1.8.0-win-Setup.exe
 download=https://fullsend-brand.com/
-notes=Sky (Auto Mask) with presets, Side by Side and Look A|B compare
-sig=71639c0e02da0388c9809c62c27c04c893bae387b74c2c19b87e76ba0307de43ce4ed2e0ebb7d45b95336c3bd65cfd27bb68c8d4ce3309f8a38aa0b9d9dd4c02
+notes=New Instagram Reel preview, online activation, Sky Auto Mask removed
+sig=70760c9cf5794db774872b42597df6038c3693231f0eb467d2f215569a1bb12a2b97dc1a8af9df19182b730da1f1826b318e3de40bb928131cffeac8afefe208
