@@ -199,7 +199,7 @@ footer a{text-decoration:none}
         </div>
         <div class="tabs" role="group" aria-label="Clip">
           <button type="button" data-clip="sea" aria-pressed="true">Sunset<small>GoPro GP-Log · Full Send</small></button>
-          <button type="button" data-clip="mtn" aria-pressed="false">Alps<small>DJI D-Log M · Afterburner</small></button>
+          <button type="button" data-clip="mtn" aria-pressed="false">Alps<small>DJI D-Log M · Full Send</small></button>
           <button type="button" data-clip="river" aria-pressed="false">River<small>DJI D-Log M · Full Send</small></button>
         </div>
       </div>
@@ -269,8 +269,8 @@ footer a{text-decoration:none}
   <section class="veil">
     <div class="wrap duo">
       <div class="cmp reveal" id="cmp">
-        <img src="/one-node/img/fx-off.webp" alt="">
-        <img class="top" src="/one-node/img/fx-on.webp" alt="">
+        <img src="/one-node/img/fx-off.webp?v=2" alt="">
+        <img class="top" src="/one-node/img/fx-on.webp?v=2" alt="">
         <div class="h"></div>
         <span class="tag l"><span lang="de">Ohne</span><span lang="en">Off</span></span>
         <span class="tag r">Halation · Bloom · Grain</span>
@@ -408,12 +408,12 @@ footer a{text-decoration:none}
   document.addEventListener('visibilitychange',function(){if(document.hidden)bgv.pause();else{var p=bgv.play();if(p&&p.catch)p.catch(function(){})}});
 
   // before / after: one stacked video (log on top, grade below) drawn into a canvas
-  var CLIPS={sea:{w:1280,h:1120,log:'GP-Log',look:'Full Send'},mtn:{w:1280,h:1120,log:'D-Log M',look:'Afterburner'},river:{w:1280,h:960,log:'D-Log M',look:'Full Send'}};
+  var CLIPS={sea:{w:1280,h:1120,log:'GP-Log',look:'Full Send'},mtn:{w:1280,h:1120,log:"D-Log M",look:"Full Send"},river:{w:1280,h:960,log:'D-Log M',look:'Full Send'}};
   var ba=document.getElementById('ba'),cv=document.getElementById('bac'),cx=cv.getContext('2d'),v=document.getElementById('bav'),hd=document.getElementById('bah');
   var pos=.5,cur=null,visible=false;
   function load(k){cur=CLIPS[k];cv.width=cur.w;cv.height=cur.h;cv.style.setProperty('--ar',cur.w+'/'+cur.h);
     document.getElementById('tagL').textContent=cur.log;document.getElementById('tagR').textContent=cur.look;
-    v.src='/one-node/vid/'+k+'_ab.mp4';v.load();if(visible){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+    v.src='/one-node/vid/'+k+'_ab.mp4?v=2';v.load();if(visible){var p=v.play();if(p&&p.catch)p.catch(function(){})}
     document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.clip===k)})}
   function draw(){if(cur&&v.readyState>=2){var W=cur.w,H=cur.h,x=Math.round(W*pos);
       cx.drawImage(v,0,0,W,H,0,0,W,H);
