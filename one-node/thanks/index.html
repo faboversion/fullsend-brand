@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ONE NODE – Thank you</title>
+<link rel="icon" href="/img/onenode-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#121011; --card:#1b1918; --line:#2c2925; --fg:#efe9df; --mute:#a39a8e; --red:#e5483b; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--fg);
+         font:17px/1.55 "Public Sans",-apple-system,Segoe UI,Arial,sans-serif;
+         display:grid; place-items:center; }
+  main { width:100%; max-width:560px; padding:48px 24px; }
+  h1 { font:900 clamp(34px,8vw,52px)/1 "Archivo",Arial Black,sans-serif; font-stretch:125%;
+       text-transform:uppercase; margin:0 0 10px; letter-spacing:-.01em; }
+  .lead { color:var(--mute); margin:0 0 28px; }
+  .label { font:500 12px "JetBrains Mono",ui-monospace,monospace; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--mute); margin:0 0 8px; }
+  .code { display:flex; align-items:center; justify-content:space-between; gap:12px;
+          background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 18px 18px 22px; }
+  .code span { font:500 clamp(20px,5.4vw,27px)/1 "JetBrains Mono",ui-monospace,monospace;
+               letter-spacing:.06em; user-select:all; }
+  button, .dl a { font:600 15px "Public Sans",sans-serif; border-radius:10px; cursor:pointer; text-decoration:none; }
+  button { background:var(--fg); color:var(--bg); border:0; padding:10px 14px; white-space:nowrap; }
+  .hint { color:var(--mute); font-size:14px; margin:10px 0 32px; }
+  .dl { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:0 0 32px; }
+  .dl a { display:block; text-align:center; padding:14px; border:1px solid var(--line); color:var(--fg); background:var(--card); }
+  .dl a.main { background:var(--red); border-color:var(--red); color:#fff; }
+  .dl small { display:block; font:400 12px "JetBrains Mono",monospace; opacity:.75; margin-top:3px; }
+  ol { margin:0; padding-left:22px; }
+  li { margin:0 0 8px; }
+  .by { margin-top:40px; font:500 12px "JetBrains Mono",monospace; letter-spacing:.14em; color:var(--red); text-transform:uppercase; }
+  .msg { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 22px; }
+  a { color:var(--fg); }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title">Thank you!</h1>
+  <p class="lead" id="lead">Your ONE NODE lifetime license is ready.</p>
+
+  <div id="loading" class="msg">Loading your activation code…</div>
+
+  <div id="ok" hidden>
+    <p class="label">Your activation code</p>
+    <div class="code"><span id="code"></span><button id="copy" type="button">Copy</button></div>
+    <p class="hint">Save this code. It works on up to <b id="max">2</b> computers.</p>
+
+    <p class="label">Download ONE NODE <span id="ver"></span></p>
+    <div class="dl">
+      <a id="mac" class="main" href="#">macOS<small>Installer .pkg</small></a>
+      <a id="win" href="#">Windows<small>Setup .exe</small></a>
+    </div>
+
+    <p class="label">Activate</p>
+    <ol>
+      <li>Install ONE NODE and restart DaVinci Resolve.</li>
+      <li>On the Color page, add ONE NODE to a node.</li>
+      <li>Open <b>License</b>, paste your code into <b>Activation Code</b> and click <b>Activate</b>.</li>
+    </ol>
+  </div>
+
+  <div id="err" class="msg" hidden></div>
+
+  <div class="by">ONE NODE · Made by Full Send Brand</div>
+</main>
+<script>
+(function () {
+  var API = "https://onenode-license.fabian-maissen.workers.dev";
+  var $ = function (id) { return document.getElementById(id); };
+  var sid = new URLSearchParams(location.search).get("session_id") || "";
+
+  function fail(html) {
+    $("loading").hidden = true;
+    $("err").hidden = false;
+    $("err").innerHTML = html;
+  }
+
+  // newest installers, always read from the signed update manifest
+  fetch("/grading/update/manifest.txt", { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (t) {
+    var m = {};
+    t.split("\n").forEach(function (l) { var i = l.indexOf("="); if (i > 0) m[l.slice(0, i).trim()] = l.slice(i + 1).trim(); });
+    if (m.mac) $("mac").href = m.mac;
+    if (m.win) $("win").href = m.win;
+    if (m.version) $("ver").textContent = m.version;
+  }).catch(function () {});
+
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) {
+    $("title").textContent = "Thank you";
+    $("lead").textContent = "";
+    fail("We could not find your purchase on this page. Need help? Write to <a href=\"https://www.instagram.com/faboversion/\">@faboversion</a> on Instagram.");
+    return;
+  }
+
+  var tries = 0;
+  function claim() {
+    fetch(API + "/claim?session_id=" + encodeURIComponent(sid)).then(function (r) {
+      return r.json().then(function (j) { return { status: r.status, j: j }; });
+    }).then(function (res) {
+      if (res.j && res.j.ok) {
+        $("code").textContent = res.j.code;
+        $("max").textContent = res.j.max || 2;
+        $("loading").hidden = true;
+        $("ok").hidden = false;
+      } else if (res.status === 202 && tries++ < 20) {
+        $("loading").textContent = "Your payment is still being confirmed… this page updates by itself.";
+        setTimeout(claim, 4000);
+      } else {
+        fail("Something went wrong while loading your code. Please refresh this page. Still stuck? Write to <a href=\"https://www.instagram.com/faboversion/\">@faboversion</a> on Instagram.");
+      }
+    }).catch(function () {
+      if (tries++ < 5) setTimeout(claim, 3000);
+      else fail("Could not reach the license server. Please refresh this page in a moment.");
+    });
+  }
+  claim();
+
+  $("copy").addEventListener("click", function () {
+    var c = $("code").textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(c) : Promise.reject()).then(function () {
+      $("copy").textContent = "Copied";
+      setTimeout(function () { $("copy").textContent = "Copy"; }, 1600);
+    }).catch(function () {});
+  });
+})();
+</script>
+</body>
+</html>
