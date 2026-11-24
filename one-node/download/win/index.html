@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONE NODE – Download</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#121011;color:#efe9df;font:16px/1.5 -apple-system,Segoe UI,Arial,sans-serif}a{color:#efe9df}</style></head>
+<body><p id="m">Starting your ONE NODE download…</p>
+<script>
+// Always the newest installer: read from the signed update manifest.
+fetch("/grading/update/manifest.txt",{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
+  var m=/^win=(.+)$/m.exec(t);
+  if(m){location.replace(m[1].trim());}else{throw 0;}
+}).catch(function(){document.getElementById("m").innerHTML='Download could not start. Please write to <a href="https://www.instagram.com/faboversion/">@faboversion</a> on Instagram.';});
+</script></body></html>
