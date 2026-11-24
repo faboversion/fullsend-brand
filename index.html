@@ -529,9 +529,11 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 .nav ul{min-width:0;overflow-x:auto;scrollbar-width:none}.nav ul::-webkit-scrollbar{display:none}
 .nav a[aria-current="page"]{color:var(--fg)}
 #grading[hidden]{display:none!important}
-.on-tease{position:relative;overflow:hidden;padding-block:clamp(36px,6vw,80px) clamp(40px,6vw,72px);text-align:center;background:#0b0a0d;color:#efe9df;border-bottom:1px solid var(--line)}
+.on-tease{position:relative;overflow:hidden;min-height:calc(100vh - 140px);padding-block:clamp(36px,6vw,80px) clamp(70px,9vw,120px);text-align:center;background:#0b0a0d;color:#efe9df}
 .on-amb{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(70px) saturate(1.3);opacity:.45;pointer-events:none}
-.on-tease::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 30%,rgba(11,10,13,.85) 85%);pointer-events:none}
+.on-tease::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 120% at 50% 55%,transparent 45%,rgba(11,10,13,.55) 100%);pointer-events:none}
+.on-beta-line{margin:22px 0 0;max-width:520px;color:#efe9df;font-size:15px}
+.on-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
 .on-tease .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
 .on-tease .eyebrow{color:#cdb593}
 .on-vid{display:block;margin-top:22px;height:min(78vh,860px);aspect-ratio:9/16;width:auto;max-width:100%;border-radius:22px;background:#000;object-fit:cover;
@@ -767,15 +769,8 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
       <span class="eyebrow" data-i>Coming February 2027</span>
       <video class="on-vid" id="onVid" src="vid/onenode-teaser.mp4" poster="img/onenode-poster.webp" muted loop playsinline preload="metadata" aria-label="ONE NODE teaser"></video>
       <p class="on-tag" data-i>One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.</p>
-      <a class="btn solid" href="/one-node/" style="margin-top:22px" data-i>Discover ONE NODE</a>
-    </div>
-  </section>
-  <section class="on-beta">
-    <div class="wrap">
-      <span class="eyebrow" data-i>Free beta · 1–31 December</span>
-      <h2 class="disp" data-i>Test it first</h2>
-      <p data-i>Sign up with your e-mail by 30 November. On 1 December you get the download and an activation code to use ONE NODE free all December, plus 20% off at the release on 1 February.</p>
-      <a class="btn solid" href="/one-node/#beta" data-i>Sign up for the beta</a>
+      <p class="on-beta-line" data-i>Free beta 1–31 December: sign up by 30 November and test ONE NODE free all December, plus 20% off at the release.</p>
+      <div class="on-btns"><a class="btn solid" href="/one-node/#beta" data-i>Sign up for the beta</a><a class="btn" href="/one-node/" data-i>Discover ONE NODE</a></div>
     </div>
   </section>
 </main>
@@ -1356,7 +1351,7 @@ vBtn.onclick=async()=>{
 loadVotes();setInterval(()=>{if(!document.hidden)loadVotes()},30000);
 
 /* ---------- ONE NODE TEASER ---------- */
-Object.assign(TR,{"Grading":"Grading","Coming February 2027":"Kommt im Februar 2027","One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.":"Ein Node. Komplettes Grading. Ein neues Grading-Plugin für DaVinci Resolve, made by Full Send Brand.","Free beta":"Gratis-Beta","Test it first":"Teste es zuerst","Want to try ONE NODE for free before it launches? Send me a DM on Instagram. Test slots are limited.":"Du willst ONE NODE vor dem Launch gratis testen? Schreib mir eine DM auf Instagram. Die Testplätze sind begrenzt.","Limited test slots":"Begrenzte Testplätze","Discover ONE NODE":"ONE NODE entdecken","Free beta · 1–31 December":"Gratis-Beta · 1.–31. Dezember","Sign up with your e-mail by 30 November. On 1 December you get the download and an activation code to use ONE NODE free all December, plus 20% off at the release on 1 February.":"Trag dich bis zum 30. November mit deiner E-Mail ein. Am 1. Dezember bekommst du den Download und einen Aktivierungscode, mit dem du ONE NODE den ganzen Dezember gratis nutzt. Dazu 20 % Rabatt zum Release am 1. Februar.","Sign up for the beta":"Für die Beta eintragen"});
+Object.assign(TR,{"Grading":"Grading","Coming February 2027":"Kommt im Februar 2027","One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.":"Ein Node. Komplettes Grading. Ein neues Grading-Plugin für DaVinci Resolve, made by Full Send Brand.","Free beta":"Gratis-Beta","Test it first":"Teste es zuerst","Want to try ONE NODE for free before it launches? Send me a DM on Instagram. Test slots are limited.":"Du willst ONE NODE vor dem Launch gratis testen? Schreib mir eine DM auf Instagram. Die Testplätze sind begrenzt.","Limited test slots":"Begrenzte Testplätze","Discover ONE NODE":"ONE NODE entdecken","Free beta · 1–31 December":"Gratis-Beta · 1.–31. Dezember","Sign up with your e-mail by 30 November. On 1 December you get the download and an activation code to use ONE NODE free all December, plus 20% off at the release on 1 February.":"Trag dich bis zum 30. November mit deiner E-Mail ein. Am 1. Dezember bekommst du den Download und einen Aktivierungscode, mit dem du ONE NODE den ganzen Dezember gratis nutzt. Dazu 20 % Rabatt zum Release am 1. Februar.","Sign up for the beta":"Für die Beta eintragen","Free beta 1–31 December: sign up by 30 November and test ONE NODE free all December, plus 20% off at the release.":"Gratis-Beta vom 1. bis 31. Dezember: Trag dich bis zum 30. November ein und teste ONE NODE den ganzen Dezember gratis. Dazu 20 % Rabatt zum Release."});
 const gMain=document.getElementById('top'),gView=document.getElementById('grading'),onVid=document.getElementById('onVid');
 function gRoute(){
   const g=location.hash==='#grading';
