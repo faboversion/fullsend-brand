@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /grading/update/
-Disallow: /one-node/
+Disallow: /one-node/thanks/
+Disallow: /one-node/download/
