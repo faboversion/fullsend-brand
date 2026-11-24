@@ -93,7 +93,7 @@
   if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) {
     $("title").textContent = "Thank you";
     $("lead").textContent = "";
-    fail("We could not find your purchase on this page. Need help? Write to <a href=\"https://www.instagram.com/faboversion/\">@faboversion</a> on Instagram.");
+    fail("We could not find your purchase on this page. Need help? Write to <a href=\"mailto:support@fullsend-brand.com\">support@fullsend-brand.com</a>.");
     return;
   }
 
@@ -111,7 +111,7 @@
         $("loading").textContent = "Your payment is still being confirmed… this page updates by itself.";
         setTimeout(claim, 4000);
       } else {
-        fail("Something went wrong while loading your code. Please refresh this page. Still stuck? Write to <a href=\"https://www.instagram.com/faboversion/\">@faboversion</a> on Instagram.");
+        fail("Something went wrong while loading your code. Please refresh this page. Still stuck? Write to <a href=\"mailto:support@fullsend-brand.com\">support@fullsend-brand.com</a>.");
       }
     }).catch(function () {
       if (tries++ < 5) setTimeout(claim, 3000);

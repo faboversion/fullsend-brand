@@ -6,5 +6,5 @@
 fetch("/grading/update/manifest.txt",{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
   var m=/^win=(.+)$/m.exec(t);
   if(m){location.replace(m[1].trim());}else{throw 0;}
-}).catch(function(){document.getElementById("m").innerHTML='Download could not start. Please write to <a href="https://www.instagram.com/faboversion/">@faboversion</a> on Instagram.';});
+}).catch(function(){document.getElementById("m").innerHTML='Download could not start. Please write to <a href="mailto:support@fullsend-brand.com">support@fullsend-brand.com</a>.';});
 </script></body></html>
