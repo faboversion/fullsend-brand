@@ -533,10 +533,11 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 .on-amb{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(70px) saturate(1.3);opacity:.45;pointer-events:none}
 .on-tease::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 120% at 50% 55%,transparent 45%,rgba(11,10,13,.55) 100%);pointer-events:none}
 .on-beta-line{margin:22px 0 0;max-width:520px;color:#efe9df;font-size:15px}
-.on-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+.on-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.on-cta{font-size:15px;padding:16px 28px}
 .on-tease .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
 .on-tease .eyebrow{color:#cdb593}
-.on-vid{display:block;margin-top:22px;height:min(78vh,860px);aspect-ratio:9/16;width:auto;max-width:100%;border-radius:22px;background:#000;object-fit:cover;
+.on-vid{display:block;margin-top:0;height:min(86vh,1000px);aspect-ratio:9/16;width:auto;max-width:100%;border-radius:22px;background:#000;object-fit:cover;
   box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(239,233,223,.08)}
 .on-tag{margin:26px 0 0;max-width:520px;color:rgba(239,233,223,.72);font-size:17px}
 .on-beta{padding-block:clamp(48px,7vw,96px);text-align:center}
@@ -766,11 +767,8 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
   <section class="on-tease">
     <img class="on-amb" src="img/onenode-poster.webp" alt="" aria-hidden="true">
     <div class="wrap">
-      <span class="eyebrow" data-i>Coming February 2027</span>
       <video class="on-vid" id="onVid" src="vid/onenode-teaser.mp4" poster="img/onenode-poster.webp" muted loop playsinline preload="metadata" aria-label="ONE NODE teaser"></video>
-      <p class="on-tag" data-i>One node. Complete grade. A new grading plugin for DaVinci Resolve, made by Full Send Brand.</p>
-      <p class="on-beta-line" data-i>Free beta 1–31 December: sign up by 30 November and test ONE NODE free all December, plus 20% off at the release.</p>
-      <div class="on-btns"><a class="btn solid" href="/one-node/#beta" data-i>Sign up for the beta</a><a class="btn" href="/one-node/" data-i>Discover ONE NODE</a></div>
+      <div class="on-btns"><a class="btn solid on-cta" href="/one-node/" data-i>Discover ONE NODE</a></div>
     </div>
   </section>
 </main>
