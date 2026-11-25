@@ -778,6 +778,7 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
     <span class="logo" role="img" aria-label="FULL SEND"></span>
     <span data-i>Independent FPV streetwear</span>
     <span data-i>Made in limited batches</span>
+    <span class="legal" style="display:flex;gap:16px;font-size:12px"><a href="/agb/" data-i style="color:inherit">Terms</a><a href="/impressum/" data-i style="color:inherit">Imprint</a><a href="/datenschutz/" data-i style="color:inherit">Privacy</a></span>
   </div>
 </footer>
 
@@ -855,7 +856,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 function card(p){
   const el=document.createElement('article');el.className='prod';
   el.innerHTML=`<button class="plate" aria-label="${L==='de'?esc(p.name)+' ansehen':'View '+esc(p.name)}"></button>
-   <div class="row"><div><h3>${esc(p.name)}</h3><div class="sub"></div>${SHOP[p.id]?`<div class="price">CHF ${SHOP[p.id].chf}.– / € ${SHOP[p.id].eur}</div>`:""}</div><div class="sw"></div></div>`;
+   <div class="row"><div><h3>${esc(p.name)}</h3><div class="sub"></div>${SHOP[p.id]?`<div class="price">CHF ${SHOP[p.id].chf}.–</div>`:""}</div><div class="sw"></div></div>`;
   const plate=el.querySelector('.plate'),sw=el.querySelector('.sw'),sub=el.querySelector('.sub');
   let vi=0;
   const render=()=>{
@@ -1037,7 +1038,8 @@ const SHOP={
  cap:{chf:30,eur:32,sz:["Navy","Black"],szLabel:"Color",e:{black:327398684}},
  bottle:{chf:30,eur:33,sz:null,one:"Yes",e:{clear:25503703}}
 };
-const DROP_OPEN=false;
+let DROP_OPEN=false; /* set from shop/catalog.json (drop.open / drop.close) */
+const SHOP_API='https://onenode-license.fabian-maissen.workers.dev';
 const IG_COMMUNITY='https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/';
 const F={name:1170100077,pre:1053728752,street:487463756,country:760210919,zip:1032444947,city:1460208402,insta:1497783167,phone:2025006327,email:700730236,pay:714641328,note:2031610876};
 const PAY=["Twint (Only Switzerland)","Paypal","Bank transfer","Other (Write me a DM)"];
@@ -1148,18 +1150,18 @@ async function orderPdf(){return fsPdf(buildD(),await loadLogo())}
 Object.assign(TR,{"You can close this window now.":"Du kannst dieses Fenster jetzt schliessen.","Your order confirmation with the PDF opened in a new window.":"Deine Bestellbestätigung mit PDF wurde in einem neuen Fenster geöffnet.","Order":"Bestellung","Write us a DM on Instagram and we'll sort out the payment with you.":"Schreib uns eine DM auf Instagram, wir klären die Zahlung mit dir."});
 Object.assign(TR,{"Order confirmation":"Bestellbestätigung","Order number":"Bestellnummer","Date":"Datum","Customer":"Kunde","Items":"Artikel","Please keep this confirmation. You will not receive an order confirmation by email.":"Bitte bewahre diese Bestätigung auf. Du erhältst keine Bestellbestätigung per E-Mail.","Questions? Write to @fullsend.brand on Instagram.":"Fragen? Schreib uns auf Instagram an @fullsend.brand.","You will not receive an order confirmation by email. Please download your confirmation as a PDF and keep it.":"Du erhältst keine Bestellbestätigung per E-Mail. Bitte lade dir die Bestätigung als PDF herunter und bewahre sie auf.","Download confirmation (PDF)":"Bestätigung herunterladen (PDF)"});
 Object.assign(TR,{"Bank transfer":"Banküberweisung","Bank details":"Bankverbindung","Account holder":"Kontoinhaber","Copy":"Kopieren","Copied":"Kopiert ✓","Copy failed":"Bitte manuell kopieren","Shipping (flat rate)":"Versand (pauschal)","Shipping":"Versand","Flat rate CHF 10 / € 10 per order, already included in the total.":"Pauschal CHF 10 / € 10 pro Bestellung, im Total bereits enthalten.","Thanks! Your pre-order has been sent. Please send the total using the details below.":"Danke! Deine Vorbestellung wurde gesendet. Bitte sende das Total mit den Angaben unten.","PayPal details":"PayPal-Angaben","TWINT details":"TWINT-Angaben","Send as":"Senden als","Friends and family":"Freunde und Familie"});
-Object.assign(TR,{"Size":"Grösse","Color":"Farbe","Quantity":"Anzahl","Add to cart":"In den Warenkorb","Choose a size":"Bitte Grösse wählen","Added to cart":"Zum Warenkorb hinzugefügt","Open cart":"Warenkorb öffnen","Cart":"Warenkorb","Your cart":"Dein Warenkorb","Your cart is empty.":"Dein Warenkorb ist leer.","Total":"Total","Checkout":"Zur Bestellung","Remove":"Entfernen","Back to cart":"Zurück zum Warenkorb","Last name":"Name","First name":"Vorname","Street and number":"Strasse und Nr.","Postal code":"PLZ","City":"Ort","Country":"Land","Instagram name":"Instagram-Name","Phone number":"Telefonnummer","Email":"E-Mail","Payment":"Zahlung","Special requests":"Spezielle Wünsche","Order summary":"Bestellübersicht","Send order":"Bestellung absenden","Sending…":"Wird gesendet…","Please fill in all required fields.":"Bitte alle Pflichtfelder ausfüllen.","Order sent":"Bestellung gesendet","Thanks! Your pre-order has been sent. We'll get in touch about payment via Instagram or email.":"Danke! Deine Vorbestellung wurde gesendet. Wir melden uns wegen der Zahlung per Instagram oder E-Mail.","Continue shopping":"Weiter einkaufen","Pilot name on the front":"Pilotenname vorne","Pilot name":"Pilotenname","One size":"Einheitsgrösse","Almost done":"Fast fertig","The order form opened in a new tab with everything pre-filled. Click Next twice and then Submit to complete your order.":"Das Bestellformular wurde in einem neuen Tab geöffnet, alles ist schon ausgefüllt. Bitte dort zweimal auf «Weiter» und dann auf «Senden» klicken, um die Bestellung abzuschliessen.","Open the form again":"Formular nochmals öffnen","Shipping costs":"Versandkosten","Shipping costs are not included in the prices above and will be added to your order total.":"Die Versandkosten sind in den Preisen oben nicht enthalten und kommen zum Bestelltotal dazu.","Switzerland: Swiss Post, flat rate CHF 10.":"Schweiz: Die Post, pauschal CHF 10.","International: DHL Standard, cost depends on the destination country.":"International: DHL Standard, Kosten je nach Zielland.","After your order, Fabo will contact you via Instagram with your final total including shipping and the payment details.":"Nach deiner Bestellung meldet sich Fabo per Instagram mit dem Endbetrag inkl. Versand und den Zahlungsdetails.","I have read the shipping information and accept that shipping costs will be added.":"Ich habe die Versandinfos gelesen und bin einverstanden, dass die Versandkosten dazukommen.","Please confirm the shipping information.":"Bitte bestätige die Versandinfos.","excl. shipping":"exkl. Versand","Already in your cart (max. 1 per item)":"Schon im Warenkorb (max. 1 pro Artikel)","Max. 1 per item and size":"Max. 1 Stück pro Artikel und Grösse","A Google confirmation tab opened. You can simply close it.":"Es hat sich ein Google-Tab mit der Bestätigung geöffnet. Den kannst du einfach schliessen.","Your browser blocked the confirmation window. Tap the button below to send your order.":"Dein Browser hat das Bestätigungsfenster blockiert. Tippe auf den Button, um die Bestellung zu senden.","Pre-order · paid after the drop closes":"Vorbestellung · Bezahlung nach Drop-Ende","Fit finder says":"Grössenfinder empfiehlt"});
+Object.assign(TR,{"Size":"Grösse","Color":"Farbe","Quantity":"Anzahl","Add to cart":"In den Warenkorb","Choose a size":"Bitte Grösse wählen","Added to cart":"Zum Warenkorb hinzugefügt","Open cart":"Warenkorb öffnen","Cart":"Warenkorb","Your cart":"Dein Warenkorb","Your cart is empty.":"Dein Warenkorb ist leer.","Total":"Total","Checkout":"Zur Bestellung","Remove":"Entfernen","Back to cart":"Zurück zum Warenkorb","Last name":"Name","First name":"Vorname","Street and number":"Strasse und Nr.","Postal code":"PLZ","City":"Ort","Country":"Land","Instagram name":"Instagram-Name","Phone number":"Telefonnummer","Email":"E-Mail","Payment":"Zahlung","Special requests":"Spezielle Wünsche","Order summary":"Bestellübersicht","Send order":"Bestellung absenden","Sending…":"Wird gesendet…","Please fill in all required fields.":"Bitte alle Pflichtfelder ausfüllen.","Order sent":"Bestellung gesendet","Thanks! Your pre-order has been sent. We'll get in touch about payment via Instagram or email.":"Danke! Deine Vorbestellung wurde gesendet. Wir melden uns wegen der Zahlung per Instagram oder E-Mail.","Continue shopping":"Weiter einkaufen","Pilot name on the front":"Pilotenname vorne","Pilot name":"Pilotenname","One size":"Einheitsgrösse","Almost done":"Fast fertig","The order form opened in a new tab with everything pre-filled. Click Next twice and then Submit to complete your order.":"Das Bestellformular wurde in einem neuen Tab geöffnet, alles ist schon ausgefüllt. Bitte dort zweimal auf «Weiter» und dann auf «Senden» klicken, um die Bestellung abzuschliessen.","Open the form again":"Formular nochmals öffnen","Shipping costs":"Versandkosten","Shipping costs are not included in the prices above and will be added to your order total.":"Die Versandkosten sind in den Preisen oben nicht enthalten und kommen zum Bestelltotal dazu.","Switzerland: Swiss Post, flat rate CHF 10.":"Schweiz: Die Post, pauschal CHF 10.","International: DHL Standard, cost depends on the destination country.":"International: DHL Standard, Kosten je nach Zielland.","After your order, Fabo will contact you via Instagram with your final total including shipping and the payment details.":"Nach deiner Bestellung meldet sich Fabo per Instagram mit dem Endbetrag inkl. Versand und den Zahlungsdetails.","I have read the shipping information and accept that shipping costs will be added.":"Ich habe die Versandinfos gelesen und bin einverstanden, dass die Versandkosten dazukommen.","Please confirm the shipping information.":"Bitte bestätige die Versandinfos.","excl. shipping":"exkl. Versand","Already in your cart (max. 1 per item)":"Schon im Warenkorb (max. 1 pro Artikel)","Max. 1 per item and size":"Max. 1 Stück pro Artikel und Grösse","A Google confirmation tab opened. You can simply close it.":"Es hat sich ein Google-Tab mit der Bestätigung geöffnet. Den kannst du einfach schliessen.","Your browser blocked the confirmation window. Tap the button below to send your order.":"Dein Browser hat das Bestätigungsfenster blockiert. Tippe auf den Button, um die Bestellung zu senden.","Pre-order · delivery 2–3 weeks after orders close":"Vorbestellung · Lieferung 2–3 Wochen nach Bestellschluss","Fit finder says":"Grössenfinder empfiehlt"});
 let CART=[];try{CART=JSON.parse(localStorage.getItem('fs-cart')||'[]')}catch(e){}
 const saveCart=()=>{try{localStorage.setItem('fs-cart',JSON.stringify(CART))}catch(e){};paintBadge()};
 const money=n=>Number.isInteger(n)?n+'.–':n.toFixed(2);
 const chf=n=>'CHF '+money(n);
-const eu=n=>'€ '+(Number.isInteger(n)?n:n.toFixed(2));
-const both=(c,e)=>chf(c)+' / '+eu(e);
+const eu=n=>'';
+const both=(c,e)=>chf(c);
 CART.forEach(x=>{x.q=1;if(!x.eur&&SHOP[x.id])x.eur=SHOP[x.id].eur});CART=CART.filter((x,i)=>CART.findIndex(y=>y.k===x.k)===i);
 const cartN=()=>CART.length,cartT=()=>CART.reduce((a,x)=>a+x.chf,0),cartE=()=>CART.reduce((a,x)=>a+(x.eur||0),0);
 /* ---------- Crew coupon ---------- */
 const CREW_HASH='8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',CREW_PCT=20;
-let CREW=false;try{CREW=localStorage.getItem('fs-crew')===CREW_HASH}catch(e){}
+let CREW=false;try{CREW=localStorage.getItem('fs-crew')===CREW_HASH&&!!localStorage.getItem('fs-crew-code')}catch(e){}
 const r2=n=>Math.round(n*100)/100;
 const CREW_PCT_ITEM={min:30,free:30}; /* Shirts Minimal + Freestyler: 30 %, everything else 20 % */
 const crewPct=id=>CREW_PCT_ITEM[id]||CREW_PCT;
@@ -1180,11 +1182,11 @@ cartBtn.onclick=()=>openCart();
 /* buy block inside the product dialog */
 function renderBuy(p,vi){
   const box=document.getElementById('dlgBuy');const S=SHOP[p.id];if(!S){box.innerHTML='';return}
-  if(!DROP_OPEN){box.innerHTML=`<div class="bp">${chf(S.chf)} <span style="color:var(--muted)">/</span> ${eu(S.eur)}</div><button type="button" class="btn add" disabled aria-disabled="true">${t('Ordering closed')}</button><p class="closedmsg">${t('The drop is over. You can order again at the next drop. Info in the')} <a href="${IG_COMMUNITY}" target="_blank" rel="noopener">${t('FULL SEND community on Instagram')}</a>.</p>`;return}
+  if(!DROP_OPEN){box.innerHTML=`<div class="bp">${chf(S.chf)}</div><button type="button" class="btn add" disabled aria-disabled="true">${t('Ordering closed')}</button><p class="closedmsg">${t('The drop is over. You can order again at the next drop. Info in the')} <a href="${IG_COMMUNITY}" target="_blank" rel="noopener">${t('FULL SEND community on Instagram')}</a>.</p>`;return}
   const v=p.v[vi];const entry=S.e[v.c];
   let size=null,q=1,pilot=false;
   const rec=(()=>{const a=parseFloat(String(ffW.value).replace(',','.')),b=parseFloat(String(ffL.value).replace(',','.'));if(!CHART[p.id]||!(a>=30&&b>=40))return null;const r=matchP(p,a,b);return r&&r.best.s})();
-  box.innerHTML=`<div class="bp">${chf(S.chf)} <span style="color:var(--muted)">/</span> ${eu(S.eur)}<small>${t('Pre-order · paid after the drop closes')}</small></div>
+  box.innerHTML=`<div class="bp">${chf(S.chf)}<small>${t('Pre-order · delivery 2–3 weeks after orders close')}</small></div>
    ${S.sz?`<div class="lbl">${t(S.szLabel||'Size')}${rec?` · ${t('Fit finder says')} <b style="color:var(--desert)">${rec}</b>`:''}</div><div class="sizes"></div>`:`<div class="lbl">${t('One size')}</div>`}
    ${S.pilot?`<label class="opt"><input type="checkbox" class="pc"> ${t('Pilot name on the front')}</label><input class="fin pn" placeholder="${t('Pilot name')}" hidden maxlength="30">`:''}
    <div class="row2"><button type="button" class="btn add">${t('Add to cart')}</button></div><p class="msg" aria-live="polite"></p>`;
@@ -1233,53 +1235,41 @@ function drawCart(){
     cartBody.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{CART.splice(+b.dataset.r,1);saveCart();drawCart()});
     cartBody.querySelector('#toCo').onclick=()=>{view='co';drawCart()};return;
   }
-  /* checkout form */
+  /* checkout: address, e-mail and payment are entered at Stripe */
   let d={};try{d=JSON.parse(localStorage.getItem('fs-co')||'{}')}catch(e){}
-  const fld=(k,l,type='text',ac='')=>`<label>${t(l)} *<input class="fin" name="${k}" type="${type}" autocomplete="${ac}" required value="${esc(d[k]||'')}"></label>`;
+  const lb='font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)';
   cartBody.innerHTML=`<form class="co" id="coForm" novalidate>
-    <div class="two">${fld('pre','First name','text','given-name')}${fld('name','Last name','text','family-name')}</div>
-    ${fld('street','Street and number','text','street-address')}
-    <div class="two">${fld('zip','Postal code','text','postal-code')}${fld('city','City','text','address-level2')}</div>
-    ${fld('country','Country','text','country-name')}
-    <div class="two">${fld('insta','Instagram name')}${fld('phone','Phone number','tel','tel')}</div>
-    ${fld('email','Email','email','email')}
-    <div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Payment')} *</div>
-    <div class="pay">${PAY.map(p=>`<label><input type="radio" name="pay" value="${esc(p)}" ${d.pay===p?'checked':''}> ${esc(t(p))}</label>`).join('')}</div>
-    <div id="payBox" data-m="${esc(d.pay||'')}">${payBox(d.pay)}</div>
-    <div class="cpn" style="display:grid;gap:6px"><div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Coupon code')}</div>${CREW?`<p class="msg" style="margin:0">✓ ${t('Crew discount applied (20 %, shirts 30 %)')} · <a href="#" id="cpRm">${t('Remove')}</a></p>`:`<div style="display:flex;gap:8px"><input class="fin" id="cpIn" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="button" class="btn" id="cpBtn" style="flex:none">${t('Apply')}</button></div><p class="err" id="cpMsg" style="margin:0"></p>`}</div>
-    <label>${t('Special requests')}<textarea class="fin" name="note">${esc(d.note||'')}</textarea></label>
-    <div class="lbl" style="font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">${t('Order summary')}</div>
+    <label>${t('Instagram name')} <span style="color:var(--muted);text-transform:none">(${t('optional')})</span><input class="fin" name="insta" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(d.insta||'')}"></label>
+    <div class="cpn" style="display:grid;gap:6px"><div class="lbl" style="${lb}">${t('Coupon code')}</div>${CREW?`<p class="msg" style="margin:0">✓ ${t('Crew discount applied (20 %, shirts 30 %)')} · <a href="#" id="cpRm">${t('Remove')}</a></p>`:`<div style="display:flex;gap:8px"><input class="fin" id="cpIn" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="button" class="btn" id="cpBtn" style="flex:none">${t('Apply')}</button></div><p class="err" id="cpMsg" style="margin:0"></p>`}</div>
+    <label>${t('Special requests')}<textarea class="fin" name="note" maxlength="400">${esc(d.note||'')}</textarea></label>
+    <div class="lbl" style="${lb}">${t('Order summary')}</div>
     ${sumHTML(true)}
-    <div class="ship"><strong>${t('Shipping costs')}</strong>${t('Flat rate CHF 10 / € 10 per order, already included in the total.')}</div>
+    <div class="ship"><strong>${t('Secure payment with Stripe')}</strong>${t('Next you pay by card, Apple Pay, Google Pay, Klarna or PayPal. Name, email and shipping address are entered there. Prices are in CHF. Outside Switzerland you can pay in your own currency.')}</div>
+    <div class="ship"><strong>${t('Pre-order')}</strong>${t('Everything is produced together after orders close. Delivery takes about 2–3 weeks after that.')}</div>
+    <p style="margin:0;font-size:13px;color:var(--muted)">${t('By continuing you accept our')} <a href="/agb/" target="_blank" style="color:var(--fg)">${t('terms and conditions')}</a>.</p>
     <p class="err" id="coErr"></p>
-    <div class="row2" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" id="coBack">${t('Back to cart')}</button><a class="btn solid" id="coSend" href="#" target="_blank" rel="noopener" style="flex:1;justify-content:center;text-align:center">${t('Send order')} <span class="dash"></span></a></div>
+    <div class="row2" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" id="coBack">${t('Back to cart')}</button><button class="btn solid" type="submit" id="coPay" style="flex:1;justify-content:center">${t('Continue to payment')} <span class="dash"></span></button></div>
   </form>`;
   const f=cartBody.querySelector('#coForm');
-  f.oninput=()=>{const o=Object.fromEntries(new FormData(f));const pb=cartBody.querySelector('#payBox');if(pb.dataset.m!==(o.pay||'')){pb.dataset.m=o.pay||'';pb.innerHTML=payBox(o.pay);wireCopy(pb)}try{localStorage.setItem('fs-co',JSON.stringify(o))}catch(e){}};
-  wireCopy(cartBody);
+  f.oninput=()=>{try{localStorage.setItem('fs-co',JSON.stringify(Object.fromEntries(new FormData(f))))}catch(e){}};
   {const ci=cartBody.querySelector('#cpIn'),cb=cartBody.querySelector('#cpBtn'),rm=cartBody.querySelector('#cpRm');
    const apply=async()=>{const v=(ci.value||'').trim().toUpperCase();if(!v)return;let h='';try{h=await sha(v)}catch(e){}
-     if(h===CREW_HASH){CREW=true;try{localStorage.setItem('fs-crew',h)}catch(e){};drawCart()}else cartBody.querySelector('#cpMsg').textContent=t('This code is not valid.')};
+     if(h===CREW_HASH){CREW=true;try{localStorage.setItem('fs-crew',h);localStorage.setItem('fs-crew-code',v)}catch(e){};drawCart()}else cartBody.querySelector('#cpMsg').textContent=t('This code is not valid.')};
    if(cb)cb.onclick=apply;if(ci)ci.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();apply()}};
-   if(rm)rm.onclick=e=>{e.preventDefault();CREW=false;try{localStorage.removeItem('fs-crew')}catch(_){};drawCart()}}
+   if(rm)rm.onclick=e=>{e.preventDefault();CREW=false;try{localStorage.removeItem('fs-crew');localStorage.removeItem('fs-crew-code')}catch(_){};drawCart()}}
   cartBody.querySelector('#coBack').onclick=()=>{view='cart';drawCart()};
-  const coNr=(()=>{const dt=new Date(),p2=n=>String(n).padStart(2,'0');return 'FS-'+String(dt.getFullYear()).slice(2)+p2(dt.getMonth()+1)+p2(dt.getDate())+'-'+Math.random().toString(36).slice(2,6).toUpperCase()})();
-  const send=cartBody.querySelector('#coSend'),err=cartBody.querySelector('#coErr');
-  const invalid=o=>{const miss=['pre','name','street','zip','city','country','insta','phone','email'].filter(k=>!String(o[k]||'').trim());return miss.length||!o.pay||!/^\S+@\S+\.\S+$/.test(o.email||'')};
-  const prep=()=>{const o=Object.fromEntries(new FormData(f));if(invalid(o))return null;
-    const dt=new Date(),p2=n=>String(n).padStart(2,'0');
-    lastPay=o.pay;lastTot=chf(totC())+' / '+eu(totE());
-    lastOrder={nr:coNr,date:dt.toLocaleDateString('de-CH')+' '+p2(dt.getHours())+':'+p2(dt.getMinutes()),o:{...o},items:CART.map(x=>({...x})),pay:o.pay,tot:lastTot,totC:totC(),totE:totE(),crew:CREW,dC:discC(),dE:discE()};
-    lastPrefill=orderUrl(o);return lastPrefill};
-  const refresh=()=>{try{const u=prep();send.href=u||'#'}catch(x){send.href='#'}};
-  f.addEventListener('input',refresh);f.addEventListener('change',refresh);refresh();
-  f.onsubmit=e=>{e.preventDefault()};
-  send.onclick=e=>{const u=prep();
-    if(!u){e.preventDefault();err.textContent=t('Please fill in all required fields.');f.querySelectorAll('[required]').forEach(i=>i.style.borderColor=String(i.value).trim()?'':'#e2786d');return}
-    send.href=u; /* the link itself opens the order page: one tap, no popup blocker */
-    setTimeout(()=>{CART=[];saveCart();try{localStorage.removeItem('fs-co')}catch(_){};view='done';drawCart()},600)};
+  const pay=cartBody.querySelector('#coPay'),err=cartBody.querySelector('#coErr');
+  f.onsubmit=async e=>{e.preventDefault();if(pay.disabled)return;
+    pay.disabled=true;err.textContent='';const lbl=pay.innerHTML;pay.textContent=t('One moment…');
+    const o=Object.fromEntries(new FormData(f));let code='';try{code=CREW?localStorage.getItem('fs-crew-code')||'':''}catch(_){}
+    try{
+      const r=await fetch(SHOP_API+'/shop-checkout',{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({items:CART.map(x=>({id:x.id,c:x.c,s:x.s,pilot:x.pilot||''})),lang:L,crew:code,insta:o.insta||'',note:o.note||''})});
+      const j=await r.json();
+      if(j.ok&&j.url){location.href=j.url;return}
+      err.textContent=t(j.error==='closed'?'Orders are closed right now.':'Something went wrong. Please try again or write to support@fullsend-brand.com.');
+    }catch(x){err.textContent=t('Something went wrong. Please try again or write to support@fullsend-brand.com.')}
+    pay.disabled=false;pay.innerHTML=lbl};
 }
-
 /* Google Form submission */
 function orderParams(o){
   const P=new URLSearchParams();
@@ -1308,9 +1298,17 @@ function orderUrl(o){
   const G=new URLSearchParams(P);G.append('pageHistory','0,1,2');G.append('submit','Submit');
   return FORM_POST+'?'+G.toString();
 }
-if(!DROP_OPEN){cartBtn.hidden=true;CART=[];try{localStorage.removeItem('fs-cart')}catch(e){}}
-else{const n=document.querySelector('.notice');if(n)n.innerHTML='<span data-i>Drop open · Orders are open now · Shipping flat CHF 10 / € 10</span>';const dr=document.getElementById('drop');if(dr)dr.hidden=true;const nb=document.querySelector('.hero a.btn[href="#drop"]');if(nb)nb.remove();Object.assign(TR,{'Drop open · Orders are open now · Shipping flat CHF 10 / € 10':'Drop offen · Jetzt bestellen · Versand pauschal CHF 10 / € 10'})}
-paintBadge();
+cartBtn.hidden=true;
+Object.assign(TR,{'Drop open · Orders are open now · Shipping flat CHF 10':'Drop offen · Jetzt bestellen · Versand pauschal CHF 10'});
+fetch('/shop/catalog.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{
+  const d=c.drop||{},now=Date.now();
+  DROP_OPEN=!!(d.open&&d.close&&now>=Date.parse(d.open)&&now<Date.parse(d.close));
+}).catch(()=>{DROP_OPEN=false}).then(()=>{
+  if(!DROP_OPEN){CART=[];try{localStorage.removeItem('fs-cart')}catch(e){}}
+  else{cartBtn.hidden=false;const n=document.querySelector('.notice');if(n)n.innerHTML='<span data-i>Drop open · Orders are open now · Shipping flat CHF 10</span>';const dr=document.getElementById('drop');if(dr)dr.hidden=true;const nb=document.querySelector('.hero a.btn[href="#drop"]');if(nb)nb.remove();try{setLang(L)}catch(e){}
+    if(/[?&]cart=1/.test(location.search)&&CART.length)openCart()}
+  paintBadge();
+});
 
 Object.assign(TR,{"Drop closed · Orders are paused until the next drop · Info in the": "Drop geschlossen · Bestellungen pausiert bis zum nächsten Drop · Infos in der", "FULL SEND community on Instagram": "FULL SEND Community auf Instagram", "The Collection <span class=\"dash\"></span>": "Die Kollektion <span class=\"dash\"></span>", "Next drop": "Nächster Drop", "Drop closed": "Drop geschlossen", "See you at the next drop": "Wir sehen uns beim nächsten Drop", "The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.": "Der letzte Drop ist vorbei und Bestellungen sind im Moment pausiert. Die Kollektion kannst du weiterhin anschauen und deine Grösse finden. Der nächste Drop wird zuerst in der FULL SEND Community auf Instagram angekündigt.", "Join the community <span class=\"dash\"></span>": "Community beitreten <span class=\"dash\"></span>", "Ordering closed": "Bestellung geschlossen", "The drop is over. You can order again at the next drop. Info in the": "Der Drop ist vorbei. Bestellen kannst du wieder beim nächsten Drop. Infos in der"});
 Object.assign(TR,{"News · Coming early 2027":"News · Anfang 2027","First Light. <span>A new cut.</span>":"First Light. <span>Ein neuer Schnitt.</span>","At the start of 2027 the FIRST LIGHT special edition joins the collection, and with it a brand-new piece: the boxy hoodie. A new print, a new cut and the heaviest fabric we have ever used. Here is a first look.":"Zum Start ins Jahr 2027 kommt die Special Edition FIRST LIGHT in die Kollektion, und mit ihr ein ganz neues Teil: der Boxy Hoodie. Ein neuer Print, ein neuer Schnitt und der schwerste Stoff, den wir je verwendet haben. Hier ein erster Blick darauf.","Heather Grey · black print":"Grau meliert · schwarzer Print","French Navy · white print":"French Navy · weisser Print","Be first to know <span class=\"dash\"></span>":"Als Erste:r erfahren <span class=\"dash\"></span>","Weight":"Gewicht","Fit":"Passform","Fabric":"Material","Release":"Release","Boxy · Oversized":"Boxy · Oversized","100% organic cotton":"100 % Bio-Baumwolle","Early 2027":"Anfang 2027","Extremely heavy 400 g/m² fabric":"Extrem schwere Qualität mit 400 g/m² Flächengewicht","Unique dry hand feel for a modern look":"Einzigartige trockene Haptik für einen modernen Look","Double-layer hood with matching drawcord":"Doppellagige Kapuze mit farblich passender Kordel","Classic kangaroo pocket on the front":"Klassische Kängurutasche auf der Vorderseite","Wide rib cuffs and hem":"Breite Rippbündchen an Ärmelabschlüssen und Saum","High-quality make, 100% organic cotton":"Hochwertige Verarbeitung aus 100 % Bio-Baumwolle","Comfortable unisex fit for women and men":"Bequeme Unisex-Passform für Damen und Herren","Boxy hoodie in French Navy with white FULL SEND chest logo, front view in a subway station":"Boxy Hoodie in French Navy mit weissem FULL SEND Brustlogo, Vorderansicht in einer U-Bahn-Station","Boxy hoodie in French Navy with the white FIRST LIGHT back print":"Boxy Hoodie in French Navy mit weissem FIRST LIGHT Rückenprint","Boxy hoodie in heather grey with black FULL SEND chest logo, front view in a concrete stairwell":"Boxy Hoodie in Grau meliert mit schwarzem FULL SEND Brustlogo, Vorderansicht in einem Betontreppenhaus","Boxy hoodie in heather grey with the black FIRST LIGHT back print":"Boxy Hoodie in Grau meliert mit schwarzem FIRST LIGHT Rückenprint"});
@@ -1362,6 +1360,7 @@ window.addEventListener('hashchange',gRoute);gRoute();
 /* ---------- Language switch ---------- */
 const I18N_EL=[...document.querySelectorAll('[data-i]')].map(el=>({el,en:el.innerHTML.trim()}));
 const I18N_AT=[...document.querySelectorAll('[data-ta]')].map(el=>({el,a:el.dataset.ta,en:el.getAttribute(el.dataset.ta)}));
+Object.assign(TR,{"optional":"optional","Secure payment with Stripe":"Sicher bezahlen mit Stripe","Next you pay by card, Apple Pay, Google Pay, Klarna or PayPal. Name, email and shipping address are entered there. Prices are in CHF. Outside Switzerland you can pay in your own currency.":"Als Nächstes bezahlst du mit Karte, Apple Pay, Google Pay, Klarna oder PayPal. Name, E-Mail und Lieferadresse gibst du dort ein. Die Preise sind in CHF. Ausserhalb der Schweiz kannst du in deiner Landeswährung bezahlen.","Pre-order":"Vorbestellung","Everything is produced together after orders close. Delivery takes about 2–3 weeks after that.":"Nach Bestellschluss wird alles gemeinsam produziert. Danach dauert die Lieferung etwa 2–3 Wochen.","By continuing you accept our":"Mit dem Weiterklicken akzeptierst du unsere","terms and conditions":"AGB","Continue to payment":"Weiter zur Zahlung","One moment…":"Einen Moment…","Orders are closed right now.":"Bestellungen sind gerade geschlossen.","Something went wrong. Please try again or write to support@fullsend-brand.com.":"Da ist etwas schiefgelaufen. Bitte nochmals versuchen oder an support@fullsend-brand.com schreiben.","Terms":"AGB","Imprint":"Impressum","Privacy":"Datenschutz"});
 function setLang(l){
   L=l==='de'?'de':'en';
   document.documentElement.lang=L;

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Danke · FULL SEND</title>
+<link rel="icon" href="/img/logo-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#0f0e0d;--fg:#efe9df;--muted:#a39a8e;--line:#2c2925;--accent:#cdb593}
+@media (prefers-color-scheme:light){:root{--bg:#f1ede6;--fg:#171513;--muted:#6b6358;--line:#d5cdc0;--accent:#8a6d45}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Public Sans",-apple-system,Arial,sans-serif;min-height:100vh;display:grid;place-items:center}
+main{width:100%;max-width:560px;padding:48px 22px}
+.logo{display:block;width:150px;aspect-ratio:1254/280;background:url(/img/logo-white.png) center/contain no-repeat;margin-bottom:40px}
+@media (prefers-color-scheme:light){.logo{background-image:url(/img/logo-black.png)}}
+h1{font:900 clamp(34px,8vw,52px)/1 "Archivo",Arial Black,sans-serif;font-stretch:115%;text-transform:uppercase;margin:0 0 14px}
+p{color:var(--muted);margin:0 0 14px}
+.nr{font:500 12px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:28px 0 8px}
+.row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row small{display:block;color:var(--muted);font-size:13px}
+.row.t{font-weight:700}
+.btn{display:inline-block;margin-top:28px;padding:14px 22px;border:1px solid var(--fg);color:var(--fg);text-decoration:none;font:500 12px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.btn:hover{background:var(--fg);color:var(--bg)}
+[lang=en] .de,[lang=de] .en{display:none}
+</style>
+</head>
+<body>
+<main>
+  <a class="logo" href="/" aria-label="FULL SEND"></a>
+  <h1><span class="de">Danke!</span><span class="en">Thank you!</span></h1>
+  <p id="lead"><span class="de">Deine Zahlung ist eingegangen. Die Bestätigung mit allen Details kommt per E-Mail.</span><span class="en">Your payment has been received. The confirmation with all details is on its way by email.</span></p>
+  <p><span class="de">Vorbestellung: Nach Bestellschluss wird alles gemeinsam produziert, danach dauert die Lieferung etwa 2–3 Wochen.</span><span class="en">Pre-order: everything is produced together after orders close; delivery takes about 2–3 weeks after that.</span></p>
+  <div id="order"></div>
+  <a class="btn" href="/"><span class="de">Zurück zum Shop</span><span class="en">Back to the shop</span></a>
+</main>
+<script>
+(function(){
+  var L=new URLSearchParams(location.search).get('lang')||((navigator.language||'').slice(0,2)==='de'?'de':'en');
+  if(L!=='de')L='en';document.documentElement.lang=L;
+  try{localStorage.removeItem('fs-cart');localStorage.removeItem('fs-co')}catch(e){}
+  var id=new URLSearchParams(location.search).get('session_id');if(!id)return;
+  var chf=function(c){return 'CHF '+(c/100).toFixed(2)};
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var tries=0;
+  (function load(){
+    fetch('https://onenode-license.fabian-maissen.workers.dev/shop-order?session_id='+encodeURIComponent(id)).then(function(r){return r.json()}).then(function(j){
+      if(!j.ok){if(++tries<6)setTimeout(load,2000);return}
+      var de=L==='de';
+      document.getElementById('order').innerHTML='<div class="nr">'+(de?'Bestellung ':'Order ')+esc(j.nr)+'</div>'+
+        j.items.map(function(i){return '<div class="row"><span>'+esc(i.name)+'<small>'+esc(i.color)+' · '+esc(i.size)+(i.pilot?' · '+esc(i.pilot):'')+'</small></span><span>'+chf(i.unit)+'</span></div>'}).join('')+
+        '<div class="row"><span>'+(de?'Versand':'Shipping')+'</span><span>'+chf(j.ship)+'</span></div>'+
+        '<div class="row t"><span>Total</span><span>'+chf(j.total)+'</span></div>'+
+        (j.email?'<p style="margin-top:14px">'+(de?'Bestätigung an ':'Confirmation sent to ')+esc(j.email)+'</p>':'');
+    }).catch(function(){if(++tries<6)setTimeout(load,2000)});
+  })();
+})();
+</script>
+</body>
+</html>

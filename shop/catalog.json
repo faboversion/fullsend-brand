@@ -1,0 +1,205 @@
+{
+ "updated": "2026-11-25",
+ "drop": {
+  "name": "First Light",
+  "open": "2027-02-01T00:00:00+01:00",
+  "close": "2027-02-08T00:00:00+01:00"
+ },
+ "currency": "chf",
+ "shipping": {
+  "chf": 10
+ },
+ "crew": {
+  "sha256": "8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b",
+  "pct": 20,
+  "perItem": {
+   "min": 30,
+   "free": 30
+  }
+ },
+ "products": {
+  "min": {
+   "name": "Shirt Minimal Edition",
+   "chf": 38,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black",
+    "desert": "Desert"
+   },
+   "pilot": false
+  },
+  "free": {
+   "name": "Shirt Freestyler",
+   "chf": 38,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black",
+    "desert": "Desert"
+   },
+   "pilot": false
+  },
+  "hood": {
+   "name": "Hoodie",
+   "chf": 60,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "4XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black",
+    "desert": "Desert"
+   },
+   "pilot": false
+  },
+  "hoodmin": {
+   "name": "Hoodie Minimal",
+   "chf": 60,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "4XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black"
+   },
+   "pilot": false
+  },
+  "soft": {
+   "name": "Softshell Discoverer",
+   "chf": 105,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "4XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "navy": "Navy Blue"
+   },
+   "pilot": false
+  },
+  "trek": {
+   "name": "Fleece Trekker",
+   "chf": 90,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "desert": "Desert"
+   },
+   "pilot": true
+  },
+  "bomber": {
+   "name": "Bomber 16 Again",
+   "chf": 99,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "olive": "Olive"
+   },
+   "pilot": false
+  },
+  "stepp": {
+   "name": "Stepp Climber",
+   "chf": 85,
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black",
+    "desert": "Desert"
+   },
+   "pilot": false
+  },
+  "cap": {
+   "name": "Cap",
+   "chf": 30,
+   "sizes": [
+    "Navy",
+    "Black"
+   ],
+   "sizeLabel": "Color",
+   "colors": {
+    "black": "Navy / Black"
+   },
+   "pilot": false
+  },
+  "bottle": {
+   "name": "Bottle 500 ml",
+   "chf": 30,
+   "sizes": null,
+   "sizeLabel": "Size",
+   "colors": {
+    "clear": "Clear / Black"
+   },
+   "pilot": false
+  }
+ }
+}
