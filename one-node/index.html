@@ -99,6 +99,8 @@ section{position:relative;padding-block:clamp(70px,10vw,130px)}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
 .cmp{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);aspect-ratio:8/7;background:#000;touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none}
 .cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp canvas{position:absolute;inset:0;width:100%;height:100%;display:block}.cmp video{display:none}
+.cmtabs{display:flex;gap:8px;margin:0 0 22px}.cmtabs button{font:500 12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}.cmtabs button[aria-pressed=true]{background:var(--fg);color:#0b0a0d}
 .cmp .top{clip-path:inset(0 0 0 var(--x,50%))}
 .cmp .h{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;margin-left:-1px;background:var(--fg)}
 .cmp .tag{position:absolute;top:16px;padding:7px 12px;border-radius:8px;background:rgba(11,10,13,.7);font:500 11px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
@@ -280,16 +282,17 @@ footer a{text-decoration:none}
   <section class="veil">
     <div class="wrap duo">
       <div class="cmp reveal" id="cmp">
-        <img src="/one-node/img/fx-off.webp?v=2" alt="">
-        <img class="top" src="/one-node/img/fx-on.webp?v=2" alt="">
+        <canvas id="cmc" width="1280" height="1120"></canvas>
+        <video id="cmv" muted loop playsinline preload="metadata"></video>
         <div class="h"></div>
-        <span class="tag l"><span lang="de">Ohne</span><span lang="en">Off</span></span>
-        <span class="tag r">Halation · Bloom · Grain</span>
+        <span class="tag l">Log</span>
+        <span class="tag r">ONE NODE · <b id="cmTag">Golden Dive</b></span>
       </div>
       <div class="reveal">
         <span class="eyebrow"><span lang="de">Der Film-Feinschliff</span><span lang="en">The film finish</span></span>
         <h2 class="disp"><span lang="de">Glanz, Glühen, Korn.</span><span lang="en">Glow, bloom, grain.</span></h2>
-        <p class="lead"><span lang="de">Die Details, die ein Bild nach Kino statt nach Action-Cam aussehen lassen. Fein dosiert und direkt im selben Node.</span><span lang="en">The details that make footage feel like cinema instead of an action cam. Subtle and right in the same node.</span></p>
+        <p class="lead"><span lang="de">Die Details, die ein Bild nach Kino statt nach Action-Cam aussehen lassen. Zieh den Regler: links das flache Log aus der Kamera, rechts der fertige Look mit Feinschliff, alles im selben Node.</span><span lang="en">The details that make footage feel like cinema instead of an action cam. Drag the slider: flat camera log on the left, the finished look on the right, all in the same node.</span></p>
+        <div class="cmtabs" role="group" aria-label="Clip"><button type="button" data-k="sard" aria-pressed="true"><span lang="de">Sardinien</span><span lang="en">Sardinia</span></button><button type="button" data-k="alps" aria-pressed="false"><span lang="de">Alpen</span><span lang="en">Alps</span></button></div>
         <ul class="ticks">
           <li><span lang="de">Halation: roter Schein um helle Kanten</span><span lang="en">Halation: red glow around bright edges</span></li>
           <li><span lang="de">Bloom: weiches Leuchten der Lichter</span><span lang="en">Bloom: soft glow from highlights</span></li>
@@ -479,9 +482,16 @@ footer a{text-decoration:none}
   document.querySelectorAll('#chips button').forEach(function(b){b.onclick=function(){var k=b.dataset.look;img.src='/one-node/img/look-'+k+'.webp';tag.textContent=NAMES[k];
     document.querySelectorAll('#chips button').forEach(function(c){c.setAttribute('aria-pressed',c===b)})}});
 
-  // fx compare
-  var cmp=document.getElementById('cmp'),cd=false;
-  function cpos(e){var r=cmp.getBoundingClientRect();cmp.style.setProperty('--x',(Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))*100)+'%')}
+  // log vs ONE NODE compare (stacked video: log on top, grade below)
+  var cmp=document.getElementById('cmp'),cd=false,cmv=document.getElementById('cmv'),cmc=document.getElementById('cmc'),cmx=cmc.getContext('2d'),cx50=.5,cmVis=false;
+  var CM={sard:'Golden Dive',alps:'Full Send'};
+  function cmLoad(k){cmv.src='/one-node/vid/'+k+'_ab.mp4?v=1';cmv.load();document.getElementById('cmTag').textContent=CM[k];
+    document.querySelectorAll('.cmtabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});if(cmVis){var p=cmv.play();if(p&&p.catch)p.catch(function(){})}}
+  function cmDraw(){if(cmVis&&cmv.readyState>=2){var x=Math.round(1280*cx50);cmx.drawImage(cmv,0,0,1280,1120,0,0,1280,1120);if(x<1280)cmx.drawImage(cmv,x,1120,1280-x,1120,x,0,1280-x,1120)}requestAnimationFrame(cmDraw)}
+  document.querySelectorAll('.cmtabs button').forEach(function(b){b.onclick=function(){cmLoad(b.dataset.k)}});
+  new IntersectionObserver(function(es){es.forEach(function(e){cmVis=e.isIntersecting;if(cmVis){if(cmv.preload!=='auto'){cmv.preload='auto'}var p=cmv.play();if(p&&p.catch)p.catch(function(){})}else cmv.pause()})},{threshold:.1}).observe(cmp);
+  cmLoad('sard');requestAnimationFrame(cmDraw);
+  function cpos(e){var r=cmp.getBoundingClientRect();cx50=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));cmp.style.setProperty('--x',(cx50*100)+'%')}
   cmp.addEventListener('pointerdown',function(e){cd=true;cmp.setPointerCapture(e.pointerId);cpos(e)});
   cmp.addEventListener('pointermove',function(e){if(cd)cpos(e)});
   cmp.addEventListener('pointerup',function(){cd=false});cmp.addEventListener('pointercancel',function(){cd=false});
