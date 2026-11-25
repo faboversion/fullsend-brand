@@ -547,6 +547,36 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 .on-slots{display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg);margin-top:18px}
 .on-slots i{width:8px;height:8px;border-radius:50%;background:#e5483b;box-shadow:0 0 0 4px rgba(229,72,59,.18)}
 @media (max-width:640px){.on-vid{height:auto;width:100%;border-radius:16px}}
+/* ---------- Redesign 2026-11: three live feeds hero ---------- */
+.hx{position:relative;padding:0;background:#0f0e0d;color:#efe9df;overflow:hidden}
+.hx .feeds{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:4px;height:min(94svh,1040px);min-height:620px}
+.hx .feed{margin:0;height:100%}
+.hx .feed.side{filter:saturate(.9) brightness(.82)}
+.hx .feeds::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(15,14,13,.35) 0%,rgba(15,14,13,0) 22%,rgba(15,14,13,0) 42%,rgba(15,14,13,.78) 74%,rgba(15,14,13,.94) 100%)}
+.hx-copy{position:absolute;left:0;right:0;bottom:0;padding-bottom:clamp(28px,5vw,64px)}
+.hx-copy .wrap{display:grid;grid-template-columns:minmax(0,1fr);align-items:end;gap:clamp(18px,2.4vw,28px)}
+.hx .hero-logo{width:min(70vw,420px);background-image:url(img/logo-white.png)}
+.hx h1{font-size:clamp(40px,6.4vw,108px);margin:0;color:#efe9df;max-width:16ch}
+.hx h1 span{display:block;color:#cdb593}
+.hx-row{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 48px}
+.hx .lede{color:rgba(239,233,223,.78);max-width:52ch}
+.hx .btn{border-color:#efe9df;color:#efe9df}
+.hx .btn:hover{background:#efe9df;color:#0f0e0d}
+.hx .btn.solid{background:#efe9df;color:#0f0e0d}
+.hx .btn.solid:hover{background:#cdb593;border-color:#cdb593}
+.hx .osd .hud{font-size:12px}
+@media (max-width:860px){
+  .hx .feeds{grid-template-columns:1fr;height:auto;min-height:0}
+  .hx .feed.side{display:none}
+  .hx .feed.main{aspect-ratio:9/14;max-height:86svh;width:100%}
+  .hx .hud.bot{display:none}
+  .hx h1{font-size:clamp(38px,11vw,64px)}
+}
+/* calmer sections, bigger product plates */
+#collection .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:clamp(18px,2.4vw,32px)}
+#collection .head h2{font-size:clamp(44px,7vw,112px)}
+
 </style>
 
 <div class="notice"><span data-i>Drop closed · Orders are paused until the next drop · Info in the</span> <a href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>FULL SEND community on Instagram</a></div>
@@ -566,23 +596,37 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 </header>
 
 <main id="top">
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <div class="hero-logo" role="img" aria-label="FULL SEND logo"></div>
-        <h1 class="disp" data-i>Made for everyday life. <span>Inspired by FPV.</span></h1>
-        <p class="lede" data-i>FULL SEND is independent streetwear from an FPV pilot. Every piece starts in the mountains, behind the goggles, and ends up in the clothes you wear on the ground.</p>
-        <div class="hero-meta">
-          <a class="btn solid" href="#collection" data-i>The Collection <span class="dash"></span></a>
-          <a class="btn" href="#drop" data-i>Next drop</a>
-        </div>
-      </div>
-      <figure class="osd" style="margin:0">
+  <section class="hero hx">
+    <div class="feeds">
+      <figure class="osd feed side">
+        <video data-src="vid/ridge.mp4" poster="img/ridge-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <div class="hud top"><span>CAM 2</span><span>4S 15.9V</span></div>
+        <div class="hud bot"><span>ALT 2340M</span><span>LQ 98</span></div>
+      </figure>
+      <figure class="osd feed main">
         <video id="heroVid" data-ta="aria-label" data-src="vid/hero.mp4" poster="img/hero-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="FPV pilot in black with drone and goggles on a mountain pass next to a wind turbine"></video>
         <div class="hud top"><span class="rec">REC</span><span>4S 16.4V</span><span>RSSI 99</span></div>
         <div class="cross"></div>
         <div class="hud bot"><span>ALT 2108M</span><span>LQ 100</span><span>SEND IT</span></div>
       </figure>
+      <figure class="osd feed side">
+        <video data-src="vid/peak.mp4" poster="img/peak-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <div class="hud top"><span>CAM 3</span><span>4S 16.1V</span></div>
+        <div class="hud bot"><span>ALT 2890M</span><span>LQ 100</span></div>
+      </figure>
+    </div>
+    <div class="hx-copy">
+      <div class="wrap">
+        <div class="hero-logo" role="img" aria-label="FULL SEND logo"></div>
+        <h1 class="disp" data-i>Made for everyday life. <span>Inspired by FPV.</span></h1>
+        <div class="hx-row">
+          <p class="lede" data-i>FULL SEND is independent streetwear from an FPV pilot. Every piece starts in the mountains, behind the goggles, and ends up in the clothes you wear on the ground.</p>
+          <div class="hero-meta">
+            <a class="btn solid" href="#collection" data-i>The Collection <span class="dash"></span></a>
+            <a class="btn" href="#drop" data-i>Next drop</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -717,7 +761,6 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
     <div class="wrap">
       <div class="head">
         <div>
-          <span class="eyebrow" data-i>Core collection</span>
           <h2 class="disp" data-i>Daily kit</h2>
           <p class="lede" data-i>The pieces that are always in rotation. Hover a product to see the back, tap it for every angle and the full spec.</p>
         </div>
@@ -747,7 +790,7 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
     <video class="bgimg" data-src="vid/ridge.mp4" poster="img/ridge-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
     <div class="wrap">
       <div class="cm-copy">
-        <span class="eyebrow">Community</span>
+        
         <h2 class="disp" data-i>Fly with the crew</h2>
         <p class="lede" data-i>New drops are announced in the FULL SEND channel. Join for release dates, behind-the-scenes from the shoots and footage from the people wearing the gear.</p>
         <div class="row">
