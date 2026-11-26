@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONE NODE – Installieren &amp; aktivieren</title>
+<meta name="description" content="Schritt für Schritt: ONE NODE auf Mac oder Windows installieren, in DaVinci Resolve einsetzen und mit deinem Code aktivieren.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#0b0a0d;--card:#151213;--line:rgba(239,233,223,.12);--fg:#efe9df;--mute:#a39a8e;--red:#e5483b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 "Public Sans",-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:var(--fg)}
+main{max-width:860px;margin:0 auto;padding:36px 20px 80px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:46px}
+.top img{height:34px;display:block}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang a{padding:6px 14px;font:500 13px "JetBrains Mono",monospace;text-decoration:none;color:var(--mute)}
+.lang a[aria-current]{background:var(--fg);color:#0b0a0d}
+h1{font:800 clamp(34px,6vw,56px)/1.02 Archivo,sans-serif;font-stretch:112%;margin:0 0 16px}
+.lead{color:#cfc7bb;max-width:62ch;margin:0 0 30px}
+.os{display:flex;gap:10px;margin:0 0 40px;position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:2}
+.os button{font:600 16px "Public Sans",sans-serif;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.os button[aria-pressed=true]{background:var(--fg);color:#0b0a0d}
+.os button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+section{margin:0 0 54px}
+h2{font:700 24px/1.2 Archivo,sans-serif;margin:0 0 6px}
+.sub{color:var(--mute);margin:0 0 26px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;margin:0 0 38px}
+.st{display:flex;gap:14px;align-items:baseline;margin:0 0 12px}
+.st::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font:700 15px "JetBrains Mono",monospace;transform:translateY(5px)}
+.st b{font-size:19px}
+.st p{margin:4px 0 0;color:#cfc7bb}
+ol.steps img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 0 44px}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;background:var(--red);color:#fff}
+.btn.alt{background:#26221f;border:1px solid #3a3531;color:var(--fg)}
+.note{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);color:#cfc7bb}
+.note b{color:var(--fg)}
+code{font:500 15px "JetBrains Mono",monospace;background:#1d1a1a;padding:2px 7px;border-radius:6px}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:15px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <a href="/one-node/" aria-label="ONE NODE"><img src="/img/email/onenode-logo.png" alt="ONE NODE · Made by Full Send Brand"></a>
+    <nav class="lang" aria-label="Sprache / Language"><a href="?lang=de" data-l="de">DE</a><a href="?lang=en" data-l="en">EN</a></nav>
+  </div>
+
+  <h1 data-de="Installieren &amp; aktivieren" data-en="Install &amp; activate"></h1>
+  <p class="lead" data-de="In etwa fünf Minuten läuft ONE NODE in DaVinci Resolve. Du brauchst nur den Installer und deinen Aktivierungscode aus der E-Mail. Wähle dein System:" data-en="ONE NODE runs in DaVinci Resolve in about five minutes. All you need is the installer and the activation code from your e-mail. Pick your system:"></p>
+
+  <div class="os" role="group" aria-label="System">
+    <button type="button" data-os="mac" aria-pressed="true">macOS</button>
+    <button type="button" data-os="win" aria-pressed="false">Windows</button>
+  </div>
+
+  <section data-only="mac">
+    <h2 data-de="1. Installieren auf dem Mac" data-en="1. Install on Mac"></h2>
+    <p class="sub" data-de="Beende DaVinci Resolve, bevor du startest." data-en="Quit DaVinci Resolve before you start."></p>
+    <ol class="steps">
+      <li><div class="st"><div><b data-de="Installer herunterladen" data-en="Download the installer"></b><p data-de="Die Datei landet in deinem Download-Ordner." data-en="The file lands in your Downloads folder."></p></div></div>
+        <div class="dl"><a class="btn" href="/one-node/download/mac/" data-de="Download für macOS" data-en="Download for macOS"></a></div></li>
+      <li><div class="st"><div><b data-de="Datei doppelklicken" data-en="Double-click the file"></b><p data-de="Öffne im Download-Ordner die Datei ONE-NODE-…-mac.pkg." data-en="In your Downloads folder, open ONE-NODE-…-mac.pkg."></p></div></div><img data-img="mac1" alt=""></li>
+      <li><div class="st"><div><b data-de="Meldung mit „Fertig“ schliessen" data-en="Close the message with “Done”"></b><p data-de="Das ist normal: macOS kennt kleine, unabhängige Entwickler nicht und blockiert den Installer beim ersten Öffnen. Klicke auf „Fertig“, nicht auf „In den Papierkorb legen“." data-en="This is normal: macOS doesn't know small independent developers and blocks the installer the first time. Click “Done”, not “Move to Trash”."></p></div></div><img data-img="mac2" alt=""></li>
+      <li><div class="st"><div><b data-de="In den Systemeinstellungen freigeben" data-en="Allow it in System Settings"></b><p data-de="Öffne Apple-Menü › Systemeinstellungen › Datenschutz &amp; Sicherheit, scrolle ganz nach unten zu „Sicherheit“ und klicke bei ONE NODE auf „Dennoch öffnen“. Bestätige mit Passwort oder Touch ID. Der Installer startet." data-en="Open the Apple menu › System Settings › Privacy &amp; Security, scroll down to “Security” and click “Open Anyway” next to ONE NODE. Confirm with your password or Touch ID. The installer starts."></p></div></div><img data-img="mac3" alt=""></li>
+      <li><div class="st"><div><b data-de="Installieren" data-en="Install"></b><p data-de="Klicke dich mit „Fortfahren“ durch und bestätige mit „Installieren“ und deinem Mac-Passwort. Fertig." data-en="Click through with “Continue”, then confirm with “Install” and your Mac password. Done."></p></div></div><img data-img="mac4" alt=""></li>
+    </ol>
+  </section>
+
+  <section data-only="win" hidden>
+    <h2 data-de="1. Installieren unter Windows" data-en="1. Install on Windows"></h2>
+    <p class="sub" data-de="Beende DaVinci Resolve, bevor du startest." data-en="Quit DaVinci Resolve before you start."></p>
+    <ol class="steps">
+      <li><div class="st"><div><b data-de="Installer herunterladen" data-en="Download the installer"></b><p data-de="Die Datei landet in deinem Download-Ordner." data-en="The file lands in your Downloads folder."></p></div></div>
+        <div class="dl"><a class="btn" href="/one-node/download/win/" data-de="Download für Windows" data-en="Download for Windows"></a></div></li>
+      <li><div class="st"><div><b data-de="Datei doppelklicken" data-en="Double-click the file"></b><p data-de="Öffne ONE-NODE-…-win-Setup.exe aus deinen Downloads." data-en="Open ONE-NODE-…-win-Setup.exe from your Downloads."></p></div></div><img data-img="win1" alt=""></li>
+      <li><div class="st"><div><b data-de="Auf „Weitere Informationen“ klicken" data-en="Click “More info”"></b><p data-de="Das blaue Fenster ist normal: Windows kennt kleine, unabhängige Entwickler nicht. Der Installer ist sicher." data-en="The blue window is normal: Windows doesn't know small independent developers. The installer is safe."></p></div></div><img data-img="win2" alt=""></li>
+      <li><div class="st"><div><b data-de="„Trotzdem ausführen“" data-en="“Run anyway”"></b><p data-de="Danach fragt Windows evtl., ob die App Änderungen vornehmen darf – mit „Ja“ bestätigen." data-en="Windows may then ask whether the app can make changes – confirm with “Yes”."></p></div></div><img data-img="win3" alt=""></li>
+      <li><div class="st"><div><b data-de="Installieren" data-en="Install"></b><p data-de="Klicke auf „Install“ und am Schluss auf „Finish“. Fertig." data-en="Click “Install” and then “Finish”. Done."></p></div></div><img data-img="win4" alt=""></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 data-de="2. In DaVinci Resolve einsetzen" data-en="2. Use it in DaVinci Resolve"></h2>
+    <p class="sub" data-de="Gleich auf Mac und Windows, in der Gratis- und der Studio-Version." data-en="Same on Mac and Windows, in the free and the Studio version."></p>
+    <ol class="steps">
+      <li><div class="st"><div><b data-de="ONE NODE auf einen Node ziehen" data-en="Drag ONE NODE onto a node"></b><p data-de="Starte Resolve neu und öffne einen Clip auf der Seite „Color“ (unten). Klicke oben rechts auf „Effects“, öffne „OpenFX“ und ziehe „ONE NODE“ auf deinen Node." data-en="Restart Resolve and open a clip on the “Color” page (bottom bar). Click “Effects” at the top right, open “OpenFX” and drag “ONE NODE” onto your node."></p></div></div><img data-img="res1" alt=""></li>
+      <li><div class="st"><div><b data-de="Mit deinem Code aktivieren" data-en="Activate with your code"></b><p data-de="Klicke auf den Node: rechts erscheinen die Einstellungen von ONE NODE. Öffne „Lizenz“, füge deinen Code aus der E-Mail (ON-XXXX-XXXX-XXXX) bei „Aktivierungscode“ ein und klicke auf „Aktivieren“. Dafür braucht es einmal Internet." data-en="Click the node: the ONE NODE settings appear on the right. Open “License”, paste the code from your e-mail (ON-XXXX-XXXX-XXXX) into “Activation Code” and click “Activate”. This needs internet once."></p></div></div><img data-img="res2" alt=""></li>
+      <li><div class="st"><div><b data-de="Kamera und Look wählen" data-en="Pick camera and look"></b><p data-de="Wähle bei „Kamera“, womit du gefilmt hast (z. B. GoPro GP-Log), dann einen Look und die Intensität. Alles Weitere – Kontrast, Halation, Bloom, Grain – im selben Node." data-en="Under “Camera”, pick what you filmed with (e.g. GoPro GP-Log), then a look and the intensity. Everything else – contrast, halation, bloom, grain – in the same node."></p></div></div></li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <p style="margin:0 0 10px" data-de="<b>Kein ONE NODE unter OpenFX?</b> Resolve komplett beenden und neu starten. Hilft das nicht, den Installer noch einmal ausführen." data-en="<b>No ONE NODE under OpenFX?</b> Quit Resolve completely and start it again. If that doesn't help, run the installer once more."></p>
+    <p style="margin:0 0 10px" data-de="<b>Farben sehen falsch aus?</b> Nutze ein normales Projekt (DaVinci YRGB), nicht „Color Managed“: Projekteinstellungen › Color Management." data-en="<b>Colours look wrong?</b> Use a normal project (DaVinci YRGB), not “Color Managed”: Project Settings › Color Management."></p>
+    <p style="margin:0" data-de="<b>Code funktioniert nicht?</b> Antworte einfach auf die E-Mail oder schreib an <a href='mailto:support@fullsend-brand.com'>support@fullsend-brand.com</a>." data-en="<b>Code doesn't work?</b> Just reply to the e-mail or write to <a href='mailto:support@fullsend-brand.com'>support@fullsend-brand.com</a>."></p>
+  </div>
+
+  <footer>ONE NODE · Made by Full Send Brand · <a href="/impressum/">Impressum</a></footer>
+</main>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var lang=q.get('lang')||((navigator.language||'').toLowerCase().indexOf('de')===0?'de':'en');
+  if(lang!=='de')lang='en';
+  document.documentElement.lang=lang;
+  document.title=lang==='de'?'ONE NODE – Installieren & aktivieren':'ONE NODE – Install & activate';
+  document.querySelectorAll('[data-de]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
+  document.querySelectorAll('.lang a').forEach(function(a){if(a.dataset.l===lang)a.setAttribute('aria-current','true')});
+  document.querySelectorAll('img[data-img]').forEach(function(i){i.src='/one-node/install/img/'+i.dataset.img+'-'+lang+'.jpg';i.loading='lazy';
+    var t=i.parentNode.querySelector('.st b');i.alt=t?t.textContent:''});
+  var os=q.get('os')||(/Win/.test(navigator.platform||navigator.userAgent)?'win':'mac');
+  function pick(o){document.querySelectorAll('[data-only]').forEach(function(s){s.hidden=s.dataset.only!==o});
+    document.querySelectorAll('.os button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.os===o)})}
+  document.querySelectorAll('.os button').forEach(function(b){b.onclick=function(){pick(b.dataset.os)}});
+  pick(os==='win'?'win':'mac');
+})();
+</script>
+</body>
+</html>
