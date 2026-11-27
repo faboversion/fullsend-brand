@@ -7,33 +7,31 @@
 <style>
 /* Layout: dark editorial stack — split hero with FPV OSD frame, limited-drop band, filterable collection, lookbook wall, community band. */
 :root{
-  --bg:#0f0e0d;          /* basalt */
-  --surface:#191715;     /* wet stone */
-  --line:#2c2925;
-  --fg:#efe9df;          /* chalk */
-  --muted:#a39a8d;
-  --desert:#cdb593;      /* desert sand, from the garments */
-  --burgundy:#7d2a2e;    /* winter series accent */
-  --burgundy-fg:#f3dcd8;
-  --card:#e9e5de;        /* product plate, product shots sit on light grey */
-  --card-fg:#1a1816;
+  /* FULL SEND palette 2026-11: sage / cream / burgundy */
+  --sage:#a5a79b;--cream:#e8d2b5;--wine:#5e0a12;--wine-d:#3e060c;--wine-x:#2a0408;
+  --bg:var(--sage);
+  --surface:#b1b3a7;
+  --line:rgba(94,10,18,.2);
+  --fg:var(--wine-d);
+  --muted:#5a2a2c;
+  --desert:var(--wine);
+  --burgundy:var(--wine);
+  --burgundy-fg:var(--cream);
+  --card:#efe2cf;
+  --card-fg:var(--wine-d);
   --osd:#f4f1ea;
   --display:"Archivo","Arial Narrow",system-ui,sans-serif;
   --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --gut-l:max(16px,env(safe-area-inset-left,0px));
   --gut-r:max(16px,env(safe-area-inset-right,0px));
-  --logo:url(img/logo-white.png);
-  color-scheme:dark;
+  --logo:url(img/logo-black.png);
+  color-scheme:light;
 }
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
-  --bg:#f1ede6;--surface:#e7e1d7;--line:#d5cdc0;--fg:#171513;--muted:#6b6358;
-  --desert:#8a6d45;--burgundy:#7d2a2e;--burgundy-fg:#f6e4e0;--card:#fbf9f6;--card-fg:#1a1816;--osd:#f4f1ea;
-  --logo:url(img/logo-black.png);color-scheme:light}}
-:root[data-theme="light"]{
-  --bg:#f1ede6;--surface:#e7e1d7;--line:#d5cdc0;--fg:#171513;--muted:#6b6358;
-  --desert:#8a6d45;--burgundy:#7d2a2e;--burgundy-fg:#f6e4e0;--card:#fbf9f6;--card-fg:#1a1816;--osd:#f4f1ea;
-  --logo:url(img/logo-black.png);color-scheme:light}
+/* grading floor keeps its original dark look */
+html.g-view{
+  --bg:#0f0e0d;--surface:#191715;--line:#2c2925;--fg:#efe9df;--muted:#a39a8d;--desert:#cdb593;--burgundy:#7d2a2e;--burgundy-fg:#f3dcd8;
+  --card:#e9e5de;--card-fg:#1a1816;--logo:url(img/logo-white.png);color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -577,6 +575,49 @@ textarea.fin{min-height:70px;resize:vertical;white-space:pre-wrap}
 #collection .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:clamp(18px,2.4vw,32px)}
 #collection .head h2{font-size:clamp(44px,7vw,112px)}
 
+
+/* ---------- FULL SEND palette 2026-11 (sage / cream / burgundy) ---------- */
+html:not(.g-view) .logo{background:var(--wine);-webkit-mask:url(img/logo-black.png) center/contain no-repeat;mask:url(img/logo-black.png) center/contain no-repeat}
+html:not(.g-view) .btn.solid{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+html:not(.g-view) .btn.solid:hover{background:var(--wine-x);border-color:var(--wine-x);color:var(--cream)}
+html:not(.g-view) .btn:hover{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+html:not(.g-view) :focus-visible{outline-color:var(--wine)}
+/* hero: photos fade into deep burgundy, cream type */
+.hx{background:var(--wine-x);color:var(--cream)}
+.hx .feeds::after{background:linear-gradient(180deg,rgba(42,4,8,.35) 0%,rgba(42,4,8,0) 22%,rgba(42,4,8,0) 42%,rgba(42,4,8,.8) 74%,rgba(42,4,8,.95) 100%)}
+html:not(.g-view) .hx .hero-logo{background:var(--cream);-webkit-mask:url(img/logo-white.png) left center/contain no-repeat;mask:url(img/logo-white.png) left center/contain no-repeat}
+.hx h1{color:var(--cream)}
+.hx h1 span{color:var(--sage)}
+.hx .lede{color:rgba(232,210,181,.82)}
+html:not(.g-view) .hx .btn{border-color:var(--cream);color:var(--cream)}
+html:not(.g-view) .hx .btn:hover,html:not(.g-view) .hx .btn.solid{background:var(--cream);border-color:var(--cream);color:var(--wine)}
+html:not(.g-view) .hx .btn.solid:hover{background:var(--sage);border-color:var(--sage);color:var(--wine-d)}
+/* news */
+.nw-copy .badge,.nw-copy h2 span{color:var(--wine)!important}
+.news::before{background:radial-gradient(ellipse at 50% 100%,rgba(232,210,181,.35),transparent 70%)}
+.vote-opt.mine::after{background:var(--wine);color:var(--cream)}
+.vote-bar .btn.solid:hover{background:var(--wine-x)!important;border-color:var(--wine-x)!important;color:var(--cream)!important}
+/* drop band: solid burgundy */
+.closed{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.closed .badge{color:var(--sage)}
+.closed .lede{color:rgba(232,210,181,.8)}
+html:not(.g-view) .closed .btn.solid{background:var(--cream);border-color:var(--cream);color:var(--wine)}
+html:not(.g-view) .closed .btn.solid:hover{background:var(--sage);border-color:var(--sage);color:var(--wine-d)}
+/* finder */
+.finder{background:var(--cream)}
+/* community: burgundy-tinted footage */
+.community{background:var(--wine-x);color:var(--cream)}
+.community .eyebrow{color:var(--sage)}
+.community .lede{color:rgba(232,210,181,.85)}
+html:not(.g-view) .community .btn{border-color:var(--cream);color:var(--cream)}
+html:not(.g-view) .community .btn.solid{background:var(--cream);color:var(--wine)}
+html:not(.g-view) .community .btn:hover{background:var(--sage);border-color:var(--sage);color:var(--wine-d)}
+/* footer */
+html:not(.g-view) footer{background:var(--wine);border-color:var(--wine)}
+html:not(.g-view) footer .wrap{color:rgba(232,210,181,.8)}
+html:not(.g-view) footer .logo{background:var(--cream)}
+html:not(.g-view) .notice,html:not(.g-view) .cartbtn b,html:not(.g-view) .draftbar{color:var(--cream)}
+html:not(.g-view) .buy .add:hover{color:var(--cream)}
 </style>
 
 <div class="notice"><span data-i>Drop closed · Orders are paused until the next drop · Info in the</span> <a href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>FULL SEND community on Instagram</a></div>
@@ -1394,7 +1435,7 @@ Object.assign(TR,{"Grading":"Grading","Coming February 2027":"Kommt im Februar 2
 const gMain=document.getElementById('top'),gView=document.getElementById('grading'),onVid=document.getElementById('onVid');
 function gRoute(){
   const g=location.hash==='#grading';
-  gView.hidden=!g;gMain.hidden=g;
+  gView.hidden=!g;gMain.hidden=g;document.documentElement.classList.toggle('g-view',g);
   document.querySelectorAll('.nav a[href="#grading"]').forEach(a=>a.setAttribute('aria-current',g?'page':'false'));
   if(g){onVid.preload='auto';const p=onVid.play();if(p&&p.catch)p.catch(()=>{});window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0));setTimeout(()=>window.scrollTo(0,0),60)}
   else{onVid.pause();if(location.hash&&location.hash.length>1){const el=document.getElementById(location.hash.slice(1));if(el)requestAnimationFrame(()=>el.scrollIntoView())}}
