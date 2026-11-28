@@ -1254,18 +1254,20 @@ const both=(c,e)=>chf(c);
 CART.forEach(x=>{x.q=1;if(!x.eur&&SHOP[x.id])x.eur=SHOP[x.id].eur});CART=CART.filter((x,i)=>CART.findIndex(y=>y.k===x.k)===i);
 const cartN=()=>CART.length,cartT=()=>CART.reduce((a,x)=>a+x.chf,0),cartE=()=>CART.reduce((a,x)=>a+(x.eur||0),0);
 /* ---------- Crew coupon ---------- */
-const CREW_HASH='8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',CREW_PCT=20;
-let CREW=false;try{CREW=localStorage.getItem('fs-crew')===CREW_HASH&&!!localStorage.getItem('fs-crew-code')}catch(e){}
+/* coupons: sha256 of the upper-case code; the license worker checks the same list (shop/catalog.json) */
+const COUPONS=[{h:'8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',label:'Crew',pct:20,item:{min:30,free:30},msg:'Crew discount applied (20 %, shirts 30 %)'},
+ {h:'fdd5f6745e3ae0acae613e1e69c3042a0bee192e81d812448dec52022cff2aa1',label:'Creator',pct:15,item:{},msg:'Creator discount applied (15 %)'}];
+let CP=null;try{const h=localStorage.getItem('fs-crew');if(localStorage.getItem('fs-crew-code'))CP=COUPONS.find(c=>c.h===h)||null}catch(e){}
+let CREW=!!CP;
 const r2=n=>Math.round(n*100)/100;
-const CREW_PCT_ITEM={min:30,free:30}; /* Shirts Minimal + Freestyler: 30 %, everything else 20 % */
-const crewPct=id=>CREW_PCT_ITEM[id]||CREW_PCT;
+const crewPct=id=>CP?(CP.item[id]||CP.pct):0;
 const discC=()=>CREW?r2(CART.reduce((a,x)=>a+x.chf*crewPct(x.id)/100,0)):0,discE=()=>CREW?r2(CART.reduce((a,x)=>a+(x.eur||0)*crewPct(x.id)/100,0)):0;
 const totC=()=>r2(cartT()-discC()+SHIP),totE=()=>r2(cartE()-discE()+SHIP);
 const sha=async v=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
-Object.assign(TR,{"Coupon code":"Gutscheincode","Apply":"Einlösen","Remove":"Entfernen","Crew discount":"Crew-Rabatt","Crew discount applied (20 %, shirts 30 %)":"Crew-Rabatt aktiviert (20 %, Shirts 30 %)","This code is not valid.":"Dieser Code ist ungültig."});
+Object.assign(TR,{"Coupon code":"Gutscheincode","Apply":"Einlösen","Remove":"Entfernen","Crew discount":"Crew-Rabatt","Crew discount applied (20 %, shirts 30 %)":"Crew-Rabatt aktiviert (20 %, Shirts 30 %)","Creator discount":"Creator-Rabatt","Creator discount applied (15 %)":"Creator-Rabatt aktiviert (15 %)","This code is not valid.":"Dieser Code ist ungültig."});
 const sumHTML=items=>`<div class="st">${items?CART.map(x=>`<div class="sr"><span>${esc(x.n)}<small>${esc(t(x.cn))} · ${esc(x.s==='Yes'?t('One size'):t(x.s))}${x.pilot?' · '+esc(x.pilot):''}</small></span><b>${chf(x.chf)}<small>${eu(x.eur)}</small></b></div>`).join(''):''}
 <div class="sr sub"><span>${t('Subtotal')}</span><b>${chf(cartT())}<small>${eu(cartE())}</small></b></div>
-${CREW?`<div class="sr dsc"><span>${t('Crew discount')}</span><b>− ${chf(discC())}<small>− ${eu(discE())}</small></b></div>`:''}
+${CREW?`<div class="sr dsc"><span>${t(CP.label+' discount')}</span><b>− ${chf(discC())}<small>− ${eu(discE())}</small></b></div>`:''}
 <div class="sr"><span>${t('Shipping (flat rate)')}</span><b>${chf(SHIP)}<small>${eu(SHIP)}</small></b></div>
 <div class="sr gt"><span>${t('Total')}</span><b>${chf(totC())}<small>${eu(totE())}</small></b></div></div>`;
 Object.assign(TR,{"Subtotal":"Zwischensumme"});
@@ -1334,7 +1336,7 @@ function drawCart(){
   const lb='font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)';
   cartBody.innerHTML=`<form class="co" id="coForm" novalidate>
     <label>${t('Instagram name')} <span style="color:var(--muted);text-transform:none">(${t('optional')})</span><input class="fin" name="insta" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(d.insta||'')}"></label>
-    <div class="cpn" style="display:grid;gap:6px"><div class="lbl" style="${lb}">${t('Coupon code')}</div>${CREW?`<p class="msg" style="margin:0">✓ ${t('Crew discount applied (20 %, shirts 30 %)')} · <a href="#" id="cpRm">${t('Remove')}</a></p>`:`<div style="display:flex;gap:8px"><input class="fin" id="cpIn" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="button" class="btn" id="cpBtn" style="flex:none">${t('Apply')}</button></div><p class="err" id="cpMsg" style="margin:0"></p>`}</div>
+    <div class="cpn" style="display:grid;gap:6px"><div class="lbl" style="${lb}">${t('Coupon code')}</div>${CREW?`<p class="msg" style="margin:0">✓ ${t(CP.msg)} · <a href="#" id="cpRm">${t('Remove')}</a></p>`:`<div style="display:flex;gap:8px"><input class="fin" id="cpIn" autocomplete="off" autocapitalize="characters" spellcheck="false"><button type="button" class="btn" id="cpBtn" style="flex:none">${t('Apply')}</button></div><p class="err" id="cpMsg" style="margin:0"></p>`}</div>
     <label>${t('Special requests')}<textarea class="fin" name="note" maxlength="400">${esc(d.note||'')}</textarea></label>
     <div class="lbl" style="${lb}">${t('Order summary')}</div>
     ${sumHTML(true)}
@@ -1348,9 +1350,9 @@ function drawCart(){
   f.oninput=()=>{try{localStorage.setItem('fs-co',JSON.stringify(Object.fromEntries(new FormData(f))))}catch(e){}};
   {const ci=cartBody.querySelector('#cpIn'),cb=cartBody.querySelector('#cpBtn'),rm=cartBody.querySelector('#cpRm');
    const apply=async()=>{const v=(ci.value||'').trim().toUpperCase();if(!v)return;let h='';try{h=await sha(v)}catch(e){}
-     if(h===CREW_HASH){CREW=true;try{localStorage.setItem('fs-crew',h);localStorage.setItem('fs-crew-code',v)}catch(e){};drawCart()}else cartBody.querySelector('#cpMsg').textContent=t('This code is not valid.')};
+     const cp=COUPONS.find(c=>c.h===h);if(cp){CP=cp;CREW=true;try{localStorage.setItem('fs-crew',h);localStorage.setItem('fs-crew-code',v)}catch(e){};drawCart()}else cartBody.querySelector('#cpMsg').textContent=t('This code is not valid.')};
    if(cb)cb.onclick=apply;if(ci)ci.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();apply()}};
-   if(rm)rm.onclick=e=>{e.preventDefault();CREW=false;try{localStorage.removeItem('fs-crew');localStorage.removeItem('fs-crew-code')}catch(_){};drawCart()}}
+   if(rm)rm.onclick=e=>{e.preventDefault();CREW=false;CP=null;try{localStorage.removeItem('fs-crew');localStorage.removeItem('fs-crew-code')}catch(_){};drawCart()}}
   cartBody.querySelector('#coBack').onclick=()=>{view='cart';drawCart()};
   const pay=cartBody.querySelector('#coPay'),err=cartBody.querySelector('#coErr');
   f.onsubmit=async e=>{e.preventDefault();if(pay.disabled)return;
@@ -1374,7 +1376,7 @@ function orderParams(o){
   CART.forEach(x=>{const k=x.e+'|'+x.s;if(!seen.has(k)){seen.add(k);add(x.e,x.s)}
     if(x.pilot&&SHOP[x.id].pilot&&!seen.has(x.e+'|pilot')){seen.add(x.e+'|pilot');add(x.e,SHOP[x.id].pilot)}});
   const cl=v=>String(v||'').trim().replace(/\s*\|\s*/g,' / ');
-  const note=['WEBSHOP ORDER'+(lastOrder?' '+lastOrder.nr:'')+(CREW?' CREW':''),'CUSTOMER: '+cl(o.pre)+' '+cl(o.name),'ADDRESS: '+[cl(o.street),cl(o.zip)+' '+cl(o.city),cl(o.country)].join(', '),'EMAIL: '+cl(o.email),'PHONE: '+cl(o.phone),'INSTAGRAM: '+cl(o.insta),'PAYMENT: '+o.pay,...CART.map(lineTxt),...(CREW?['DISCOUNT: CREW -'+discC()+' CHF / -'+discE()+' EUR']:[]),'SHIPPING: '+SHIP+' CHF / '+SHIP+' EUR','TOTAL: '+totC()+' CHF / '+totE()+' EUR (incl. shipping)',o.note&&o.note.trim()?'Customer note: '+o.note.trim():''].filter(Boolean).join(' | ');
+  const note=['WEBSHOP ORDER'+(lastOrder?' '+lastOrder.nr:'')+(CREW?' '+CP.label.toUpperCase():''),'CUSTOMER: '+cl(o.pre)+' '+cl(o.name),'ADDRESS: '+[cl(o.street),cl(o.zip)+' '+cl(o.city),cl(o.country)].join(', '),'EMAIL: '+cl(o.email),'PHONE: '+cl(o.phone),'INSTAGRAM: '+cl(o.insta),'PAYMENT: '+o.pay,...CART.map(lineTxt),...(CREW?['DISCOUNT: CREW -'+discC()+' CHF / -'+discE()+' EUR']:[]),'SHIPPING: '+SHIP+' CHF / '+SHIP+' EUR','TOTAL: '+totC()+' CHF / '+totE()+' EUR (incl. shipping)',o.note&&o.note.trim()?'Customer note: '+o.note.trim():''].filter(Boolean).join(' | ');
   add(F.note,note);
   return P;
 }

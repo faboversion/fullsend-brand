@@ -201,5 +201,12 @@
    },
    "pilot": false
   }
- }
+ },
+ "coupons": [
+  {
+   "label": "Creator",
+   "sha256": "fdd5f6745e3ae0acae613e1e69c3042a0bee192e81d812448dec52022cff2aa1",
+   "pct": 15
+  }
+ ]
 }
