@@ -1256,7 +1256,7 @@ const cartN=()=>CART.length,cartT=()=>CART.reduce((a,x)=>a+x.chf,0),cartE=()=>CA
 /* ---------- Crew coupon ---------- */
 /* coupons: sha256 of the upper-case code; the license worker checks the same list (shop/catalog.json) */
 const COUPONS=[{h:'8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',label:'Crew',pct:20,item:{min:30,free:30},msg:'Crew discount applied (20 %, shirts 30 %)'},
- {h:'fdd5f6745e3ae0acae613e1e69c3042a0bee192e81d812448dec52022cff2aa1',label:'Creator',pct:15,item:{},msg:'Creator discount applied (15 %)'}];
+ {h:'b4f33dfe5c81417d862726b852ca0bdca09539bf4606cd03c511008bf68e93f0',label:'Creator',pct:15,item:{},msg:'Creator discount applied (15 %)'}];
 let CP=null;try{const h=localStorage.getItem('fs-crew');if(localStorage.getItem('fs-crew-code'))CP=COUPONS.find(c=>c.h===h)||null}catch(e){}
 let CREW=!!CP;
 const r2=n=>Math.round(n*100)/100;
