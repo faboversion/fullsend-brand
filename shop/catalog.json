@@ -40,6 +40,31 @@
    },
    "pilot": false
   },
+  "flhood": {
+   "name": "Hoodie First Light",
+   "chf": 70,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "4XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "ash": "Grey",
+    "desert": "Desert",
+    "blueice": "Blue Ice",
+    "redbrown": "Red Brown",
+    "black": "Black"
+   },
+   "pilot": false
+  },
   "min": {
    "name": "Shirt Minimal Edition",
    "chf": 38,
