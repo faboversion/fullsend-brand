@@ -18,6 +18,28 @@
   }
  },
  "products": {
+  "boxy": {
+   "name": "Hoodie Boxy",
+   "chf": 85,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "heather": "Heather Grey",
+    "stargazer": "Stargazer",
+    "navy": "Navy Blue",
+    "redearth": "Red Earth"
+   },
+   "pilot": false
+  },
   "min": {
    "name": "Shirt Minimal Edition",
    "chf": 38,
