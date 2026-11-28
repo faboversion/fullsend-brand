@@ -89,6 +89,30 @@
    },
    "pilot": false
   },
+  "flfree": {
+   "name": "Shirt Freestyler First Light",
+   "chf": 45,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "peche": "Fraiche Peche",
+    "black": "Black",
+    "heritage": "Heritage Brown",
+    "blue": "Blue",
+    "aloe": "Aloe",
+    "teal": "Green"
+   },
+   "pilot": false
+  },
   "flcap": {
    "name": "Cap First Light",
    "chf": 30,
