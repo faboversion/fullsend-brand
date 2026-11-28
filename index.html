@@ -627,6 +627,13 @@ html:not(.g-view) .buy .add:hover{color:var(--cream)}
 html.g-view .droppill{display:none}
 dialog[open]~.droppill{display:none}
 .notice .cdn{font-variant-numeric:tabular-nums}
+#collection .grp{display:grid;gap:10px;margin:clamp(48px,7vw,96px) 0 clamp(20px,3vw,32px);padding-top:clamp(20px,3vw,32px);border-top:1px solid var(--line)}
+#collection .grp-first{margin-top:0;border-top:0;padding-top:0}
+#collection .grp h2{font-size:clamp(40px,6vw,96px);margin:0}
+#collection .grp .lede{max-width:60ch;margin:0}
+#collection{padding-top:clamp(40px,6vw,80px)}
+@media (max-width:700px){#collection .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#collection .prod .meta,#collection .prod h3{font-size:13px}}
+@media (max-width:700px){#collection .om-tag,#collection .views{display:none}#collection .prod .tag{font-size:9px;padding:3px 6px}}
 </style>
 
 <div id="dropPill" class="droppill" hidden aria-live="off"></div>
@@ -674,7 +681,6 @@ dialog[open]~.droppill{display:none}
           <p class="lede" data-i>FULL SEND is independent streetwear from an FPV pilot. Every piece starts in the mountains, behind the goggles, and ends up in the clothes you wear on the ground.</p>
           <div class="hero-meta">
             <a class="btn solid" href="#collection" data-i>The Collection <span class="dash"></span></a>
-            <a class="btn" href="#drop" data-i>Next drop</a>
           </div>
         </div>
       </div>
@@ -723,14 +729,14 @@ dialog[open]~.droppill{display:none}
     </div>
   </section>
 
-  <section class="closed" id="drop">
+
+  <section id="collection">
     <div class="wrap">
-      <div class="txt">
-        <span class="badge" data-i>Drop closed</span>
-        <h2 class="disp" data-i>See you at the next drop</h2>
-        <p class="lede" data-i>The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.</p>
-      </div>
-      <a class="btn solid" href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>Join the community <span class="dash"></span></a>
+      <div class="grp grp-first"><span class="eyebrow" data-i>Special edition</span><h2 class="disp" data-i>First Light</h2></div>
+      <div class="grid" id="flGrid"></div>
+      <div class="grp"><span class="eyebrow" data-i>Standard collection</span><h2 class="disp" data-i>Daily kit</h2><p class="lede" data-i>The pieces that are always in rotation. Tap a product for every angle, the colours and the full spec.</p></div>
+      <div class="filters" id="filters" hidden></div>
+      <div class="grid" id="grid"></div>
     </div>
   </section>
 
@@ -793,18 +799,6 @@ dialog[open]~.droppill{display:none}
     </div>
   </section>
 
-  <section id="collection">
-    <div class="wrap">
-      <div class="head">
-        <div>
-          <h2 class="disp" data-i>Daily kit</h2>
-          <p class="lede" data-i>The pieces that are always in rotation. Hover a product to see the back, tap it for every angle and the full spec.</p>
-        </div>
-        <div class="filters" role="group" aria-label="Filter collection" data-ta="aria-label" id="filters"></div>
-      </div>
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
 
   <section class="culture" style="padding-top:0">
     <div class="wrap">
@@ -963,7 +957,8 @@ const core=P.filter(p=>!p.ws);
 const cats=["All",...new Set(core.map(p=>p.cat))];
 const filters=document.getElementById('filters');
 let curCat="All";
-function show(cat){curCat=cat;grid.innerHTML='';core.filter(p=>cat==="All"||p.cat===cat).forEach(p=>grid.appendChild(card(p)));[...filters.children].forEach(b=>{b.textContent=t(b.dataset.cat);b.setAttribute('aria-pressed',b.dataset.cat===cat)})}
+const flGrid=document.getElementById('flGrid');
+function show(cat){curCat=cat;grid.innerHTML='';if(flGrid)flGrid.innerHTML='';core.forEach(p=>(p.cat==='Early Access'&&flGrid?flGrid:grid).appendChild(card(p)));[...filters.children].forEach(b=>{b.textContent=t(b.dataset.cat);b.setAttribute('aria-pressed',b.dataset.cat===cat)})}
 cats.forEach(c=>{const b=document.createElement('button');b.className='chip';b.dataset.cat=c;b.textContent=c;b.onclick=()=>show(c);filters.appendChild(b)});
 
 const dlg=document.getElementById('dlg'),stage=document.getElementById('stage'),thumbs=document.getElementById('thumbs');
@@ -1422,6 +1417,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)return;cons
 
 Object.assign(TR,{"Drop closed · Orders are paused until the next drop · Info in the": "Drop geschlossen · Bestellungen pausiert bis zum nächsten Drop · Infos in der", "FULL SEND community on Instagram": "FULL SEND Community auf Instagram", "The Collection <span class=\"dash\"></span>": "Die Kollektion <span class=\"dash\"></span>", "Next drop": "Nächster Drop", "Drop closed": "Drop geschlossen", "See you at the next drop": "Wir sehen uns beim nächsten Drop", "The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.": "Der letzte Drop ist vorbei und Bestellungen sind im Moment pausiert. Die Kollektion kannst du weiterhin anschauen und deine Grösse finden. Der nächste Drop wird zuerst in der FULL SEND Community auf Instagram angekündigt.", "Join the community <span class=\"dash\"></span>": "Community beitreten <span class=\"dash\"></span>", "Ordering closed": "Bestellung geschlossen", "The drop is over. You can order again at the next drop. Info in the": "Der Drop ist vorbei. Bestellen kannst du wieder beim nächsten Drop. Infos in der"});
 {const b=document.getElementById('boxyCta');if(b)b.onclick=e=>{const p=P.find(x=>x.id==='boxy');if(p){e.preventDefault();openDlg(p,0,true)}}}
+Object.assign(TR,{"Special edition":"Special Edition","Standard collection":"Standard-Kollektion","The pieces that are always in rotation. Tap a product for every angle, the colours and the full spec.":"Die Teile, die immer im Sortiment sind. Tipp auf ein Produkt für alle Ansichten, Farben und Details."});
 Object.assign(TR,{"Early Access · now in the shop":"Early Access · jetzt im Shop","Shop the Boxy Hoodie <span class=\"dash\"></span>":"Zum Boxy Hoodie <span class=\"dash\"></span>","Early Access":"Early Access","First Light · boxy fit · 400 g/m²":"First Light · Boxy Fit · 400 g/m²","Heather Grey":"Heather Grey","Stargazer":"Stargazer","Navy Blue":"Navy Blue","Red Earth":"Red Earth","Hoodie Boxy":"Hoodie Boxy"});
 Object.assign(TR,{"News · Coming early 2027":"News · Anfang 2027","First Light. <span>A new cut.</span>":"First Light. <span>Ein neuer Schnitt.</span>","At the start of 2027 the FIRST LIGHT special edition joins the collection, and with it a brand-new piece: the boxy hoodie. A new print, a new cut and the heaviest fabric we have ever used. Here is a first look.":"Zum Start ins Jahr 2027 kommt die Special Edition FIRST LIGHT in die Kollektion, und mit ihr ein ganz neues Teil: der Boxy Hoodie. Ein neuer Print, ein neuer Schnitt und der schwerste Stoff, den wir je verwendet haben. Hier ein erster Blick darauf.","Heather Grey · black print":"Grau meliert · schwarzer Print","French Navy · white print":"French Navy · weisser Print","Be first to know <span class=\"dash\"></span>":"Als Erste:r erfahren <span class=\"dash\"></span>","Weight":"Gewicht","Fit":"Passform","Fabric":"Material","Release":"Release","Boxy · Oversized":"Boxy · Oversized","100% organic cotton":"100 % Bio-Baumwolle","Early 2027":"Anfang 2027","Extremely heavy 400 g/m² fabric":"Extrem schwere Qualität mit 400 g/m² Flächengewicht","Unique dry hand feel for a modern look":"Einzigartige trockene Haptik für einen modernen Look","Double-layer hood with matching drawcord":"Doppellagige Kapuze mit farblich passender Kordel","Classic kangaroo pocket on the front":"Klassische Kängurutasche auf der Vorderseite","Wide rib cuffs and hem":"Breite Rippbündchen an Ärmelabschlüssen und Saum","High-quality make, 100% organic cotton":"Hochwertige Verarbeitung aus 100 % Bio-Baumwolle","Comfortable unisex fit for women and men":"Bequeme Unisex-Passform für Damen und Herren","Boxy hoodie in French Navy with white FULL SEND chest logo, front view in a subway station":"Boxy Hoodie in French Navy mit weissem FULL SEND Brustlogo, Vorderansicht in einer U-Bahn-Station","Boxy hoodie in French Navy with the white FIRST LIGHT back print":"Boxy Hoodie in French Navy mit weissem FIRST LIGHT Rückenprint","Boxy hoodie in heather grey with black FULL SEND chest logo, front view in a concrete stairwell":"Boxy Hoodie in Grau meliert mit schwarzem FULL SEND Brustlogo, Vorderansicht in einem Betontreppenhaus","Boxy hoodie in heather grey with the black FIRST LIGHT back print":"Boxy Hoodie in Grau meliert mit schwarzem FIRST LIGHT Rückenprint"});
 
