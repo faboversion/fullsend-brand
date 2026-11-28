@@ -1256,7 +1256,7 @@ const cartN=()=>CART.length,cartT=()=>CART.reduce((a,x)=>a+x.chf,0),cartE=()=>CA
 /* ---------- Crew coupon ---------- */
 /* coupons: sha256 of the upper-case code; the license worker checks the same list (shop/catalog.json) */
 const COUPONS=[{h:'8efe9f598b709624c54a65a21e01e60c8458840daf42620eff4d49900632cd5b',label:'Crew',pct:20,item:{min:30,free:30},msg:'Crew discount applied (20 %, shirts 30 %)'},
- {h:'b4f33dfe5c81417d862726b852ca0bdca09539bf4606cd03c511008bf68e93f0',label:'Creator',pct:15,item:{},msg:'Creator discount applied (15 %)'}];
+ {h:'b4f33dfe5c81417d862726b852ca0bdca09539bf4606cd03c511008bf68e93f0',label:'Bene',pct:15,item:{},msg:'Bene discount applied (15 %)'}];
 let CP=null;try{const h=localStorage.getItem('fs-crew');if(localStorage.getItem('fs-crew-code'))CP=COUPONS.find(c=>c.h===h)||null}catch(e){}
 let CREW=!!CP;
 const r2=n=>Math.round(n*100)/100;
@@ -1264,7 +1264,7 @@ const crewPct=id=>CP?(CP.item[id]||CP.pct):0;
 const discC=()=>CREW?r2(CART.reduce((a,x)=>a+x.chf*crewPct(x.id)/100,0)):0,discE=()=>CREW?r2(CART.reduce((a,x)=>a+(x.eur||0)*crewPct(x.id)/100,0)):0;
 const totC=()=>r2(cartT()-discC()+SHIP),totE=()=>r2(cartE()-discE()+SHIP);
 const sha=async v=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
-Object.assign(TR,{"Coupon code":"Gutscheincode","Apply":"Einlösen","Remove":"Entfernen","Crew discount":"Crew-Rabatt","Crew discount applied (20 %, shirts 30 %)":"Crew-Rabatt aktiviert (20 %, Shirts 30 %)","Creator discount":"Creator-Rabatt","Creator discount applied (15 %)":"Creator-Rabatt aktiviert (15 %)","This code is not valid.":"Dieser Code ist ungültig."});
+Object.assign(TR,{"Coupon code":"Gutscheincode","Apply":"Einlösen","Remove":"Entfernen","Crew discount":"Crew-Rabatt","Crew discount applied (20 %, shirts 30 %)":"Crew-Rabatt aktiviert (20 %, Shirts 30 %)","Bene discount":"Bene-Rabatt","Bene discount applied (15 %)":"Bene-Rabatt aktiviert (15 %)","This code is not valid.":"Dieser Code ist ungültig."});
 const sumHTML=items=>`<div class="st">${items?CART.map(x=>`<div class="sr"><span>${esc(x.n)}<small>${esc(t(x.cn))} · ${esc(x.s==='Yes'?t('One size'):t(x.s))}${x.pilot?' · '+esc(x.pilot):''}</small></span><b>${chf(x.chf)}<small>${eu(x.eur)}</small></b></div>`).join(''):''}
 <div class="sr sub"><span>${t('Subtotal')}</span><b>${chf(cartT())}<small>${eu(cartE())}</small></b></div>
 ${CREW?`<div class="sr dsc"><span>${t(CP.label+' discount')}</span><b>− ${chf(discC())}<small>− ${eu(discE())}</small></b></div>`:''}
