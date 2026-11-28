@@ -634,6 +634,8 @@ dialog[open]~.droppill{display:none}
 #collection{padding-top:clamp(40px,6vw,80px)}
 @media (max-width:700px){#collection .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#collection .prod .meta,#collection .prod h3{font-size:13px}}
 @media (max-width:700px){#collection .om-tag,#collection .views{display:none}#collection .prod .tag{font-size:9px;padding:3px 6px}}
+#flGrid .prod .plate{aspect-ratio:2/3}
+.prod .plate img.hero{object-fit:cover;object-position:50% 50%;padding:0;mix-blend-mode:normal}
 </style>
 
 <div id="dropPill" class="droppill" hidden aria-live="off"></div>
@@ -915,18 +917,18 @@ const P=[
   {c:"stargazer",n:"Stargazer",img:["boxy-stargazer-front","boxy-stargazer-back"],model:[["m-boxy-stargazer-f","f"],["m-boxy-stargazer-b","b"]]},
   {c:"navy",n:"Navy Blue",img:["boxy-navy-front","boxy-navy-back"],model:[["fl-navy-front","f"],["fl-navy-back","b"]]},
   {c:"redearth",n:"Red Earth",img:["boxy-redearth-front","boxy-redearth-back"],model:[["m-boxy-redearth-f","f"],["m-boxy-redearth-b","b"]]}],ed:[]},
- {id:"flhood",cat:"Early Access",tag:"Early Access",name:"Hoodie First Light",sub:"First Light · classic fit",feat:T.hood,v:[
-  {c:"ash",n:"Grey",img:["flhood-grey-front","flhood-grey-back"],model:[["m-hood-grey-f","f"],["m-hood-grey-b","b"]]},
-  {c:"desert",n:"Desert",img:["flhood-desert-front","flhood-desert-back"],model:[["m-hood-desert-f","f"],["m-hood-desert-b","b"]]},
-  {c:"blueice",n:"Blue Ice",img:["flhood-blueice-front","flhood-blueice-back"],model:[["m-hood-blueice-f","f"],["m-hood-blueice-b","b"]]},
-  {c:"redbrown",n:"Red Brown",img:["flhood-redbrown-front","flhood-redbrown-back"],model:[["m-hood-redbrown-f","f"],["m-hood-redbrown-b","b"]]},
-  {c:"black",n:"Black",img:["flhood-black-front","flhood-black-back"],model:[["m-hood-black-f","f"],["m-hood-black-b","b"]]}],ed:[]},
- {id:"fltrain",cat:"Early Access",tag:"Early Access",name:"Sweatshirt Trainer First Light",sub:"First Light · zip jacket with stand-up collar",feat:T.train,v:[
+ {id:"flhood",cat:"Early Access",tag:"Early Access",name:"Hoodie First Light",sub:"First Light · classic fit",feat:T.hood,mc:"black",models:[["m2-flhood-f","f"],["m2-flhood-b","b"]],v:[
+  {c:"ash",n:"Grey",img:["flhood-grey-front","flhood-grey-back"]},
+  {c:"desert",n:"Desert",img:["flhood-desert-front","flhood-desert-back"]},
+  {c:"blueice",n:"Blue Ice",img:["flhood-blueice-front","flhood-blueice-back"]},
+  {c:"redbrown",n:"Red Brown",img:["flhood-redbrown-front","flhood-redbrown-back"]},
+  {c:"black",n:"Black",img:["flhood-black-front","flhood-black-back"]}],ed:[]},
+ {id:"fltrain",cat:"Early Access",tag:"Early Access",name:"Sweatshirt Trainer First Light",sub:"First Light · zip jacket with stand-up collar",feat:T.train,mc:"green",models:[["m2-fltrain-f","f"],["m2-fltrain-b","b"]],v:[
   {c:"black",n:"Black",img:["fltrain-black-front","fltrain-black-back"]},
   {c:"green",n:"Green",img:["fltrain-green-front","fltrain-green-back"]},
   {c:"heather",n:"Grey",img:["fltrain-heather-front","fltrain-heather-back"]},
   {c:"navy",n:"Navy Blue",img:["fltrain-navy-front","fltrain-navy-back"]}],ed:[]},
- {id:"flfree",cat:"Early Access",tag:"Early Access",name:"Shirt Freestyler First Light",sub:"First Light · back print",feat:T.tee,v:[
+ {id:"flfree",cat:"Early Access",tag:"Early Access",name:"Shirt Freestyler First Light",sub:"First Light · back print",feat:T.tee,mc:"heritage",models:[["m2-flfree-b","b"]],v:[
   {c:"peche",n:"Fraiche Peche",img:["flfree-peche-back"]},
   {c:"black",n:"Black",img:["flfree-black-back"]},
   {c:"heritage",n:"Heritage Brown",img:["flfree-heritage-back"]},
@@ -934,8 +936,8 @@ const P=[
   {c:"aloe",n:"Aloe",img:["flfree-aloe-back"]},
   {c:"teal",n:"Green",img:["flfree-green-back"]}],ed:[]},
  {id:"flcap",cat:"Early Access",tag:"Early Access",name:"Cap First Light",sub:"First Light · front print",feat:["5-panel snapback with plastic snap closure","Pre-curved visor","Reinforced front panel for shape retention","100% cotton"],v:[
-  {c:"stone",n:"Grey",img:["flcap-stone-front","flcap-stone-side","flcap-stone-back"],model:[["m-flcap-stone","f"]]},
-  {c:"sky",n:"Blue",img:["flcap-sky-front","flcap-sky-side","flcap-sky-back"],model:[["m-flcap-sky","f"]]}],ed:[]},
+  {c:"stone",n:"Grey",img:["flcap-stone-front","flcap-stone-side","flcap-stone-back"]},
+  {c:"sky",n:"Blue",img:["flcap-sky-front","flcap-sky-side","flcap-sky-back"]}],ed:[]},
  {id:"min",cat:"Shirts",name:"Shirt Minimal Edition",sub:"Small chest logo",feat:T.tee,v:[{c:"black",n:"Black",img:["tee-min-black"]},{c:"desert",n:"Desert",img:["tee-min-desert"]}],ed:["ed-minimal"]},
  {id:"free",cat:"Shirts",name:"Shirt Freestyler",sub:"Full chest logo",feat:T.tee,v:[{c:"black",n:"Black",img:["tee-free-black"]},{c:"desert",n:"Desert",img:["tee-free-desert"]}],ed:["ed-og","ed-colors"]},
  {id:"hood",cat:"Hoodies",name:"Hoodie",sub:"Full chest logo",feat:T.hood,v:[{c:"black",n:"Black",img:["hood-black"]},{c:"desert",n:"Desert",img:["hood-desert"]}],ed:["ed-hoodie"]},
@@ -959,9 +961,21 @@ function card(p){
   el.innerHTML=`<button class="plate" aria-label="${L==='de'?esc(p.name)+' ansehen':'View '+esc(p.name)}"></button>
    <div class="row"><div><h3>${esc(p.name)}</h3><div class="sub"></div>${SHOP[p.id]?`<div class="price">CHF ${SHOP[p.id].chf}.–</div>`:""}</div><div class="sw"></div></div>`;
   const plate=el.querySelector('.plate'),sw=el.querySelector('.sw'),sub=el.querySelector('.sub');
-  let vi=0;
+  let vi=Math.max(0,p.mc?p.v.findIndex(v=>v.c===p.mc):0),picked=false;
   const render=()=>{
-    const v=p.v[vi];const alt=v.img[1];
+    const v=p.v[vi];
+    /* First Light: start with the model photo (one per product), the flat product shot on hover */
+    const pm=p.models||[];const hero=p.cat==='Early Access'?(!picked&&pm.length?pm[0][0]:(v.model?v.model[0][0]:(picked?null:null))):null;
+    if(hero){
+      plate.innerHTML=(p.tag?`<span class="tag">${esc(t(p.tag))}</span>`:'')+
+        `<img class="main has-alt photo hero" src="${src(hero)}" alt="${esc(p.name)} ${esc(t('On model'))}" loading="lazy">`+
+        `<img class="alt" src="${src(v.img[0])}" alt="" loading="lazy">`+
+        `<span class="views">${nViews(v.img.length+(v.model?v.model.length:0)+pm.length)}</span>`;
+      sub.textContent=t(p.v.length>1?v.n:p.sub);
+      [...sw.children].forEach((b,i)=>b.setAttribute('aria-pressed',i===vi));
+      return;
+    }
+    const alt=v.img[1];
     plate.innerHTML=(p.tag?`<span class="tag">${esc(t(p.tag))}</span>`:p.ws?`<span class="tag">${t('Limited')}</span>`:'')+
       `<img class="main${alt?' has-alt':''}${p.photo?' photo':''}" src="${src(v.img[0])}" alt="${esc(p.name)} ${esc(t(v.n))}${alt?' '+t('front'):''}" loading="lazy">`+
       (alt?`<img class="alt" src="${src(alt)}" alt="" loading="lazy">`:'')+
@@ -969,8 +983,8 @@ function card(p){
     sub.textContent=t(p.v.length>1?v.n:p.sub);
     [...sw.children].forEach((b,i)=>b.setAttribute('aria-pressed',i===vi));
   };
-  if(p.v.length>1)p.v.forEach((v,i)=>{const b=document.createElement('button');b.style.background=C[v.c];b.title=t(v.n);b.setAttribute('aria-label',t(v.n));b.onclick=()=>{vi=i;render()};sw.appendChild(b)});
-  plate.onclick=()=>openDlg(p,vi);
+  if(p.v.length>1)p.v.forEach((v,i)=>{const b=document.createElement('button');b.style.background=C[v.c];b.title=t(v.n);b.setAttribute('aria-label',t(v.n));b.onclick=()=>{vi=i;picked=true;render()};sw.appendChild(b)});
+  plate.onclick=()=>openDlg(p,vi,!!((p.models||[]).length||p.v[vi].model)&&p.cat==='Early Access');
   render();return el;
 }
 const wsGrid=document.getElementById('wsGrid'),grid=document.getElementById('grid');
@@ -988,9 +1002,9 @@ let startModel=false;
 function openDlg(p,vi,model){startModel=!!model;
   const draw=()=>{
     const v=p.v[vi];
-    const views=[...v.img.map((n,i)=>({n,label:t(/-side$/.test(n)?'Side':v.img.length>1?(i?'Back':'Front'):'Product'),photo:p.photo})),...(v.model||[]).map(([n,sd])=>({n,label:t(sd==='b'?'On model · Back':'On model · Front'),photo:1,model:1})),...p.ed.map(n=>({n,label:'Lookbook',photo:1}))];
+    const views=[...v.img.map((n,i)=>({n,label:t(/-side$/.test(n)?'Side':v.img.length>1?(i?'Back':'Front'):'Product'),photo:p.photo})),...(v.model||[]).concat(p.models||[]).map(([n,sd])=>({n,label:t(sd==='b'?'On model · Back':'On model · Front'),photo:1,model:1})),...p.ed.map(n=>({n,label:'Lookbook',photo:1}))];
     let cur=0;
-    if(startModel&&v.model){startModel=false;views.unshift(...views.splice(v.img.length,v.model.length))}
+    const nm=(v.model||[]).length+(p.models||[]).length;if(startModel&&nm){startModel=false;views.unshift(...views.splice(v.img.length,nm))}
     const pick=i=>{cur=i;const x=views[i];stage.innerHTML=`<img class="${x.photo?'photo':''}${x.model?' model':''}" src="${src(x.n)}" alt="${esc(p.name)} ${esc(t(v.n))}, ${x.label}">`;[...thumbs.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i))};
     thumbs.innerHTML='';
     views.forEach((x,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',x.label);b.innerHTML=`<img src="${src(x.n)}" alt="" style="${x.photo?'mix-blend-mode:normal':''}">`;b.onclick=()=>pick(i);thumbs.appendChild(b)});
