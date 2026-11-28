@@ -65,6 +65,30 @@
    },
    "pilot": false
   },
+  "fltrain": {
+   "name": "Sweatshirt Trainer First Light",
+   "chf": 65,
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL",
+    "4XL",
+    "5XL"
+   ],
+   "sizeLabel": "Size",
+   "colors": {
+    "black": "Black",
+    "green": "Green",
+    "heather": "Grey",
+    "navy": "Navy Blue"
+   },
+   "pilot": false
+  },
   "flcap": {
    "name": "Cap First Light",
    "chf": 30,
