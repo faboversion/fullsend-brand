@@ -14,7 +14,8 @@
   "pct": 20,
   "perItem": {
    "min": 30,
-   "free": 30
+   "free": 30,
+   "boxy": 15
   }
  },
  "products": {
