@@ -621,8 +621,15 @@ html:not(.g-view) footer .wrap{color:rgba(232,210,181,.8)}
 html:not(.g-view) footer .logo{background:var(--cream)}
 html:not(.g-view) .notice,html:not(.g-view) .cartbtn b,html:not(.g-view) .draftbar{color:var(--cream)}
 html:not(.g-view) .buy .add:hover{color:var(--cream)}
+.droppill{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;display:flex;align-items:baseline;gap:10px;padding:10px 18px;border-radius:999px;background:var(--burgundy);color:var(--burgundy-fg);font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 24px rgba(0,0,0,.3);pointer-events:none;white-space:nowrap}
+.droppill b{font:700 17px var(--mono);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.droppill[hidden]{display:none}
+html.g-view .droppill{display:none}
+dialog[open]~.droppill{display:none}
+.notice .cdn{font-variant-numeric:tabular-nums}
 </style>
 
+<div id="dropPill" class="droppill" hidden aria-live="off"></div>
 <div class="notice"><span data-i>Drop closed · Orders are paused until the next drop · Info in the</span> <a href="https://www.instagram.com/channel/AbaFDTAcuR4bSTQQ/" target="_blank" rel="noopener" data-i>FULL SEND community on Instagram</a></div>
 <header class="nav">
   <div class="wrap">
@@ -1387,15 +1394,36 @@ function orderUrl(o){
 }
 cartBtn.hidden=true;
 Object.assign(TR,{'Drop open · Orders are open now · Shipping flat CHF 10':'Drop offen · Jetzt bestellen · Versand pauschal CHF 10'});
+Object.assign(TR,{'Drop open · closes in':'Drop offen · schliesst in','Drop opens in':'Drop öffnet in','Closes in':'Schliesst in','Opens in':'Öffnet in','Shipping flat CHF 10':'Versand pauschal CHF 10'});
+let DROP_CLOSE=0,DROP_START=0;
+const cdFmt=ms=>{ms=Math.max(0,ms);const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60,p=n=>String(n).padStart(2,'0');return (h>=48?Math.floor(h/24)+'d '+p(h%24):p(h))+':'+p(m)+':'+p(x)};
+function dropTick(){
+  const now=Date.now(),n=document.querySelector('.notice'),pill=document.getElementById('dropPill');
+  if(DROP_OPEN){
+    const left=DROP_CLOSE-now;
+    if(left<=0){location.reload();return}
+    if(n)n.innerHTML=`<span>${t('Drop open · closes in')} <b class="cdn">${cdFmt(left)}</b> · ${t('Shipping flat CHF 10')}</span>`;
+    if(pill){pill.hidden=false;pill.innerHTML=`<span>${t('Closes in')}</span><b>${cdFmt(left)}</b>`}
+  }else if(DROP_START&&DROP_START>now&&DROP_START-now<7*864e5){
+    const left=DROP_START-now;
+    if(left<=0){location.reload();return}
+    if(n)n.innerHTML=`<span>${t('Drop opens in')} <b class="cdn">${cdFmt(left)}</b></span>`;
+    if(pill){pill.hidden=false;pill.innerHTML=`<span>${t('Opens in')}</span><b>${cdFmt(left)}</b>`}
+  }else return;
+  setTimeout(dropTick,1000-(Date.now()%1000)+20);
+}
 fetch('/shop/catalog.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{
   const d=c.drop||{},now=Date.now();
-  DROP_OPEN=!!(d.open&&d.close&&now>=Date.parse(d.open)&&now<Date.parse(d.close));
+  DROP_START=d.open?Date.parse(d.open):0;DROP_CLOSE=d.close?Date.parse(d.close):0;
+  DROP_OPEN=!!(d.open&&d.close&&now>=DROP_START&&now<DROP_CLOSE);
 }).catch(()=>{DROP_OPEN=false}).then(()=>{
   if(!DROP_OPEN){CART=[];try{localStorage.removeItem('fs-cart')}catch(e){}}
-  else{cartBtn.hidden=false;const n=document.querySelector('.notice');if(n)n.innerHTML='<span data-i>Drop open · Orders are open now · Shipping flat CHF 10</span>';const dr=document.getElementById('drop');if(dr)dr.hidden=true;const nb=document.querySelector('.hero a.btn[href="#drop"]');if(nb)nb.remove();try{setLang(L)}catch(e){}
+  else{cartBtn.hidden=false;const dr=document.getElementById('drop');if(dr)dr.hidden=true;const nb=document.querySelector('.hero a.btn[href="#drop"]');if(nb)nb.remove();try{setLang(L)}catch(e){}
     if(/[?&]cart=1/.test(location.search)&&CART.length)openCart()}
+  dropTick();
   paintBadge();
 });
+document.addEventListener('visibilitychange',()=>{if(document.hidden)return;const now=Date.now();if((DROP_OPEN&&now>=DROP_CLOSE)||(!DROP_OPEN&&DROP_START&&now>=DROP_START&&now<DROP_CLOSE))location.reload()});
 
 Object.assign(TR,{"Drop closed · Orders are paused until the next drop · Info in the": "Drop geschlossen · Bestellungen pausiert bis zum nächsten Drop · Infos in der", "FULL SEND community on Instagram": "FULL SEND Community auf Instagram", "The Collection <span class=\"dash\"></span>": "Die Kollektion <span class=\"dash\"></span>", "Next drop": "Nächster Drop", "Drop closed": "Drop geschlossen", "See you at the next drop": "Wir sehen uns beim nächsten Drop", "The last drop is over and orders are paused for now. You can still browse the collection and find your size. The next drop is announced first in the FULL SEND community on Instagram.": "Der letzte Drop ist vorbei und Bestellungen sind im Moment pausiert. Die Kollektion kannst du weiterhin anschauen und deine Grösse finden. Der nächste Drop wird zuerst in der FULL SEND Community auf Instagram angekündigt.", "Join the community <span class=\"dash\"></span>": "Community beitreten <span class=\"dash\"></span>", "Ordering closed": "Bestellung geschlossen", "The drop is over. You can order again at the next drop. Info in the": "Der Drop ist vorbei. Bestellen kannst du wieder beim nächsten Drop. Infos in der"});
 Object.assign(TR,{"News · Coming early 2027":"News · Anfang 2027","First Light. <span>A new cut.</span>":"First Light. <span>Ein neuer Schnitt.</span>","At the start of 2027 the FIRST LIGHT special edition joins the collection, and with it a brand-new piece: the boxy hoodie. A new print, a new cut and the heaviest fabric we have ever used. Here is a first look.":"Zum Start ins Jahr 2027 kommt die Special Edition FIRST LIGHT in die Kollektion, und mit ihr ein ganz neues Teil: der Boxy Hoodie. Ein neuer Print, ein neuer Schnitt und der schwerste Stoff, den wir je verwendet haben. Hier ein erster Blick darauf.","Heather Grey · black print":"Grau meliert · schwarzer Print","French Navy · white print":"French Navy · weisser Print","Be first to know <span class=\"dash\"></span>":"Als Erste:r erfahren <span class=\"dash\"></span>","Weight":"Gewicht","Fit":"Passform","Fabric":"Material","Release":"Release","Boxy · Oversized":"Boxy · Oversized","100% organic cotton":"100 % Bio-Baumwolle","Early 2027":"Anfang 2027","Extremely heavy 400 g/m² fabric":"Extrem schwere Qualität mit 400 g/m² Flächengewicht","Unique dry hand feel for a modern look":"Einzigartige trockene Haptik für einen modernen Look","Double-layer hood with matching drawcord":"Doppellagige Kapuze mit farblich passender Kordel","Classic kangaroo pocket on the front":"Klassische Kängurutasche auf der Vorderseite","Wide rib cuffs and hem":"Breite Rippbündchen an Ärmelabschlüssen und Saum","High-quality make, 100% organic cotton":"Hochwertige Verarbeitung aus 100 % Bio-Baumwolle","Comfortable unisex fit for women and men":"Bequeme Unisex-Passform für Damen und Herren","Boxy hoodie in French Navy with white FULL SEND chest logo, front view in a subway station":"Boxy Hoodie in French Navy mit weissem FULL SEND Brustlogo, Vorderansicht in einer U-Bahn-Station","Boxy hoodie in French Navy with the white FIRST LIGHT back print":"Boxy Hoodie in French Navy mit weissem FIRST LIGHT Rückenprint","Boxy hoodie in heather grey with black FULL SEND chest logo, front view in a concrete stairwell":"Boxy Hoodie in Grau meliert mit schwarzem FULL SEND Brustlogo, Vorderansicht in einem Betontreppenhaus","Boxy hoodie in heather grey with the black FIRST LIGHT back print":"Boxy Hoodie in Grau meliert mit schwarzem FIRST LIGHT Rückenprint"});
