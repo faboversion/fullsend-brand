@@ -48,6 +48,7 @@ h2.disp{font-size:clamp(34px,6vw,76px);margin:0}
 .std{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,4vw,64px);align-items:end;padding:clamp(28px,4vw,48px) 0 clamp(36px,5vw,64px);border-bottom:1px solid var(--line,rgba(0,0,0,.12));margin-bottom:clamp(28px,4vw,48px)}
 .std-h{margin:.35em 0 .45em;line-height:1.02}
 .std .lede{margin-top:18px}
+.dlg-noteb{display:block;font-weight:800;font-size:1.25em;color:var(--fg);margin-bottom:10px;letter-spacing:-.01em}
 .std-h{font-size:clamp(34px,5vw,64px)}
 .std-h span{color:var(--burgundy,#7d2a2e);display:block}
 .std-facts{margin:0;display:grid;gap:18px}
@@ -952,7 +953,7 @@ const P=[
   {c:"green",n:"Green",img:["fltrain-green-front","fltrain-green-back"]},
   {c:"heather",n:"Grey",img:["fltrain-heather-front","fltrain-heather-back"]},
   {c:"navy",n:"Navy Blue",img:["fltrain-navy-front","fltrain-navy-back"]}],ed:[]},
- {id:"flfree",cat:"Early Access",tag:"Early Access",name:"Shirt Freestyler First Light",note:"Back print only",sub:"First Light · back print",feat:T.tee,mc:"heritage",models:[["m2-flfree-b","b"]],v:[
+ {id:"flfree",cat:"Early Access",tag:"Early Access",name:"Shirt Freestyler First Light",note:"Back print only",noteLong:"Back print only, no print on the front.",sub:"First Light · back print",feat:T.tee,mc:"heritage",models:[["m2-flfree-b","b"]],v:[
   {c:"peche",n:"Fraiche Peche",img:["flfree-peche-back"]},
   {c:"black",n:"Black",img:["flfree-black-back"]},
   {c:"heritage",n:"Heritage Brown",img:["flfree-heritage-back"]},
@@ -1040,7 +1041,7 @@ function openDlg(p,vi,model){startModel=!!model;
     const sw=document.getElementById('dlgSw');sw.innerHTML='';
     if(p.v.length>1)p.v.forEach((x,i)=>{const b=document.createElement('button');b.style.background=C[x.c];b.title=t(x.n);b.setAttribute('aria-label',t(x.n));b.setAttribute('aria-pressed',i===vi);b.onclick=()=>{vi=i;draw()};sw.appendChild(b)});
     document.getElementById('dlgFeat').innerHTML=p.feat.map(f=>`<li>${esc(t(f))}</li>`).join('');
-    document.getElementById('dlgNote').textContent=(p.v.length>1?t('Colors: ')+p.v.map(x=>t(x.n)).join(', ')+'. ':'')+t(p.ws?'Limited Winter Series piece, made to order in a single batch.':'Released in FULL SEND drops. Join the community for the next one.');
+    {const dn=document.getElementById('dlgNote');dn.textContent=(p.v.length>1?t('Colors: ')+p.v.map(x=>t(x.n)).join(', ')+'. ':'')+t(p.ws?'Limited Winter Series piece, made to order in a single batch.':'Released in FULL SEND drops. Join the community for the next one.');if(p.note){const st=document.createElement('strong');st.className='dlg-noteb';st.textContent=t(p.noteLong||p.note);dn.prepend(st)}}
     renderBuy(p,vi);
   };
   draw();
@@ -1504,7 +1505,7 @@ window.addEventListener('hashchange',gRoute);gRoute();
 const I18N_EL=[...document.querySelectorAll('[data-i]')].map(el=>({el,en:el.innerHTML.trim()}));
 const I18N_AT=[...document.querySelectorAll('[data-ta]')].map(el=>({el,a:el.dataset.ta,en:el.getAttribute(el.dataset.ta)}));
 Object.assign(TR,{"optional":"optional","Secure payment with Stripe":"Sicher bezahlen mit Stripe","Next you pay with TWINT, card, Apple Pay, Google Pay, PayPal, Klarna, bank transfer or SEPA direct debit. Name, email and shipping address are entered there. Prices are in CHF. Outside Switzerland you can pay in your own currency.":"Als Nächstes bezahlst du mit TWINT, Karte, Apple Pay, Google Pay, PayPal, Klarna, Banküberweisung oder SEPA-Lastschrift. Name, E-Mail und Lieferadresse gibst du dort ein. Die Preise sind in CHF. Ausserhalb der Schweiz kannst du in deiner Landeswährung bezahlen.","Pre-order":"Vorbestellung","Everything is produced together after orders close. Delivery takes about 2–3 weeks after that.":"Nach Bestellschluss wird alles gemeinsam produziert. Danach dauert die Lieferung etwa 2–3 Wochen.","By continuing you accept our":"Mit dem Klick auf «Weiter» akzeptierst du unsere","terms and conditions":"AGB","Continue to payment":"Weiter zur Zahlung","One moment…":"Einen Moment…","Orders are closed right now.":"Bestellungen sind gerade geschlossen.","Something went wrong. Please try again or write to support@fullsend-brand.com.":"Da ist etwas schiefgelaufen. Bitte nochmals versuchen oder an support@fullsend-brand.com schreiben.","Terms":"AGB","Imprint":"Impressum","Privacy":"Datenschutz"});
-Object.assign(TR,{"Heather Grey":"Grau meliert","Navy Blue":"Navyblau","Blue Ice":"Eisblau","Red Brown":"Rotbraun","Back print only":"Nur Rückenprint"});
+Object.assign(TR,{"Heather Grey":"Grau meliert","Navy Blue":"Navyblau","Blue Ice":"Eisblau","Red Brown":"Rotbraun","Back print only":"Nur Rückenprint","Back print only, no print on the front.":"Nur Rückenprint, vorne ohne Print."});
 function setLang(l){
   L=l==='de'?'de':'en';
   document.documentElement.lang=L;
