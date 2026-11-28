@@ -65,6 +65,17 @@
    },
    "pilot": false
   },
+  "flcap": {
+   "name": "Cap First Light",
+   "chf": 30,
+   "sizes": null,
+   "sizeLabel": "Size",
+   "colors": {
+    "stone": "Grey",
+    "sky": "Blue"
+   },
+   "pilot": false
+  },
   "min": {
    "name": "Shirt Minimal Edition",
    "chf": 38,
